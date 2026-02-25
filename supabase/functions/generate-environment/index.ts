@@ -22,7 +22,14 @@ Use the following historical evidence to construct the scene:
   if (hasCharacterImage) {
     prompt += `
 
-CRITICAL: The uploaded character image MUST be integrated into this environment scene. Place the character naturally within the landscape — standing on the ground, at an appropriate scale relative to surroundings, with consistent lighting and perspective. The character should look like they belong in this environment, not composited on top. Preserve the character's exact appearance, clothing, and features from the uploaded image.`;
+CRITICAL CHARACTER INTEGRATION RULES:
+- The uploaded character image MUST be integrated into this environment scene.
+- SCALE IS PARAMOUNT: The character must be realistically sized relative to the environment. A human figure should be approximately 1/6th to 1/8th the height of the overall image. They should appear as a normal-sized person within a wide landscape — NOT oversized, NOT dominating the frame.
+- The character should be placed mid-ground or background, standing naturally on the ground (quayside, mudflat, or path), surrounded by other elements (buildings, boats, cargo, other people) that establish correct scale.
+- Use surrounding architectural elements (doorways ~2m tall, warehouse walls, barrels, crates, bollards) as scale references to ensure the character is proportionally correct.
+- Match the character's lighting, shadow direction, and colour grading to the rest of the scene so they look embedded, not composited.
+- Preserve the character's exact appearance, clothing, and features from the uploaded image.
+- The character should NOT be centred or prominent — they are ONE person in a busy, wide landscape scene.`;
   }
 
   prompt += `
