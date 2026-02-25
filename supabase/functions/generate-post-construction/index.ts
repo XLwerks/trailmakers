@@ -40,6 +40,9 @@ The environment must:
 - Use natural, overcast or hazy lighting typical of an industrial port environment
 - Feel like a working, organised industrial waterfront — signs of engineering, trade, and maritime activity
 - Be in LANDSCAPE orientation (wider than tall)
+- CAMERA ANGLE: The viewpoint MUST be at ground level / eye level (approximately 1.6m height), looking horizontally across the dock scene. Do NOT use an elevated, aerial, or bird's-eye perspective. The camera should feel like a person standing on the quayside looking along the dock.
+- FRAMING: Use a wide establishing shot with depth — foreground cobbles or dock edge, mid-ground activity and figures, background warehouses and sky. Include a clear vanishing point along the dock to create spatial depth.
+- Include multiple human figures at various distances throughout the scene to establish consistent human scale.
 - No modern elements, no text, no logos
 - Avoid illustration, painting, CGI or stylised rendering — photographic realism only`;
 
