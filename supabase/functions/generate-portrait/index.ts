@@ -19,7 +19,7 @@ Use the following historical evidence to construct the face and expression:
 - What this suggests about the person: ${showInterpretation}
 - Core description: ${finalSentence}
 
-The portrait must strongly reflect the facial features and personality implied by this evidence. The hairstyle, grooming, and any visible details must be authentic to the ${timePeriod || "historical period"} specified. Avoid modern styling unless explicitly indicated. Avoid illustration, painting, CGI or stylised rendering.`;
+The portrait must be in FULL COLOUR (not black and white, not sepia, not monochrome). Use natural, realistic skin tones and colours throughout. The portrait must strongly reflect the facial features and personality implied by this evidence. The hairstyle, grooming, and any visible details must be authentic to the ${timePeriod || "historical period"} specified. Avoid modern styling unless explicitly indicated. Avoid illustration, painting, CGI or stylised rendering.`;
 
   return prompt;
 }
