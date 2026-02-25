@@ -10,9 +10,10 @@ import { Button } from "@/components/ui/button";
 
 interface Role2Props {
   portraitImageUrl: string | null;
+  timePeriod: string;
 }
 
-const Role2 = ({ portraitImageUrl }: Role2Props) => {
+const Role2 = ({ portraitImageUrl, timePeriod }: Role2Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -143,7 +144,7 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
                 ? "Describe the clothing to extend the portrait into a full-body image"
                 : "Upload a reference portrait and describe the clothing to generate a full-body image"}
             </p>
-            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} />
+            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} timePeriod={timePeriod} />
           </div>
 
           {/* Right: Result */}

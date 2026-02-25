@@ -16,6 +16,7 @@ const queryClient = new QueryClient();
 const AppRoutes = () => {
   const [portraitImageUrl, setPortraitImageUrl] = useState<string | null>(null);
   const [characterImageUrl, setCharacterImageUrl] = useState<string | null>(null);
+  const [timePeriod, setTimePeriod] = useState<string>("");
 
   return (
     <Routes>
@@ -25,24 +26,26 @@ const AppRoutes = () => {
           <Role1
             onPortraitGenerated={setPortraitImageUrl}
             generatedPortrait={portraitImageUrl}
+            timePeriod={timePeriod}
+            onTimePeriodChange={setTimePeriod}
           />
         }
       />
       <Route
         path="/role2"
-        element={<Role2 portraitImageUrl={portraitImageUrl} />}
+        element={<Role2 portraitImageUrl={portraitImageUrl} timePeriod={timePeriod} />}
       />
       <Route
         path="/role3"
-        element={<Role3 portraitImageUrl={portraitImageUrl} />}
+        element={<Role3 portraitImageUrl={portraitImageUrl} timePeriod={timePeriod} />}
       />
       <Route
         path="/role4"
-        element={<Role4 characterImageUrl={characterImageUrl} />}
+        element={<Role4 characterImageUrl={characterImageUrl} timePeriod={timePeriod} />}
       />
       <Route
         path="/role5"
-        element={<Role5 characterImageUrl={characterImageUrl} />}
+        element={<Role5 characterImageUrl={characterImageUrl} timePeriod={timePeriod} />}
       />
       <Route path="*" element={<NotFound />} />
     </Routes>

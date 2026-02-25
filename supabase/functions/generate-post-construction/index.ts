@@ -7,12 +7,13 @@ const corsHeaders = {
 };
 
 function buildPrompt(fields: Record<string, string>, hasCharacterImage: boolean): string {
-  const { seeNotes, sayKeywords, showInterpretation, finalSentence } = fields;
+  const { seeNotes, sayKeywords, showInterpretation, finalSentence, timePeriod } = fields;
 
-  let prompt = `Create a photorealistic landscape-format image of a historical docks environment AFTER formal wet dock construction was completed. The image must be in landscape orientation (wider than tall). High realism, photographic quality, natural lighting.
+  let prompt = `Create a photorealistic landscape-format image of a historical docks environment from the ${timePeriod || "mid-19th century"} AFTER formal wet dock construction was completed. The image must be in landscape orientation (wider than tall). High realism, photographic quality, natural lighting.
 
 Use the following historical evidence to construct the scene:
 
+- Historical time period: ${timePeriod || "Not specified"}
 - Observed visual clues about the post-construction docks: ${seeNotes}
 - Key environmental descriptors: ${sayKeywords}
 - How engineering changed the waterfront: ${showInterpretation}

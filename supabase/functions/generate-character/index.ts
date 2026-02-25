@@ -7,12 +7,13 @@ const corsHeaders = {
 };
 
 function buildPrompt(fields: Record<string, string>, hasReferenceImage: boolean): string {
-  const { seeNotes, sayKeywords, showInterpretation, finalSentence } = fields;
+  const { seeNotes, sayKeywords, showInterpretation, finalSentence, timePeriod } = fields;
 
-  let prompt = `Create a full-body, photorealistic image of a historical person. Plain white studio background only. Neutral studio lighting. High realism suitable for later 3D modelling.
+  let prompt = `Create a full-body, photorealistic image of a historical person from the ${timePeriod || "Victorian era"}. Plain white studio background only. Neutral studio lighting. High realism suitable for later 3D modelling.
 
 Use the following historical evidence to construct the person's appearance, clothing, and posture:
 
+- Historical time period: ${timePeriod || "Not specified"}
 - Observed visual clues: ${seeNotes}
 - Key descriptors: ${sayKeywords}
 - What this suggests about the person: ${showInterpretation}
@@ -26,7 +27,7 @@ Use the following historical evidence to construct the person's appearance, clot
 
 The character must:
 - Stand in a neutral upright position.
-- Be dressed authentically for the historical period implied by the evidence.
+- Be dressed authentically for the ${timePeriod || "historical period"} implied by the evidence.
 - Reflect the personality, status, and era suggested by the evidence through clothing, posture, and grooming.
 - No objects. No modern elements. No logos. No text.
 - Avoid illustration, painting, CGI or stylised rendering.`;

@@ -7,12 +7,13 @@ const corsHeaders = {
 };
 
 function buildPrompt(fields: Record<string, string>, hasReferenceImage: boolean): string {
-  const { seeNotes, sayKeywords, showInterpretation, finalSentence } = fields;
+  const { seeNotes, sayKeywords, showInterpretation, finalSentence, timePeriod } = fields;
 
-  let prompt = `Create a head-and-shoulders portrait in the style of an authentic Victorian-era wet plate collodion photograph. The image must look like a genuine 1850s–1880s photograph, not a modern recreation.
+  let prompt = `Create a head-and-shoulders portrait in the style of an authentic Victorian-era wet plate collodion photograph from the ${timePeriod || "1850s–1880s"}. The image must look like a genuine period photograph, not a modern recreation.
 
 Use the following evidence about the desired photographic style:
 
+- Historical time period: ${timePeriod || "Not specified"}
 - Observed visual clues about the photograph style: ${seeNotes}
 - Key style descriptors: ${sayKeywords}
 - What this evidence shows about historical photography: ${showInterpretation}
