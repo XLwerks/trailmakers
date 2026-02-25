@@ -15,7 +15,7 @@ const role3Labels: FieldLabels = {
   seeLabel: "SEE – What do you notice about the photographs? *",
   seePlaceholder: "e.g. Warm sepia tones, soft focus, slightly worn edges, dark vignetting around the frame",
   sayLabel: "SAY – What does the research tell you? (key words/phrases) *",
-  sayPlaceholder: "e.g. collodion, long exposure, glass plate, chemical staining, faded contrast",
+  sayPlaceholder: "e.g. long exposure, glass plate, chemical staining, faded contrast, sepia tones",
   showLabel: "SHOW – What makes these images feel historical? *",
   showPlaceholder: "e.g. The grain and imperfections suggest early photographic processes with limited control over light and exposure",
   finalLabel: "Final Sentence – The image should look… *",
