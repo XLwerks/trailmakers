@@ -24,12 +24,11 @@ Use the following historical evidence to construct the scene:
 
 CRITICAL CHARACTER INTEGRATION RULES:
 - The uploaded character image MUST be integrated into this environment scene.
-- SCALE IS PARAMOUNT: The character must be realistically sized relative to the environment. A human figure should be approximately 1/6th to 1/8th the height of the overall image. They should appear as a normal-sized person within a wide landscape — NOT oversized, NOT dominating the frame.
-- The character should be placed mid-ground or background, standing naturally on the quayside, dock edge, or cobbled path, surrounded by other elements (warehouses, cranes, cargo, other workers) that establish correct scale.
-- Use surrounding architectural elements (doorways ~2m tall, warehouse walls, barrels, crates, bollards, lock gates) as scale references to ensure the character is proportionally correct.
+- SCALE IS PARAMOUNT: The character must be realistically proportioned relative to nearby objects. A person should look the correct height compared to doorways (~2m), warehouse walls, barrels, crates, bollards, lock gates, and other figures in the scene. Do NOT make the character unnaturally large or towering over buildings.
+- Place the character standing naturally on the quayside, dock edge, or cobbled path with their feet firmly on the surface, not floating.
 - Match the character's lighting, shadow direction, and colour grading to the rest of the scene so they look embedded, not composited.
 - Preserve the character's exact appearance, clothing, and features from the uploaded image.
-- The character should NOT be centred or prominent — they are ONE person in a busy, wide industrial dock landscape.`;
+- Include other human figures at similar scale in the scene to reinforce correct proportions.`;
   }
 
   prompt += `
