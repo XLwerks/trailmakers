@@ -33,11 +33,11 @@ const AppRoutes = () => {
       />
       <Route
         path="/role2"
-        element={<Role2 portraitImageUrl={portraitImageUrl} timePeriod={timePeriod} />}
+        element={<Role2 timePeriod={timePeriod} />}
       />
       <Route
         path="/role3"
-        element={<Role3 portraitImageUrl={portraitImageUrl} timePeriod={timePeriod} />}
+        element={<Role3 timePeriod={timePeriod} />}
       />
       <Route
         path="/role4"

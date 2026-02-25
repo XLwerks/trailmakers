@@ -9,11 +9,10 @@ import { Compass, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Role2Props {
-  portraitImageUrl: string | null;
   timePeriod: string;
 }
 
-const Role2 = ({ portraitImageUrl, timePeriod }: Role2Props) => {
+const Role2 = ({ timePeriod }: Role2Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -21,15 +20,11 @@ const Role2 = ({ portraitImageUrl, timePeriod }: Role2Props) => {
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Show prompt to go back if no portrait, but don't block access
-  const needsPortrait = !portraitImageUrl;
-
   const handleGenerate = async (
     fields: Record<string, string>,
     imageBase64?: string
   ) => {
-    // Use portrait from Role 1, or manually uploaded image
-    const imageToUse = portraitImageUrl || imageBase64 || null;
+    const imageToUse = imageBase64 || null;
 
     setIsLoading(true);
     setError(null);
@@ -118,21 +113,6 @@ const Role2 = ({ portraitImageUrl, timePeriod }: Role2Props) => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        {/* Portrait reference thumbnail (only if from Role 1) */}
-        {portraitImageUrl && (
-          <div className="mb-6 flex items-center gap-3 bg-card rounded-lg border border-border p-3">
-            <img
-              src={portraitImageUrl}
-              alt="Role 1 portrait"
-              className="w-12 h-12 rounded-lg object-cover border border-border"
-            />
-            <div>
-              <p className="text-sm font-semibold text-foreground">Reference Portrait</p>
-              <p className="text-xs text-muted-foreground">Generated in Role 1 — used as facial likeness reference</p>
-            </div>
-          </div>
-        )}
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left: Form */}
           <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
@@ -140,11 +120,9 @@ const Role2 = ({ portraitImageUrl, timePeriod }: Role2Props) => {
               Character Details
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              {portraitImageUrl
-                ? "Describe the clothing to extend the portrait into a full-body image"
-                : "Upload a reference portrait and describe the clothing to generate a full-body image"}
+              Upload a reference portrait and describe the clothing to generate a full-body image
             </p>
-            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} timePeriod={timePeriod} />
+            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={true} timePeriod={timePeriod} />
           </div>
 
           {/* Right: Result */}
