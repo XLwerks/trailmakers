@@ -6,29 +6,30 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-function buildPrompt(fields: Record<string, string>): string {
-  const { timePeriod, roleOccupation, clothingDescriptors, outfitDescriptionSentence } = fields;
+function buildPrompt(fields: Record<string, string>, hasReferenceImage: boolean): string {
+  const { seeNotes, sayKeywords, showInterpretation, finalSentence } = fields;
 
-  let prompt = `Using the uploaded reference image for facial likeness, generate a full-body, photorealistic image of a ${roleOccupation} from the ${timePeriod}.
+  let prompt = `Create a full-body, photorealistic image of a historical person. Plain white studio background only. Neutral studio lighting. High realism suitable for later 3D modelling.
 
-The character must:
-- Maintain consistent facial features from the reference image.
-- Be dressed authentically for a ${roleOccupation} of the ${timePeriod}.
-- Wear historically accurate clothing including: ${clothingDescriptors}.`;
+Use the following historical evidence to construct the person's appearance, clothing, and posture:
 
-  if (outfitDescriptionSentence) {
-    prompt += `\n- ${outfitDescriptionSentence}`;
+- Observed visual clues: ${seeNotes}
+- Key descriptors: ${sayKeywords}
+- What this suggests about the person: ${showInterpretation}
+- Core description: ${finalSentence}`;
+
+  if (hasReferenceImage) {
+    prompt += `\n\nUse the uploaded reference image to maintain consistent facial features and likeness.`;
   }
 
   prompt += `
+
+The character must:
 - Stand in a neutral upright position.
-- Stand on a seamless plain white background.
-- No objects.
-- No modern elements.
-- No logos.
-- No text.
-- Neutral studio lighting.
-- High realism suitable for later 3D modelling.`;
+- Be dressed authentically for the historical period implied by the evidence.
+- Reflect the personality, status, and era suggested by the evidence through clothing, posture, and grooming.
+- No objects. No modern elements. No logos. No text.
+- Avoid illustration, painting, CGI or stylised rendering.`;
 
   return prompt;
 }
@@ -46,14 +47,23 @@ serve(async (req) => {
 
     const { fields, referenceImageBase64 } = await req.json();
 
-    if (!fields || !referenceImageBase64) {
+    if (!fields) {
       return new Response(
-        JSON.stringify({ error: "Missing required fields or reference image" }),
+        JSON.stringify({ error: "Missing required fields" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    const finalPrompt = buildPrompt(fields);
+    const hasReferenceImage = !!referenceImageBase64;
+    const finalPrompt = buildPrompt(fields, hasReferenceImage);
+
+    // Build message content - include reference image if available
+    const messageContent = hasReferenceImage
+      ? [
+          { type: "text", text: finalPrompt },
+          { type: "image_url", image_url: { url: referenceImageBase64 } },
+        ]
+      : finalPrompt;
 
     const response = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
@@ -68,13 +78,7 @@ serve(async (req) => {
           messages: [
             {
               role: "user",
-              content: [
-                { type: "text", text: finalPrompt },
-                {
-                  type: "image_url",
-                  image_url: { url: referenceImageBase64 },
-                },
-              ],
+              content: messageContent,
             },
           ],
           modalities: ["image", "text"],
