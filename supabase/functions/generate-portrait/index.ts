@@ -7,18 +7,19 @@ const corsHeaders = {
 };
 
 function buildPrompt(fields: Record<string, string>): string {
-  const { seeNotes, sayKeywords, showInterpretation, finalSentence } = fields;
+  const { seeNotes, sayKeywords, showInterpretation, finalSentence, timePeriod } = fields;
 
-  let prompt = `Create a photorealistic head-and-shoulders portrait of a historical person. Plain white studio background only. Neutral lighting, realistic skin texture, sharp focus. Head and shoulders framing.
+  let prompt = `Create a photorealistic head-and-shoulders portrait of a historical person from the ${timePeriod || "Victorian era"}. Plain white studio background only. Neutral lighting, realistic skin texture, sharp focus. Head and shoulders framing.
 
 Use the following historical evidence to construct the face and expression:
 
+- Historical time period: ${timePeriod || "Not specified"}
 - Observed visual clues: ${seeNotes}
 - Key facial descriptors: ${sayKeywords}
 - What this suggests about the person: ${showInterpretation}
 - Core description: ${finalSentence}
 
-The portrait must strongly reflect the facial features and personality implied by this evidence. If the evidence suggests a specific historical period, reflect it subtly through hairstyle and grooming. Avoid modern styling unless explicitly indicated. Avoid illustration, painting, CGI or stylised rendering.`;
+The portrait must strongly reflect the facial features and personality implied by this evidence. The hairstyle, grooming, and any visible details must be authentic to the ${timePeriod || "historical period"} specified. Avoid modern styling unless explicitly indicated. Avoid illustration, painting, CGI or stylised rendering.`;
 
   return prompt;
 }

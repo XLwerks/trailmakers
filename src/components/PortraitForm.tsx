@@ -23,6 +23,8 @@ interface PortraitFormProps {
   isLoading: boolean;
   showImageUpload?: boolean;
   fieldLabels?: FieldLabels;
+  timePeriod?: string;
+  onTimePeriodChange?: (value: string) => void;
 }
 
 const defaultLabels: FieldLabels = {
@@ -38,8 +40,9 @@ const defaultLabels: FieldLabels = {
   imageUploadHint: "Upload a portrait photo for facial likeness",
 };
 
-const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabels }: PortraitFormProps) => {
+const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabels, timePeriod, onTimePeriodChange }: PortraitFormProps) => {
   const labels = { ...defaultLabels, ...fieldLabels };
+  const isTimePeriodEditable = !!onTimePeriodChange;
   const [referencePreview, setReferencePreview] = useState<string | null>(null);
   const [referenceBase64, setReferenceBase64] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -82,6 +85,7 @@ const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabel
     const submissionFields: Record<string, string> = {
       ...rest,
       sayKeywords: keywords.filter(k => k.trim()).join(", "),
+      timePeriod: timePeriod || "",
     };
     onSubmit(submissionFields, referenceBase64 || undefined);
   };
@@ -95,6 +99,26 @@ const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabel
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <div>
+        <Label htmlFor="timePeriod">Time Period *</Label>
+        {isTimePeriodEditable ? (
+          <Input
+            id="timePeriod"
+            value={timePeriod || ""}
+            onChange={(e) => onTimePeriodChange!(e.target.value)}
+            placeholder="e.g. 1830s England, Early Victorian era, 1860s Liverpool docks"
+            className="text-sm"
+          />
+        ) : (
+          <Input
+            id="timePeriod"
+            value={timePeriod || "Not set"}
+            readOnly
+            className="text-sm bg-muted cursor-not-allowed"
+          />
+        )}
+      </div>
+
       {showImageUpload && (
         <div>
           <Label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground mb-2 block">

@@ -9,6 +9,7 @@ import { Compass } from "lucide-react";
 
 interface Role3Props {
   portraitImageUrl: string | null;
+  timePeriod: string;
 }
 
 const role3Labels: FieldLabels = {
@@ -24,7 +25,7 @@ const role3Labels: FieldLabels = {
   imageUploadHint: "Upload the portrait to apply Victorian photographic styling",
 };
 
-const Role3 = ({ portraitImageUrl }: Role3Props) => {
+const Role3 = ({ portraitImageUrl, timePeriod }: Role3Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -147,7 +148,7 @@ const Role3 = ({ portraitImageUrl }: Role3Props) => {
                 ? "Describe the Victorian photographic style to transform the portrait"
                 : "Upload a reference portrait and describe the Victorian photographic style"}
             </p>
-            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} fieldLabels={role3Labels} />
+            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} fieldLabels={role3Labels} timePeriod={timePeriod} />
           </div>
 
           <div className="bg-card rounded-xl border border-border shadow-sm flex flex-col">

@@ -12,9 +12,10 @@ import { Compass, Loader2, Camera, Upload } from "lucide-react";
 
 interface Role5Props {
   characterImageUrl: string | null;
+  timePeriod: string;
 }
 
-const Role5 = ({ characterImageUrl }: Role5Props) => {
+const Role5 = ({ characterImageUrl, timePeriod }: Role5Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -71,6 +72,7 @@ const Role5 = ({ characterImageUrl }: Role5Props) => {
       const submissionFields = {
         ...rest,
         sayKeywords: keywords.filter(k => k.trim()).join(", "),
+        timePeriod,
       };
       const { data, error: fnError } = await supabase.functions.invoke(
         "generate-post-construction",
@@ -141,6 +143,11 @@ const Role5 = ({ characterImageUrl }: Role5Props) => {
             </p>
 
             <form onSubmit={handleGenerate} className="space-y-5">
+              <div>
+                <Label htmlFor="timePeriod">Time Period</Label>
+                <Input id="timePeriod" value={timePeriod || "Not set"} readOnly className="text-sm bg-muted cursor-not-allowed" />
+              </div>
+
               <div>
                 <Label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground mb-2 block">
                   Full-Body Character Image

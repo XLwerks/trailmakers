@@ -11,9 +11,11 @@ import { Compass, ArrowRight } from "lucide-react";
 interface Role1Props {
   onPortraitGenerated: (imageUrl: string) => void;
   generatedPortrait: string | null;
+  timePeriod: string;
+  onTimePeriodChange: (value: string) => void;
 }
 
-const Role1 = ({ onPortraitGenerated, generatedPortrait }: Role1Props) => {
+const Role1 = ({ onPortraitGenerated, generatedPortrait, timePeriod, onTimePeriodChange }: Role1Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(generatedPortrait);
@@ -123,7 +125,7 @@ const Role1 = ({ onPortraitGenerated, generatedPortrait }: Role1Props) => {
             <p className="text-sm text-muted-foreground mb-6">
               Describe the person using historical evidence to generate a photorealistic portrait
             </p>
-            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} />
+            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} timePeriod={timePeriod} onTimePeriodChange={onTimePeriodChange} />
           </div>
 
           {/* Right: Result */}
