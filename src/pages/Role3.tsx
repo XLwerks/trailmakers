@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import PortraitForm from "@/components/PortraitForm";
+import PortraitForm, { FieldLabels } from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Compass } from "lucide-react";
@@ -10,6 +10,19 @@ import { Compass } from "lucide-react";
 interface Role3Props {
   portraitImageUrl: string | null;
 }
+
+const role3Labels: FieldLabels = {
+  seeLabel: "SEE – What do you notice about the photographs? *",
+  seePlaceholder: "e.g. Warm sepia tones, soft focus, slightly worn edges, dark vignetting around the frame",
+  sayLabel: "SAY – What does the research tell you? (key words/phrases) *",
+  sayPlaceholder: "e.g. collodion, long exposure, glass plate, chemical staining, faded contrast",
+  showLabel: "SHOW – What makes these images feel historical? *",
+  showPlaceholder: "e.g. The grain and imperfections suggest early photographic processes with limited control over light and exposure",
+  finalLabel: "Final Sentence – The image should look… *",
+  finalPlaceholder: "e.g. The image should look like a faded 1860s wet plate portrait with warm sepia tones and visible grain from early photography",
+  imageUploadLabel: "Reference Image",
+  imageUploadHint: "Upload the portrait to apply Victorian photographic styling",
+};
 
 const Role3 = ({ portraitImageUrl }: Role3Props) => {
   const navigate = useNavigate();
@@ -120,7 +133,7 @@ const Role3 = ({ portraitImageUrl }: Role3Props) => {
                 ? "Describe the Victorian photographic style to transform the portrait"
                 : "Upload a reference portrait and describe the Victorian photographic style"}
             </p>
-            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} />
+            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} fieldLabels={role3Labels} />
           </div>
 
           <div className="bg-card rounded-xl border border-border shadow-sm flex flex-col">
