@@ -20,27 +20,20 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // If no portrait, redirect back
-  if (!portraitImageUrl) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <p className="text-muted-foreground font-display text-lg">
-            You need to generate a portrait in Role 1 first.
-          </p>
-          <Button onClick={() => navigate("/")} className="gap-2">
-            <ArrowLeft className="w-4 h-4" />
-            Go to Role 1
-          </Button>
-        </div>
-      </div>
-    );
-  }
+  // Show prompt to go back if no portrait, but don't block access
+  const needsPortrait = !portraitImageUrl;
 
   const handleGenerate = async (
     fields: Record<string, string>,
-    _referenceImageBase64: string
+    referenceImageBase64: string
   ) => {
+    // Use portrait from Role 1 if available, otherwise use manually uploaded image
+    const imageToUse = portraitImageUrl || referenceImageBase64;
+    if (!imageToUse) {
+      toast.error("Please upload a reference image or generate one in Role 1 first.");
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     setGeneratedImage(null);
@@ -50,7 +43,7 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
       const { data, error: fnError } = await supabase.functions.invoke(
         "generate-character",
         {
-          body: { fields, referenceImageBase64: portraitImageUrl },
+          body: { fields, referenceImageBase64: imageToUse },
         }
       );
 
@@ -107,18 +100,20 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        {/* Portrait reference thumbnail */}
-        <div className="mb-6 flex items-center gap-3 bg-card rounded-lg border border-border p-3">
-          <img
-            src={portraitImageUrl}
-            alt="Role 1 portrait"
-            className="w-12 h-12 rounded-lg object-cover border border-border"
-          />
-          <div>
-            <p className="text-sm font-semibold text-foreground">Reference Portrait</p>
-            <p className="text-xs text-muted-foreground">Generated in Role 1 — used as facial likeness reference</p>
+        {/* Portrait reference thumbnail (only if from Role 1) */}
+        {portraitImageUrl && (
+          <div className="mb-6 flex items-center gap-3 bg-card rounded-lg border border-border p-3">
+            <img
+              src={portraitImageUrl}
+              alt="Role 1 portrait"
+              className="w-12 h-12 rounded-lg object-cover border border-border"
+            />
+            <div>
+              <p className="text-sm font-semibold text-foreground">Reference Portrait</p>
+              <p className="text-xs text-muted-foreground">Generated in Role 1 — used as facial likeness reference</p>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left: Form */}
@@ -127,9 +122,11 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
               Character Details
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              Describe the clothing to extend the portrait into a full-body image
+              {portraitImageUrl
+                ? "Describe the clothing to extend the portrait into a full-body image"
+                : "Upload a reference portrait and describe the clothing to generate a full-body image"}
             </p>
-            <CharacterForm onSubmit={handleGenerate} isLoading={isLoading} hideImageUpload />
+            <CharacterForm onSubmit={handleGenerate} isLoading={isLoading} hideImageUpload={!!portraitImageUrl} />
           </div>
 
           {/* Right: Result */}
