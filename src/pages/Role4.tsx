@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import ResultPanel from "@/components/ResultPanel";
@@ -28,13 +29,21 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
 
   const [fields, setFields] = useState({
     seeNotes: "",
-    sayKeywords: "",
+    keywords: ["", "", "", "", "", ""],
     showInterpretation: "",
     finalSentence: "",
   });
 
   const updateField = (key: string, value: string) => {
     setFields((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const updateKeyword = (index: number, value: string) => {
+    setFields((prev) => {
+      const keywords = [...prev.keywords];
+      keywords[index] = value;
+      return { ...prev, keywords };
+    });
   };
 
   const handleCharFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,10 +68,15 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
     setDebugPrompt(null);
 
     try {
+      const { keywords, ...rest } = fields;
+      const submissionFields = {
+        ...rest,
+        sayKeywords: keywords.filter(k => k.trim()).join(", "),
+      };
       const { data, error: fnError } = await supabase.functions.invoke(
         "generate-environment",
         {
-          body: { fields, characterImageBase64: imageToUse },
+          body: { fields: submissionFields, characterImageBase64: imageToUse },
         }
       );
 
@@ -81,9 +95,10 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
     }
   };
 
+  const hasKeywords = fields.keywords.some(k => k.trim());
   const isValid =
     fields.seeNotes &&
-    fields.sayKeywords &&
+    hasKeywords &&
     fields.showInterpretation &&
     fields.finalSentence;
 
@@ -171,14 +186,18 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
               </div>
 
               <div>
-                <Label htmlFor="sayKeywords">SAY – What does the research tell you? (key words/phrases) *</Label>
-                <Textarea
-                  id="sayKeywords"
-                  value={fields.sayKeywords}
-                  onChange={(e) => updateField("sayKeywords", e.target.value)}
-                  placeholder="e.g. tidal river, muddy foreshore, timber wharves, cargo boats, warehouses"
-                  rows={3}
-                />
+                <Label>SAY – What does the research tell you? (key words/phrases) *</Label>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  {fields.keywords.map((kw, i) => (
+                    <Input
+                      key={i}
+                      value={kw}
+                      onChange={(e) => updateKeyword(i, e.target.value)}
+                      placeholder={`Keyword ${i + 1}`}
+                      className="text-sm"
+                    />
+                  ))}
+                </div>
               </div>
 
               <div>
