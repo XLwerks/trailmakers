@@ -8,7 +8,6 @@ import DebugPanel from "@/components/DebugPanel";
 import { Compass } from "lucide-react";
 
 interface Role3Props {
-  portraitImageUrl: string | null;
   timePeriod: string;
 }
 
@@ -25,7 +24,7 @@ const role3Labels: FieldLabels = {
   imageUploadHint: "Upload the portrait to apply Victorian photographic styling",
 };
 
-const Role3 = ({ portraitImageUrl, timePeriod }: Role3Props) => {
+const Role3 = ({ timePeriod }: Role3Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -37,7 +36,7 @@ const Role3 = ({ portraitImageUrl, timePeriod }: Role3Props) => {
     fields: Record<string, string>,
     imageBase64?: string
   ) => {
-    const imageToUse = portraitImageUrl || imageBase64 || null;
+    const imageToUse = imageBase64 || null;
 
     setIsLoading(true);
     setError(null);
@@ -124,31 +123,15 @@ const Role3 = ({ portraitImageUrl, timePeriod }: Role3Props) => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        {portraitImageUrl && (
-          <div className="mb-6 flex items-center gap-3 bg-card rounded-lg border border-border p-3">
-            <img
-              src={portraitImageUrl}
-              alt="Role 1 portrait"
-              className="w-12 h-12 rounded-lg object-cover border border-border"
-            />
-            <div>
-              <p className="text-sm font-semibold text-foreground">Reference Portrait</p>
-              <p className="text-xs text-muted-foreground">Generated in Role 1 — used as facial likeness reference</p>
-            </div>
-          </div>
-        )}
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
             <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
               Photographic Style Evidence
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              {portraitImageUrl
-                ? "Describe the Victorian photographic style to transform the portrait"
-                : "Upload a reference portrait and describe the Victorian photographic style"}
+              Upload a reference portrait and describe the Victorian photographic style
             </p>
-            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} fieldLabels={role3Labels} timePeriod={timePeriod} />
+            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={true} fieldLabels={role3Labels} timePeriod={timePeriod} />
           </div>
 
           <div className="bg-card rounded-xl border border-border shadow-sm flex flex-col">
