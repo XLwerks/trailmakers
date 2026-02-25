@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Loader2, Camera, Upload } from "lucide-react";
@@ -45,13 +46,21 @@ const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabel
 
   const [fields, setFields] = useState({
     seeNotes: "",
-    sayKeywords: "",
+    keywords: ["", "", "", "", "", ""],
     showInterpretation: "",
     finalSentence: "",
   });
 
   const updateField = (key: string, value: string) => {
     setFields((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const updateKeyword = (index: number, value: string) => {
+    setFields((prev) => {
+      const keywords = [...prev.keywords];
+      keywords[index] = value;
+      return { ...prev, keywords };
+    });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,12 +77,19 @@ const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabel
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(fields, referenceBase64 || undefined);
+    // Combine keywords into a comma-separated string for the prompt
+    const { keywords, ...rest } = fields;
+    const submissionFields: Record<string, string> = {
+      ...rest,
+      sayKeywords: keywords.filter(k => k.trim()).join(", "),
+    };
+    onSubmit(submissionFields, referenceBase64 || undefined);
   };
 
+  const hasKeywords = fields.keywords.some(k => k.trim());
   const isValid =
     fields.seeNotes &&
-    fields.sayKeywords &&
+    hasKeywords &&
     fields.showInterpretation &&
     fields.finalSentence;
 
@@ -123,14 +139,18 @@ const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabel
       </div>
 
       <div>
-        <Label htmlFor="sayKeywords">{labels.sayLabel}</Label>
-        <Textarea
-          id="sayKeywords"
-          value={fields.sayKeywords}
-          onChange={(e) => updateField("sayKeywords", e.target.value)}
-          placeholder={labels.sayPlaceholder}
-          rows={3}
-        />
+        <Label>{labels.sayLabel}</Label>
+        <div className="grid grid-cols-2 gap-2 mt-1">
+          {fields.keywords.map((kw, i) => (
+            <Input
+              key={i}
+              value={kw}
+              onChange={(e) => updateKeyword(i, e.target.value)}
+              placeholder={`Keyword ${i + 1}`}
+              className="text-sm"
+            />
+          ))}
+        </div>
       </div>
 
       <div>
