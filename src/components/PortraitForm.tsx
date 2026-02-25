@@ -28,11 +28,11 @@ interface PortraitFormProps {
 }
 
 const defaultLabels: FieldLabels = {
-  seeLabel: "SEE – Observed Visual Clues *",
+  seeLabel: "SEE – What do you notice in the images? *",
   seePlaceholder: "e.g. Stern expression, deep-set eyes, weathered skin, grey hair pulled back tightly",
-  sayLabel: "SAY – Key Facial Descriptors *",
+  sayLabel: "SAY – Words or phrases you found in the research text *",
   sayPlaceholder: "e.g. determined jaw, kind eyes, furrowed brow, thin lips, high cheekbones",
-  showLabel: "SHOW – What This Suggests About the Person *",
+  showLabel: "SHOW – What does the evidence show us? *",
   showPlaceholder: "e.g. A person of strong conviction who has endured hardship but remains compassionate",
   finalLabel: "Final Sentence – Core Description *",
   finalPlaceholder: "e.g. A devout Quaker woman in her 50s, known for her prison reform work in early 19th century England",
