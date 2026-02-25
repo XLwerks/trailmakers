@@ -8,9 +8,10 @@ import { Upload, Loader2, User } from "lucide-react";
 interface CharacterFormProps {
   onSubmit: (fields: Record<string, string>, imageBase64: string) => void;
   isLoading: boolean;
+  hideImageUpload?: boolean;
 }
 
-const CharacterForm = ({ onSubmit, isLoading }: CharacterFormProps) => {
+const CharacterForm = ({ onSubmit, isLoading, hideImageUpload = false }: CharacterFormProps) => {
   const [referencePreview, setReferencePreview] = useState<string | null>(null);
   const [referenceBase64, setReferenceBase64] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -40,12 +41,12 @@ const CharacterForm = ({ onSubmit, isLoading }: CharacterFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!referenceBase64) return;
+    if (!hideImageUpload && !referenceBase64) return;
     onSubmit(fields, referenceBase64);
   };
 
   const isValid =
-    referenceBase64 &&
+    (hideImageUpload || referenceBase64) &&
     fields.timePeriod &&
     fields.roleOccupation &&
     fields.clothingDescriptors;
@@ -53,35 +54,37 @@ const CharacterForm = ({ onSubmit, isLoading }: CharacterFormProps) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Reference Image Upload */}
-      <div>
-        <Label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground mb-2 block">
-          Reference Image *
-        </Label>
-        <div
-          onClick={() => fileInputRef.current?.click()}
-          className="relative cursor-pointer border-2 border-dashed border-border rounded-lg h-40 flex items-center justify-center bg-secondary/50 hover:bg-secondary transition-colors overflow-hidden"
-        >
-          {referencePreview ? (
-            <img
-              src={referencePreview}
-              alt="Reference"
-              className="h-full w-full object-contain"
-            />
-          ) : (
-            <div className="flex flex-col items-center gap-2 text-muted-foreground">
-              <Upload className="w-6 h-6" />
-              <span className="text-sm">Upload head & shoulders photo</span>
-            </div>
-          )}
+      {!hideImageUpload && (
+        <div>
+          <Label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground mb-2 block">
+            Reference Image *
+          </Label>
+          <div
+            onClick={() => fileInputRef.current?.click()}
+            className="relative cursor-pointer border-2 border-dashed border-border rounded-lg h-40 flex items-center justify-center bg-secondary/50 hover:bg-secondary transition-colors overflow-hidden"
+          >
+            {referencePreview ? (
+              <img
+                src={referencePreview}
+                alt="Reference"
+                className="h-full w-full object-contain"
+              />
+            ) : (
+              <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                <Upload className="w-6 h-6" />
+                <span className="text-sm">Upload head & shoulders photo</span>
+              </div>
+            )}
+          </div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/jpeg,image/png"
+            onChange={handleFileChange}
+            className="hidden"
+          />
         </div>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/jpeg,image/png"
-          onChange={handleFileChange}
-          className="hidden"
-        />
-      </div>
+      )}
 
       {/* Text Fields */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
