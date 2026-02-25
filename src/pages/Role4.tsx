@@ -15,13 +15,14 @@ interface Role4Props {
   timePeriod: string;
 }
 
-const Role4 = ({ characterImageUrl, timePeriod }: Role4Props) => {
+const Role4 = ({ characterImageUrl, timePeriod: initialTimePeriod }: Role4Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [debugPrompt, setDebugPrompt] = useState<string | null>(null);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [localTimePeriod, setLocalTimePeriod] = useState(initialTimePeriod || "");
 
   // Character image upload (manual fallback if not from Role 2)
   const [charPreview, setCharPreview] = useState<string | null>(characterImageUrl);
@@ -73,7 +74,7 @@ const Role4 = ({ characterImageUrl, timePeriod }: Role4Props) => {
       const submissionFields = {
         ...rest,
         sayKeywords: keywords.filter(k => k.trim()).join(", "),
-        timePeriod,
+        timePeriod: localTimePeriod,
       };
       const { data, error: fnError } = await supabase.functions.invoke(
         "generate-environment",
@@ -146,8 +147,14 @@ const Role4 = ({ characterImageUrl, timePeriod }: Role4Props) => {
 
             <form onSubmit={handleGenerate} className="space-y-5">
               <div>
-                <Label htmlFor="timePeriod">Time Period</Label>
-                <Input id="timePeriod" value={timePeriod || "Not set"} readOnly className="text-sm bg-muted cursor-not-allowed" />
+                <Label htmlFor="timePeriod">Time Period *</Label>
+                <Input
+                  id="timePeriod"
+                  value={localTimePeriod}
+                  onChange={(e) => setLocalTimePeriod(e.target.value)}
+                  placeholder="e.g. 1830s England, Early Victorian era"
+                  className="text-sm"
+                />
               </div>
 
               {/* Character image upload */}
