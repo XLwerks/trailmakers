@@ -15,13 +15,14 @@ interface Role5Props {
   timePeriod: string;
 }
 
-const Role5 = ({ characterImageUrl, timePeriod }: Role5Props) => {
+const Role5 = ({ characterImageUrl, timePeriod: initialTimePeriod }: Role5Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [debugPrompt, setDebugPrompt] = useState<string | null>(null);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [localTimePeriod, setLocalTimePeriod] = useState(initialTimePeriod || "");
 
   const [charPreview, setCharPreview] = useState<string | null>(characterImageUrl);
   const [charBase64, setCharBase64] = useState<string>(characterImageUrl || "");
@@ -72,7 +73,7 @@ const Role5 = ({ characterImageUrl, timePeriod }: Role5Props) => {
       const submissionFields = {
         ...rest,
         sayKeywords: keywords.filter(k => k.trim()).join(", "),
-        timePeriod,
+        timePeriod: localTimePeriod,
       };
       const { data, error: fnError } = await supabase.functions.invoke(
         "generate-post-construction",
@@ -144,8 +145,14 @@ const Role5 = ({ characterImageUrl, timePeriod }: Role5Props) => {
 
             <form onSubmit={handleGenerate} className="space-y-5">
               <div>
-                <Label htmlFor="timePeriod">Time Period</Label>
-                <Input id="timePeriod" value={timePeriod || "Not set"} readOnly className="text-sm bg-muted cursor-not-allowed" />
+                <Label htmlFor="timePeriod">Time Period *</Label>
+                <Input
+                  id="timePeriod"
+                  value={localTimePeriod}
+                  onChange={(e) => setLocalTimePeriod(e.target.value)}
+                  placeholder="e.g. 1830s England, Early Victorian era"
+                  className="text-sm"
+                />
               </div>
 
               <div>
