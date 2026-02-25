@@ -83,7 +83,7 @@ const Role3 = ({ portraitImageUrl }: Role3Props) => {
               Trailmakers Ai
             </h1>
             <p className="text-xs text-muted-foreground">
-              Worksheet 3 – Victorian Photograph Style
+              Role 3 – Victorian Photograph Style
             </p>
           </div>
           <div className="flex items-center gap-2">

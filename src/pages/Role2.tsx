@@ -76,7 +76,7 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
               Trailmakers Ai
             </h1>
             <p className="text-xs text-muted-foreground">
-              Worksheet 2 – Making a full character image
+              Role 2 – Making a full character image
             </p>
           </div>
           <div className="flex items-center gap-2">
