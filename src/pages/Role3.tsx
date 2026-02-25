@@ -5,14 +5,13 @@ import { toast } from "sonner";
 import PortraitForm from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
-import { Compass, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Compass } from "lucide-react";
 
-interface Role2Props {
+interface Role3Props {
   portraitImageUrl: string | null;
 }
 
-const Role2 = ({ portraitImageUrl }: Role2Props) => {
+const Role3 = ({ portraitImageUrl }: Role3Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -20,14 +19,10 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Show prompt to go back if no portrait, but don't block access
-  const needsPortrait = !portraitImageUrl;
-
   const handleGenerate = async (
     fields: Record<string, string>,
     imageBase64?: string
   ) => {
-    // Use portrait from Role 1, or manually uploaded image
     const imageToUse = portraitImageUrl || imageBase64 || null;
 
     setIsLoading(true);
@@ -37,7 +32,7 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
 
     try {
       const { data, error: fnError } = await supabase.functions.invoke(
-        "generate-character",
+        "generate-victorian-portrait",
         {
           body: { fields, referenceImageBase64: imageToUse },
         }
@@ -53,7 +48,7 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
 
       setGeneratedImage(data.imageUrl);
       setDebugPrompt(data.debugPrompt);
-      toast.success("Character generated successfully!");
+      toast.success("Victorian portrait generated successfully!");
     } catch (err: any) {
       const message = err?.message || "Something went wrong";
       setError(message);
@@ -65,7 +60,6 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
           <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
@@ -76,7 +70,7 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
               Trailmakers Ai
             </h1>
             <p className="text-xs text-muted-foreground">
-              Worksheet 2 – Making a full character image
+              Worksheet 3 – Victorian Photograph Style
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -87,23 +81,21 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
               Role 1
             </button>
             <span className="text-xs text-muted-foreground">→</span>
-            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">
-              Role 2
-            </span>
-            <span className="text-xs text-muted-foreground">→</span>
             <button
-              onClick={() => navigate("/role3")}
+              onClick={() => navigate("/role2")}
               className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
-              Role 3
+              Role 2
             </button>
+            <span className="text-xs text-muted-foreground">→</span>
+            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">
+              Role 3
+            </span>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        {/* Portrait reference thumbnail (only if from Role 1) */}
         {portraitImageUrl && (
           <div className="mb-6 flex items-center gap-3 bg-card rounded-lg border border-border p-3">
             <img
@@ -119,27 +111,25 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left: Form */}
           <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
             <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
-              Character Details
+              Photographic Style Evidence
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
               {portraitImageUrl
-                ? "Describe the clothing to extend the portrait into a full-body image"
-                : "Upload a reference portrait and describe the clothing to generate a full-body image"}
+                ? "Describe the Victorian photographic style to transform the portrait"
+                : "Upload a reference portrait and describe the Victorian photographic style"}
             </p>
             <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} />
           </div>
 
-          {/* Right: Result */}
           <div className="bg-card rounded-xl border border-border shadow-sm flex flex-col">
             <div className="p-6 flex-1">
               <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
-                Generated Image
+                Generated Portrait
               </h2>
               <p className="text-sm text-muted-foreground mb-6">
-                Full-body photorealistic character output
+                Victorian wet plate style head &amp; shoulders portrait
               </p>
               <ResultPanel
                 imageUrl={generatedImage}
@@ -159,4 +149,4 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
   );
 };
 
-export default Role2;
+export default Role3;
