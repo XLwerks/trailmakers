@@ -2,13 +2,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import PortraitForm, { FieldLabels } from "@/components/PortraitForm";
+import PortraitForm, { FieldLabels, FormFields } from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Compass } from "lucide-react";
 
 interface Role3Props {
   timePeriod: string;
+  fields: FormFields;
+  onFieldsChange: (fields: FormFields) => void;
+  generatedImage: string | null;
+  onGeneratedImage: (url: string | null) => void;
+  debugPrompt: string | null;
+  onDebugPrompt: (p: string | null) => void;
+  referenceImage: string | null;
+  onReferenceImageChange: (img: string | null) => void;
 }
 
 const role3Labels: FieldLabels = {
@@ -24,43 +32,28 @@ const role3Labels: FieldLabels = {
   imageUploadHint: "Upload the portrait to apply Victorian photographic styling",
 };
 
-const Role3 = ({ timePeriod }: Role3Props) => {
+const Role3 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGeneratedImage, debugPrompt, onDebugPrompt, referenceImage, onReferenceImageChange }: Role3Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
-  const [debugPrompt, setDebugPrompt] = useState<string | null>(null);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleGenerate = async (
-    fields: Record<string, string>,
-    imageBase64?: string
-  ) => {
+  const handleGenerate = async (submissionFields: Record<string, string>, imageBase64?: string) => {
     const imageToUse = imageBase64 || null;
-
     setIsLoading(true);
     setError(null);
-    setGeneratedImage(null);
-    setDebugPrompt(null);
+    onGeneratedImage(null);
+    onDebugPrompt(null);
 
     try {
-      const { data, error: fnError } = await supabase.functions.invoke(
-        "generate-victorian-portrait",
-        {
-          body: { fields, referenceImageBase64: imageToUse },
-        }
-      );
+      const { data, error: fnError } = await supabase.functions.invoke("generate-victorian-portrait", {
+        body: { fields: submissionFields, referenceImageBase64: imageToUse },
+      });
+      if (fnError) throw new Error(fnError.message || "Generation failed");
+      if (data?.error) throw new Error(data.error);
 
-      if (fnError) {
-        throw new Error(fnError.message || "Generation failed");
-      }
-
-      if (data?.error) {
-        throw new Error(data.error);
-      }
-
-      setGeneratedImage(data.imageUrl);
-      setDebugPrompt(data.debugPrompt);
+      onGeneratedImage(data.imageUrl);
+      onDebugPrompt(data.debugPrompt);
       toast.success("Victorian portrait generated successfully!");
     } catch (err: any) {
       const message = err?.message || "Something went wrong";
@@ -79,45 +72,19 @@ const Role3 = ({ timePeriod }: Role3Props) => {
             <Compass className="w-5 h-5 text-primary-foreground" />
           </div>
           <div className="flex-1">
-            <h1 className="font-display text-xl font-bold text-foreground leading-tight">
-              Trailmakers Ai
-            </h1>
-            <p className="text-xs text-muted-foreground">
-              Role 3 – Victorian Photograph Style
-            </p>
+            <h1 className="font-display text-xl font-bold text-foreground leading-tight">Trailmakers Ai</h1>
+            <p className="text-xs text-muted-foreground">Role 3 – Victorian Photograph Style</p>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => navigate("/")}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Role 1
-            </button>
+            <button onClick={() => navigate("/")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 1</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button
-              onClick={() => navigate("/role2")}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Role 2
-            </button>
+            <button onClick={() => navigate("/role2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 2</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">
-              Role 3
-            </span>
+            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Role 3</span>
             <span className="text-xs text-muted-foreground">→</span>
-            <button
-              onClick={() => navigate("/role4")}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Role 4
-            </button>
+            <button onClick={() => navigate("/role4")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 4</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button
-              onClick={() => navigate("/role5")}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Role 5
-            </button>
+            <button onClick={() => navigate("/role5")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 5</button>
           </div>
         </div>
       </header>
@@ -125,34 +92,28 @@ const Role3 = ({ timePeriod }: Role3Props) => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
-            <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
-              Photographic Style Evidence
-            </h2>
-            <p className="text-sm text-muted-foreground mb-6">
-              Upload a reference portrait and describe the Victorian photographic style
-            </p>
-            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={true} fieldLabels={role3Labels} timePeriod={timePeriod} />
+            <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Photographic Style Evidence</h2>
+            <p className="text-sm text-muted-foreground mb-6">Upload a reference portrait and describe the Victorian photographic style</p>
+            <PortraitForm
+              onSubmit={handleGenerate}
+              isLoading={isLoading}
+              showImageUpload={true}
+              fieldLabels={role3Labels}
+              timePeriod={timePeriod}
+              fields={fields}
+              onFieldsChange={onFieldsChange}
+              referenceImage={referenceImage}
+              onReferenceImageChange={onReferenceImageChange}
+            />
           </div>
 
           <div className="bg-card rounded-xl border border-border shadow-sm flex flex-col">
             <div className="p-6 flex-1">
-              <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
-                Generated Portrait
-              </h2>
-              <p className="text-sm text-muted-foreground mb-6">
-                Victorian wet plate style head &amp; shoulders portrait
-              </p>
-              <ResultPanel
-                imageUrl={generatedImage}
-                isLoading={isLoading}
-                error={error}
-              />
+              <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Generated Portrait</h2>
+              <p className="text-sm text-muted-foreground mb-6">Victorian wet plate style head &amp; shoulders portrait</p>
+              <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} />
             </div>
-            <DebugPanel
-              prompt={debugPrompt}
-              isOpen={debugOpen}
-              onToggle={() => setDebugOpen(!debugOpen)}
-            />
+            <DebugPanel prompt={debugPrompt} isOpen={debugOpen} onToggle={() => setDebugOpen(!debugOpen)} />
           </div>
         </div>
       </main>

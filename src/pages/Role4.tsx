@@ -9,43 +9,36 @@ import { Label } from "@/components/ui/label";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Compass, Loader2, Camera, Upload } from "lucide-react";
+import { FormFields } from "@/components/PortraitForm";
 
 interface Role4Props {
-  characterImageUrl: string | null;
   timePeriod: string;
+  onTimePeriodChange: (value: string) => void;
+  fields: FormFields;
+  onFieldsChange: (fields: FormFields) => void;
+  generatedImage: string | null;
+  onGeneratedImage: (url: string | null) => void;
+  debugPrompt: string | null;
+  onDebugPrompt: (p: string | null) => void;
+  charImage: string | null;
+  onCharImageChange: (img: string | null) => void;
 }
 
-const Role4 = ({ characterImageUrl, timePeriod: initialTimePeriod }: Role4Props) => {
+const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generatedImage, onGeneratedImage, debugPrompt, onDebugPrompt, charImage, onCharImageChange }: Role4Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
-  const [debugPrompt, setDebugPrompt] = useState<string | null>(null);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [localTimePeriod, setLocalTimePeriod] = useState(initialTimePeriod || "");
-
-  // Character image upload (manual fallback if not from Role 2)
-  const [charPreview, setCharPreview] = useState<string | null>(characterImageUrl);
-  const [charBase64, setCharBase64] = useState<string>(characterImageUrl || "");
   const charFileRef = useRef<HTMLInputElement>(null);
 
-  const [fields, setFields] = useState({
-    seeNotes: "",
-    keywords: ["", "", "", "", "", ""],
-    showInterpretation: "",
-    finalSentence: "",
-  });
-
   const updateField = (key: string, value: string) => {
-    setFields((prev) => ({ ...prev, [key]: value }));
+    onFieldsChange({ ...fields, [key]: value });
   };
 
   const updateKeyword = (index: number, value: string) => {
-    setFields((prev) => {
-      const keywords = [...prev.keywords];
-      keywords[index] = value;
-      return { ...prev, keywords };
-    });
+    const keywords = [...fields.keywords];
+    keywords[index] = value;
+    onFieldsChange({ ...fields, keywords });
   };
 
   const handleCharFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,41 +46,33 @@ const Role4 = ({ characterImageUrl, timePeriod: initialTimePeriod }: Role4Props)
     if (!file) return;
     const reader = new FileReader();
     reader.onload = () => {
-      const result = reader.result as string;
-      setCharPreview(result);
-      setCharBase64(result);
+      onCharImageChange(reader.result as string);
     };
     reader.readAsDataURL(file);
   };
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
-    const imageToUse = charBase64 || characterImageUrl || null;
-
     setIsLoading(true);
     setError(null);
-    setGeneratedImage(null);
-    setDebugPrompt(null);
+    onGeneratedImage(null);
+    onDebugPrompt(null);
 
     try {
       const { keywords, ...rest } = fields;
       const submissionFields = {
         ...rest,
         sayKeywords: keywords.filter(k => k.trim()).join(", "),
-        timePeriod: localTimePeriod,
+        timePeriod,
       };
-      const { data, error: fnError } = await supabase.functions.invoke(
-        "generate-environment",
-        {
-          body: { fields: submissionFields, characterImageBase64: imageToUse },
-        }
-      );
-
+      const { data, error: fnError } = await supabase.functions.invoke("generate-environment", {
+        body: { fields: submissionFields, characterImageBase64: charImage },
+      });
       if (fnError) throw new Error(fnError.message || "Generation failed");
       if (data?.error) throw new Error(data.error);
 
-      setGeneratedImage(data.imageUrl);
-      setDebugPrompt(data.debugPrompt);
+      onGeneratedImage(data.imageUrl);
+      onDebugPrompt(data.debugPrompt);
       toast.success("Environment image generated successfully!");
     } catch (err: any) {
       const message = err?.message || "Something went wrong";
@@ -99,11 +84,7 @@ const Role4 = ({ characterImageUrl, timePeriod: initialTimePeriod }: Role4Props)
   };
 
   const hasKeywords = fields.keywords.some(k => k.trim());
-  const isValid =
-    fields.seeNotes &&
-    hasKeywords &&
-    fields.showInterpretation &&
-    fields.finalSentence;
+  const isValid = fields.seeNotes && hasKeywords && fields.showInterpretation && fields.finalSentence;
 
   return (
     <div className="min-h-screen bg-background">
@@ -113,12 +94,8 @@ const Role4 = ({ characterImageUrl, timePeriod: initialTimePeriod }: Role4Props)
             <Compass className="w-5 h-5 text-primary-foreground" />
           </div>
           <div className="flex-1">
-            <h1 className="font-display text-xl font-bold text-foreground leading-tight">
-              Trailmakers Ai
-            </h1>
-            <p className="text-xs text-muted-foreground">
-              Role 4 – Pre-Development Environment
-            </p>
+            <h1 className="font-display text-xl font-bold text-foreground leading-tight">Trailmakers Ai</h1>
+            <p className="text-xs text-muted-foreground">Role 4 – Pre-Development Environment</p>
           </div>
           <div className="flex items-center gap-2">
             <button onClick={() => navigate("/")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 1</button>
@@ -136,42 +113,21 @@ const Role4 = ({ characterImageUrl, timePeriod: initialTimePeriod }: Role4Props)
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left: Form */}
           <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
-            <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
-              Environment Evidence
-            </h2>
-            <p className="text-sm text-muted-foreground mb-6">
-              Describe the pre-development docks environment and upload the full-body character to place in the scene
-            </p>
+            <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Environment Evidence</h2>
+            <p className="text-sm text-muted-foreground mb-6">Describe the pre-development docks environment and upload the full-body character to place in the scene</p>
 
             <form onSubmit={handleGenerate} className="space-y-5">
               <div>
                 <Label htmlFor="timePeriod">Time Period *</Label>
-                <Input
-                  id="timePeriod"
-                  value={localTimePeriod}
-                  onChange={(e) => setLocalTimePeriod(e.target.value)}
-                  placeholder="e.g. 1830s England, Early Victorian era"
-                  className="text-sm"
-                />
+                <Input id="timePeriod" value={timePeriod} onChange={(e) => onTimePeriodChange(e.target.value)} placeholder="e.g. 1830s England, Early Victorian era" className="text-sm" />
               </div>
 
-              {/* Character image upload */}
               <div>
-                <Label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground mb-2 block">
-                  Full-Body Character Image
-                </Label>
-                <div
-                  onClick={() => charFileRef.current?.click()}
-                  className="relative cursor-pointer border-2 border-dashed border-border rounded-lg h-48 flex items-center justify-center bg-secondary/50 hover:bg-secondary transition-colors overflow-hidden"
-                >
-                  {charPreview ? (
-                    <img
-                      src={charPreview}
-                      alt="Character"
-                      className="h-full w-full object-contain"
-                    />
+                <Label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground mb-2 block">Full-Body Character Image</Label>
+                <div onClick={() => charFileRef.current?.click()} className="relative cursor-pointer border-2 border-dashed border-border rounded-lg h-48 flex items-center justify-center bg-secondary/50 hover:bg-secondary transition-colors overflow-hidden">
+                  {charImage ? (
+                    <img src={charImage} alt="Character" className="h-full w-full object-contain" />
                   ) : (
                     <div className="flex flex-col items-center gap-2 text-muted-foreground">
                       <Upload className="w-6 h-6" />
@@ -179,103 +135,46 @@ const Role4 = ({ characterImageUrl, timePeriod: initialTimePeriod }: Role4Props)
                     </div>
                   )}
                 </div>
-                <input
-                  ref={charFileRef}
-                  type="file"
-                  accept="image/jpeg,image/png"
-                  onChange={handleCharFileChange}
-                  className="hidden"
-                />
+                <input ref={charFileRef} type="file" accept="image/jpeg,image/png" onChange={handleCharFileChange} className="hidden" />
               </div>
 
               <div>
                 <Label htmlFor="seeNotes">SEE – What do you notice about the environment? *</Label>
-                <Textarea
-                  id="seeNotes"
-                  value={fields.seeNotes}
-                  onChange={(e) => updateField("seeNotes", e.target.value)}
-                  placeholder="e.g. Tidal mudflats, uneven riverbanks, scattered wooden jetties, smoke from nearby buildings"
-                  rows={3}
-                />
+                <Textarea id="seeNotes" value={fields.seeNotes} onChange={(e) => updateField("seeNotes", e.target.value)} placeholder="e.g. Tidal mudflats, uneven riverbanks, scattered wooden jetties, smoke from nearby buildings" rows={3} />
               </div>
 
               <div>
                 <Label>SAY – What does the research tell you? (key words/phrases) *</Label>
                 <div className="grid grid-cols-2 gap-2 mt-1">
                   {fields.keywords.map((kw, i) => (
-                    <Input
-                      key={i}
-                      value={kw}
-                      onChange={(e) => updateKeyword(i, e.target.value)}
-                      placeholder={`Keyword ${i + 1}`}
-                      className="text-sm"
-                    />
+                    <Input key={i} value={kw} onChange={(e) => updateKeyword(i, e.target.value)} placeholder={`Keyword ${i + 1}`} className="text-sm" />
                   ))}
                 </div>
               </div>
 
               <div>
                 <Label htmlFor="showInterpretation">SHOW – What might life at the docks have felt like? *</Label>
-                <Textarea
-                  id="showInterpretation"
-                  value={fields.showInterpretation}
-                  onChange={(e) => updateField("showInterpretation", e.target.value)}
-                  placeholder="e.g. A busy, noisy working waterfront where trade and labour shaped daily life before any formal dock construction"
-                  rows={3}
-                />
+                <Textarea id="showInterpretation" value={fields.showInterpretation} onChange={(e) => updateField("showInterpretation", e.target.value)} placeholder="e.g. A busy, noisy working waterfront where trade and labour shaped daily life before any formal dock construction" rows={3} />
               </div>
 
               <div>
                 <Label htmlFor="finalSentence">Final Sentence – Before construction, the docks were… *</Label>
-                <Textarea
-                  id="finalSentence"
-                  value={fields.finalSentence}
-                  onChange={(e) => updateField("finalSentence", e.target.value)}
-                  placeholder="e.g. Before construction, the docks were a muddy tidal riverbank lined with timber wharves and cluttered with cargo from small sailing vessels"
-                  rows={2}
-                />
+                <Textarea id="finalSentence" value={fields.finalSentence} onChange={(e) => updateField("finalSentence", e.target.value)} placeholder="e.g. Before construction, the docks were a muddy tidal riverbank lined with timber wharves and cluttered with cargo from small sailing vessels" rows={2} />
               </div>
 
-              <Button
-                type="submit"
-                disabled={!isValid || isLoading}
-                className="w-full font-display text-base tracking-wide h-12"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Generating…
-                  </>
-                ) : (
-                  <>
-                    <Camera className="mr-2 h-4 w-4" />
-                    Generate Environment
-                  </>
-                )}
+              <Button type="submit" disabled={!isValid || isLoading} className="w-full font-display text-base tracking-wide h-12">
+                {isLoading ? (<><Loader2 className="mr-2 h-4 w-4 animate-spin" />Generating…</>) : (<><Camera className="mr-2 h-4 w-4" />Generate Environment</>)}
               </Button>
             </form>
           </div>
 
-          {/* Right: Result */}
           <div className="bg-card rounded-xl border border-border shadow-sm flex flex-col">
             <div className="p-6 flex-1">
-              <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
-                Generated Environment
-              </h2>
-              <p className="text-sm text-muted-foreground mb-6">
-                Landscape photographic scene with character integrated
-              </p>
-              <ResultPanel
-                imageUrl={generatedImage}
-                isLoading={isLoading}
-                error={error}
-              />
+              <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Generated Environment</h2>
+              <p className="text-sm text-muted-foreground mb-6">Landscape photographic scene with character integrated</p>
+              <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} />
             </div>
-            <DebugPanel
-              prompt={debugPrompt}
-              isOpen={debugOpen}
-              onToggle={() => setDebugOpen(!debugOpen)}
-            />
+            <DebugPanel prompt={debugPrompt} isOpen={debugOpen} onToggle={() => setDebugOpen(!debugOpen)} />
           </div>
         </div>
       </main>
