@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import CharacterForm from "@/components/CharacterForm";
+import PortraitForm from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Compass, ArrowLeft } from "lucide-react";
@@ -24,15 +24,10 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
   const needsPortrait = !portraitImageUrl;
 
   const handleGenerate = async (
-    fields: Record<string, string>,
-    referenceImageBase64: string
+    fields: Record<string, string>
   ) => {
-    // Use portrait from Role 1 if available, otherwise use manually uploaded image
-    const imageToUse = portraitImageUrl || referenceImageBase64;
-    if (!imageToUse) {
-      toast.error("Please upload a reference image or generate one in Role 1 first.");
-      return;
-    }
+    // Use portrait from Role 1 as reference if available
+    const imageToUse = portraitImageUrl || null;
 
     setIsLoading(true);
     setError(null);
@@ -126,7 +121,7 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
                 ? "Describe the clothing to extend the portrait into a full-body image"
                 : "Upload a reference portrait and describe the clothing to generate a full-body image"}
             </p>
-            <CharacterForm onSubmit={handleGenerate} isLoading={isLoading} hideImageUpload={!!portraitImageUrl} />
+            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} />
           </div>
 
           {/* Right: Result */}
