@@ -81,9 +81,12 @@ const Role1 = ({ onPortraitGenerated, generatedPortrait }: Role1Props) => {
               Role 1
             </span>
             <span className="text-xs text-muted-foreground">→</span>
-            <span className="text-xs text-muted-foreground">
+            <button
+              onClick={() => navigate("/role2")}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
               Role 2
-            </span>
+            </button>
           </div>
         </div>
       </header>
