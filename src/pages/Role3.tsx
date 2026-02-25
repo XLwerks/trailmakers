@@ -104,6 +104,13 @@ const Role3 = ({ portraitImageUrl }: Role3Props) => {
             <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">
               Role 3
             </span>
+            <span className="text-xs text-muted-foreground">→</span>
+            <button
+              onClick={() => navigate("/role4")}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Role 4
+            </button>
           </div>
         </div>
       </header>

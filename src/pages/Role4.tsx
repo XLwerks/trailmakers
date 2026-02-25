@@ -1,0 +1,251 @@
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import ResultPanel from "@/components/ResultPanel";
+import DebugPanel from "@/components/DebugPanel";
+import { Compass, Loader2, Camera, Upload } from "lucide-react";
+
+interface Role4Props {
+  characterImageUrl: string | null;
+}
+
+const Role4 = ({ characterImageUrl }: Role4Props) => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [debugPrompt, setDebugPrompt] = useState<string | null>(null);
+  const [debugOpen, setDebugOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Character image upload (manual fallback if not from Role 2)
+  const [charPreview, setCharPreview] = useState<string | null>(characterImageUrl);
+  const [charBase64, setCharBase64] = useState<string>(characterImageUrl || "");
+  const charFileRef = useRef<HTMLInputElement>(null);
+
+  const [fields, setFields] = useState({
+    seeNotes: "",
+    sayKeywords: "",
+    showInterpretation: "",
+    finalSentence: "",
+  });
+
+  const updateField = (key: string, value: string) => {
+    setFields((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleCharFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      setCharPreview(result);
+      setCharBase64(result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleGenerate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const imageToUse = charBase64 || characterImageUrl || null;
+
+    setIsLoading(true);
+    setError(null);
+    setGeneratedImage(null);
+    setDebugPrompt(null);
+
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke(
+        "generate-environment",
+        {
+          body: { fields, characterImageBase64: imageToUse },
+        }
+      );
+
+      if (fnError) throw new Error(fnError.message || "Generation failed");
+      if (data?.error) throw new Error(data.error);
+
+      setGeneratedImage(data.imageUrl);
+      setDebugPrompt(data.debugPrompt);
+      toast.success("Environment image generated successfully!");
+    } catch (err: any) {
+      const message = err?.message || "Something went wrong";
+      setError(message);
+      toast.error(message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const isValid =
+    fields.seeNotes &&
+    fields.sayKeywords &&
+    fields.showInterpretation &&
+    fields.finalSentence;
+
+  return (
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
+            <Compass className="w-5 h-5 text-primary-foreground" />
+          </div>
+          <div className="flex-1">
+            <h1 className="font-display text-xl font-bold text-foreground leading-tight">
+              Trailmakers Ai
+            </h1>
+            <p className="text-xs text-muted-foreground">
+              Role 4 – Pre-Development Environment
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <button onClick={() => navigate("/")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 1</button>
+            <span className="text-xs text-muted-foreground">→</span>
+            <button onClick={() => navigate("/role2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 2</button>
+            <span className="text-xs text-muted-foreground">→</span>
+            <button onClick={() => navigate("/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 3</button>
+            <span className="text-xs text-muted-foreground">→</span>
+            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Role 4</span>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Left: Form */}
+          <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
+            <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
+              Environment Evidence
+            </h2>
+            <p className="text-sm text-muted-foreground mb-6">
+              Describe the pre-development docks environment and upload the full-body character to place in the scene
+            </p>
+
+            <form onSubmit={handleGenerate} className="space-y-5">
+              {/* Character image upload */}
+              <div>
+                <Label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground mb-2 block">
+                  Full-Body Character Image
+                </Label>
+                <div
+                  onClick={() => charFileRef.current?.click()}
+                  className="relative cursor-pointer border-2 border-dashed border-border rounded-lg h-48 flex items-center justify-center bg-secondary/50 hover:bg-secondary transition-colors overflow-hidden"
+                >
+                  {charPreview ? (
+                    <img
+                      src={charPreview}
+                      alt="Character"
+                      className="h-full w-full object-contain"
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                      <Upload className="w-6 h-6" />
+                      <span className="text-sm">Upload the full-body character to integrate into the scene</span>
+                    </div>
+                  )}
+                </div>
+                <input
+                  ref={charFileRef}
+                  type="file"
+                  accept="image/jpeg,image/png"
+                  onChange={handleCharFileChange}
+                  className="hidden"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="seeNotes">SEE – What do you notice about the environment? *</Label>
+                <Textarea
+                  id="seeNotes"
+                  value={fields.seeNotes}
+                  onChange={(e) => updateField("seeNotes", e.target.value)}
+                  placeholder="e.g. Tidal mudflats, uneven riverbanks, scattered wooden jetties, smoke from nearby buildings"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="sayKeywords">SAY – What does the research tell you? (key words/phrases) *</Label>
+                <Textarea
+                  id="sayKeywords"
+                  value={fields.sayKeywords}
+                  onChange={(e) => updateField("sayKeywords", e.target.value)}
+                  placeholder="e.g. tidal river, muddy foreshore, timber wharves, cargo boats, warehouses"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="showInterpretation">SHOW – What might life at the docks have felt like? *</Label>
+                <Textarea
+                  id="showInterpretation"
+                  value={fields.showInterpretation}
+                  onChange={(e) => updateField("showInterpretation", e.target.value)}
+                  placeholder="e.g. A busy, noisy working waterfront where trade and labour shaped daily life before any formal dock construction"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="finalSentence">Final Sentence – Before construction, the docks were… *</Label>
+                <Textarea
+                  id="finalSentence"
+                  value={fields.finalSentence}
+                  onChange={(e) => updateField("finalSentence", e.target.value)}
+                  placeholder="e.g. Before construction, the docks were a muddy tidal riverbank lined with timber wharves and cluttered with cargo from small sailing vessels"
+                  rows={2}
+                />
+              </div>
+
+              <Button
+                type="submit"
+                disabled={!isValid || isLoading}
+                className="w-full font-display text-base tracking-wide h-12"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Generating…
+                  </>
+                ) : (
+                  <>
+                    <Camera className="mr-2 h-4 w-4" />
+                    Generate Environment
+                  </>
+                )}
+              </Button>
+            </form>
+          </div>
+
+          {/* Right: Result */}
+          <div className="bg-card rounded-xl border border-border shadow-sm flex flex-col">
+            <div className="p-6 flex-1">
+              <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
+                Generated Environment
+              </h2>
+              <p className="text-sm text-muted-foreground mb-6">
+                Landscape photographic scene with character integrated
+              </p>
+              <ResultPanel
+                imageUrl={generatedImage}
+                isLoading={isLoading}
+                error={error}
+              />
+            </div>
+            <DebugPanel
+              prompt={debugPrompt}
+              isOpen={debugOpen}
+              onToggle={() => setDebugOpen(!debugOpen)}
+            />
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default Role4;
