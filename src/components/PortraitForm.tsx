@@ -30,7 +30,7 @@ interface PortraitFormProps {
 const defaultLabels: FieldLabels = {
   seeLabel: "SEE – Observed Visual Clues *",
   seePlaceholder: "e.g. Stern expression, deep-set eyes, weathered skin, grey hair pulled back tightly",
-  sayLabel: "SAY – Key Facial Descriptors (comma separated) *",
+  sayLabel: "SAY – Key Facial Descriptors *",
   sayPlaceholder: "e.g. determined jaw, kind eyes, furrowed brow, thin lips, high cheekbones",
   showLabel: "SHOW – What This Suggests About the Person *",
   showPlaceholder: "e.g. A person of strong conviction who has endured hardship but remains compassionate",
