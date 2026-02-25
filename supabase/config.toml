@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.generate-victorian-portrait]
 verify_jwt = false
+
+[functions.generate-environment]
+verify_jwt = false
