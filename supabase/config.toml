@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.generate-environment]
 verify_jwt = false
+
+[functions.generate-post-construction]
+verify_jwt = false

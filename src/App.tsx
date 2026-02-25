@@ -8,6 +8,7 @@ import Role1 from "./pages/Role1";
 import Role2 from "./pages/Role2";
 import Role3 from "./pages/Role3";
 import Role4 from "./pages/Role4";
+import Role5 from "./pages/Role5";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,10 @@ const AppRoutes = () => {
       <Route
         path="/role4"
         element={<Role4 characterImageUrl={characterImageUrl} />}
+      />
+      <Route
+        path="/role5"
+        element={<Role5 characterImageUrl={characterImageUrl} />}
       />
       <Route path="*" element={<NotFound />} />
     </Routes>

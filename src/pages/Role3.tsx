@@ -111,6 +111,13 @@ const Role3 = ({ portraitImageUrl }: Role3Props) => {
             >
               Role 4
             </button>
+            <span className="text-xs text-muted-foreground">→</span>
+            <button
+              onClick={() => navigate("/role5")}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Role 5
+            </button>
           </div>
         </div>
       </header>

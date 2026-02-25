@@ -9,11 +9,11 @@ import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Compass, Loader2, Camera, Upload } from "lucide-react";
 
-interface Role4Props {
+interface Role5Props {
   characterImageUrl: string | null;
 }
 
-const Role4 = ({ characterImageUrl }: Role4Props) => {
+const Role5 = ({ characterImageUrl }: Role5Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -21,7 +21,6 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Character image upload (manual fallback if not from Role 2)
   const [charPreview, setCharPreview] = useState<string | null>(characterImageUrl);
   const [charBase64, setCharBase64] = useState<string>(characterImageUrl || "");
   const charFileRef = useRef<HTMLInputElement>(null);
@@ -60,7 +59,7 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
 
     try {
       const { data, error: fnError } = await supabase.functions.invoke(
-        "generate-environment",
+        "generate-post-construction",
         {
           body: { fields, characterImageBase64: imageToUse },
         }
@@ -71,7 +70,7 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
 
       setGeneratedImage(data.imageUrl);
       setDebugPrompt(data.debugPrompt);
-      toast.success("Environment image generated successfully!");
+      toast.success("Post-construction environment generated successfully!");
     } catch (err: any) {
       const message = err?.message || "Something went wrong";
       setError(message);
@@ -99,7 +98,7 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
               Trailmakers Ai
             </h1>
             <p className="text-xs text-muted-foreground">
-              Role 4 – Pre-Development Environment
+              Role 5 – Post-Construction Environment
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -109,26 +108,24 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
             <span className="text-xs text-muted-foreground">→</span>
             <button onClick={() => navigate("/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 3</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Role 4</span>
+            <button onClick={() => navigate("/role4")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 4</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/role5")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 5</button>
+            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Role 5</span>
           </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left: Form */}
           <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
             <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
-              Environment Evidence
+              Post-Construction Evidence
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              Describe the pre-development docks environment and upload the full-body character to place in the scene
+              Describe the docks after construction and upload the full-body character to place in the scene
             </p>
 
             <form onSubmit={handleGenerate} className="space-y-5">
-              {/* Character image upload */}
               <div>
                 <Label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground mb-2 block">
                   Full-Body Character Image
@@ -138,11 +135,7 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
                   className="relative cursor-pointer border-2 border-dashed border-border rounded-lg h-48 flex items-center justify-center bg-secondary/50 hover:bg-secondary transition-colors overflow-hidden"
                 >
                   {charPreview ? (
-                    <img
-                      src={charPreview}
-                      alt="Character"
-                      className="h-full w-full object-contain"
-                    />
+                    <img src={charPreview} alt="Character" className="h-full w-full object-contain" />
                   ) : (
                     <div className="flex flex-col items-center gap-2 text-muted-foreground">
                       <Upload className="w-6 h-6" />
@@ -150,22 +143,16 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
                     </div>
                   )}
                 </div>
-                <input
-                  ref={charFileRef}
-                  type="file"
-                  accept="image/jpeg,image/png"
-                  onChange={handleCharFileChange}
-                  className="hidden"
-                />
+                <input ref={charFileRef} type="file" accept="image/jpeg,image/png" onChange={handleCharFileChange} className="hidden" />
               </div>
 
               <div>
-                <Label htmlFor="seeNotes">SEE – What do you notice about the environment? *</Label>
+                <Label htmlFor="seeNotes">SEE – What do you notice about the docks after construction? *</Label>
                 <Textarea
                   id="seeNotes"
                   value={fields.seeNotes}
                   onChange={(e) => updateField("seeNotes", e.target.value)}
-                  placeholder="e.g. Tidal mudflats, uneven riverbanks, scattered wooden jetties, smoke from nearby buildings"
+                  placeholder="e.g. Straight stone walls, iron gates, large enclosed water basins, cranes, organised quaysides"
                   rows={3}
                 />
               </div>
@@ -176,54 +163,43 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
                   id="sayKeywords"
                   value={fields.sayKeywords}
                   onChange={(e) => updateField("sayKeywords", e.target.value)}
-                  placeholder="e.g. tidal river, muddy foreshore, timber wharves, cargo boats, warehouses"
+                  placeholder="e.g. wet dock, lock gates, engineered walls, warehouses, cargo hoists, cobbled quayside"
                   rows={3}
                 />
               </div>
 
               <div>
-                <Label htmlFor="showInterpretation">SHOW – What might life at the docks have felt like? *</Label>
+                <Label htmlFor="showInterpretation">SHOW – How did engineering change the waterfront? *</Label>
                 <Textarea
                   id="showInterpretation"
                   value={fields.showInterpretation}
                   onChange={(e) => updateField("showInterpretation", e.target.value)}
-                  placeholder="e.g. A busy, noisy working waterfront where trade and labour shaped daily life before any formal dock construction"
+                  placeholder="e.g. The waterfront was transformed from a natural tidal river into a controlled, industrial environment designed for efficient trade"
                   rows={3}
                 />
               </div>
 
               <div>
-                <Label htmlFor="finalSentence">Final Sentence – Before construction, the docks were… *</Label>
+                <Label htmlFor="finalSentence">Final Sentence – After construction, the docks were… *</Label>
                 <Textarea
                   id="finalSentence"
                   value={fields.finalSentence}
                   onChange={(e) => updateField("finalSentence", e.target.value)}
-                  placeholder="e.g. Before construction, the docks were a muddy tidal riverbank lined with timber wharves and cluttered with cargo from small sailing vessels"
+                  placeholder="e.g. After construction, the docks were a vast engineered basin enclosed by stone walls, with lock gates controlling the water level and warehouses lining the quayside"
                   rows={2}
                 />
               </div>
 
-              <Button
-                type="submit"
-                disabled={!isValid || isLoading}
-                className="w-full font-display text-base tracking-wide h-12"
-              >
+              <Button type="submit" disabled={!isValid || isLoading} className="w-full font-display text-base tracking-wide h-12">
                 {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Generating…
-                  </>
+                  <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Generating…</>
                 ) : (
-                  <>
-                    <Camera className="mr-2 h-4 w-4" />
-                    Generate Environment
-                  </>
+                  <><Camera className="mr-2 h-4 w-4" />Generate Environment</>
                 )}
               </Button>
             </form>
           </div>
 
-          {/* Right: Result */}
           <div className="bg-card rounded-xl border border-border shadow-sm flex flex-col">
             <div className="p-6 flex-1">
               <h2 className="font-display text-lg font-semibold mb-1 text-foreground">
@@ -232,17 +208,9 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
               <p className="text-sm text-muted-foreground mb-6">
                 Landscape photographic scene with character integrated
               </p>
-              <ResultPanel
-                imageUrl={generatedImage}
-                isLoading={isLoading}
-                error={error}
-              />
+              <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} />
             </div>
-            <DebugPanel
-              prompt={debugPrompt}
-              isOpen={debugOpen}
-              onToggle={() => setDebugOpen(!debugOpen)}
-            />
+            <DebugPanel prompt={debugPrompt} isOpen={debugOpen} onToggle={() => setDebugOpen(!debugOpen)} />
           </div>
         </div>
       </main>
@@ -250,4 +218,4 @@ const Role4 = ({ characterImageUrl }: Role4Props) => {
   );
 };
 
-export default Role4;
+export default Role5;
