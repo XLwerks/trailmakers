@@ -24,10 +24,11 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
   const needsPortrait = !portraitImageUrl;
 
   const handleGenerate = async (
-    fields: Record<string, string>
+    fields: Record<string, string>,
+    imageBase64?: string
   ) => {
-    // Use portrait from Role 1 as reference if available
-    const imageToUse = portraitImageUrl || null;
+    // Use portrait from Role 1, or manually uploaded image
+    const imageToUse = portraitImageUrl || imageBase64 || null;
 
     setIsLoading(true);
     setError(null);
@@ -121,7 +122,7 @@ const Role2 = ({ portraitImageUrl }: Role2Props) => {
                 ? "Describe the clothing to extend the portrait into a full-body image"
                 : "Upload a reference portrait and describe the clothing to generate a full-body image"}
             </p>
-            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} />
+            <PortraitForm onSubmit={handleGenerate} isLoading={isLoading} showImageUpload={!portraitImageUrl} />
           </div>
 
           {/* Right: Result */}
