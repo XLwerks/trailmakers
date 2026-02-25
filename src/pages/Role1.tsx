@@ -73,7 +73,7 @@ const Role1 = ({ onPortraitGenerated, generatedPortrait }: Role1Props) => {
               Trailmakers Ai
             </h1>
             <p className="text-xs text-muted-foreground">
-              Worksheet 1 – Head &amp; Shoulders Portrait
+              Role 1 – Head &amp; Shoulders Portrait
             </p>
           </div>
           <div className="flex items-center gap-2">
