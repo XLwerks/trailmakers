@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,6 +18,20 @@ export interface FieldLabels {
   imageUploadHint?: string;
 }
 
+export interface FormFields {
+  seeNotes: string;
+  keywords: string[];
+  showInterpretation: string;
+  finalSentence: string;
+}
+
+export const emptyFormFields: FormFields = {
+  seeNotes: "",
+  keywords: ["", "", "", "", "", ""],
+  showInterpretation: "",
+  finalSentence: "",
+};
+
 interface PortraitFormProps {
   onSubmit: (fields: Record<string, string>, imageBase64?: string) => void;
   isLoading: boolean;
@@ -25,6 +39,10 @@ interface PortraitFormProps {
   fieldLabels?: FieldLabels;
   timePeriod?: string;
   onTimePeriodChange?: (value: string) => void;
+  fields?: FormFields;
+  onFieldsChange?: (fields: FormFields) => void;
+  referenceImage?: string | null;
+  onReferenceImageChange?: (base64: string | null) => void;
 }
 
 const defaultLabels: FieldLabels = {
@@ -40,30 +58,39 @@ const defaultLabels: FieldLabels = {
   imageUploadHint: "Upload a portrait photo for facial likeness",
 };
 
-const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabels, timePeriod, onTimePeriodChange }: PortraitFormProps) => {
+const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabels, timePeriod, onTimePeriodChange, fields: controlledFields, onFieldsChange, referenceImage, onReferenceImageChange }: PortraitFormProps) => {
   const labels = { ...defaultLabels, ...fieldLabels };
   const isTimePeriodEditable = !!onTimePeriodChange;
-  const [referencePreview, setReferencePreview] = useState<string | null>(null);
-  const [referenceBase64, setReferenceBase64] = useState<string>("");
+  
+  // Use controlled or uncontrolled mode
+  const isControlled = !!controlledFields && !!onFieldsChange;
+  const [internalFields, setInternalFields] = useState<FormFields>({ ...emptyFormFields });
+  const fields = isControlled ? controlledFields : internalFields;
+  
+  const [internalRefPreview, setInternalRefPreview] = useState<string | null>(null);
+  const [internalRefBase64, setInternalRefBase64] = useState<string>("");
+  
+  const referencePreview = referenceImage !== undefined ? referenceImage : internalRefPreview;
+  const referenceBase64 = referenceImage !== undefined ? (referenceImage || "") : internalRefBase64;
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [fields, setFields] = useState({
-    seeNotes: "",
-    keywords: ["", "", "", "", "", ""],
-    showInterpretation: "",
-    finalSentence: "",
-  });
-
   const updateField = (key: string, value: string) => {
-    setFields((prev) => ({ ...prev, [key]: value }));
+    if (isControlled) {
+      onFieldsChange({ ...fields, [key]: value });
+    } else {
+      setInternalFields((prev) => ({ ...prev, [key]: value }));
+    }
   };
 
   const updateKeyword = (index: number, value: string) => {
-    setFields((prev) => {
-      const keywords = [...prev.keywords];
-      keywords[index] = value;
-      return { ...prev, keywords };
-    });
+    const keywords = [...fields.keywords];
+    keywords[index] = value;
+    if (isControlled) {
+      onFieldsChange({ ...fields, keywords });
+    } else {
+      setInternalFields((prev) => ({ ...prev, keywords }));
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,15 +99,18 @@ const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabel
     const reader = new FileReader();
     reader.onload = () => {
       const result = reader.result as string;
-      setReferencePreview(result);
-      setReferenceBase64(result);
+      if (onReferenceImageChange) {
+        onReferenceImageChange(result);
+      } else {
+        setInternalRefPreview(result);
+        setInternalRefBase64(result);
+      }
     };
     reader.readAsDataURL(file);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Combine keywords into a comma-separated string for the prompt
     const { keywords, ...rest } = fields;
     const submissionFields: Record<string, string> = {
       ...rest,
