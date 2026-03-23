@@ -15,7 +15,7 @@ const Home = () => {
           
           <div className="flex-1">
             <h1 className="text-xl font-bold text-foreground leading-tight">
-              Ipswich Trail Makers
+              IPSWICH TRAIL MAKERS
             </h1>
             <p className="text-xs text-muted-foreground">
               {schoolName ? `${schoolName}${teacherName ? ` — ${teacherName}` : ""}` : "Choose your task pathway"}
@@ -37,7 +37,7 @@ const Home = () => {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-2">
-            Welcome to Ipswich Trail Makers
+            Welcome to IPSWICH TRAIL MAKERS
           </h2>
           <p className="text-muted-foreground text-lg">
             Select a task to get started

@@ -60,7 +60,7 @@ const Role2 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
           </button>
           
           <div className="flex-1">
-            <h1 className="font-display text-xl font-bold text-foreground leading-tight">Ipswich Trail Makers</h1>
+            <h1 className="font-display text-xl font-bold text-foreground leading-tight">IPSWICH TRAIL MAKERS</h1>
             <p className="text-xs text-muted-foreground">Role 2 – Making a full character image</p>
           </div>
           <div className="flex items-center gap-2">

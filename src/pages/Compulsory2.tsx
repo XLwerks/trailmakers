@@ -61,7 +61,7 @@ const Compulsory2 = ({
           </button>
           
           <div className="flex-1">
-            <h1 className="font-display text-xl font-bold text-foreground leading-tight">Ipswich Trail Makers</h1>
+            <h1 className="font-display text-xl font-bold text-foreground leading-tight">IPSWICH TRAIL MAKERS</h1>
             <p className="text-xs text-muted-foreground">Compulsory Task – Object</p>
           </div>
           <div className="flex items-center gap-2">

@@ -95,7 +95,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
           </button>
           
           <div className="flex-1">
-            <h1 className="font-display text-xl font-bold text-foreground leading-tight">Ipswich Trail Makers</h1>
+            <h1 className="font-display text-xl font-bold text-foreground leading-tight">IPSWICH TRAIL MAKERS</h1>
             <p className="text-xs text-muted-foreground">Role 4 – Pre-Development Environment</p>
           </div>
           <div className="flex items-center gap-2">
