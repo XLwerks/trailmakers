@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import PortraitForm, { FieldLabels, FormFields } from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
+import { Home } from "lucide-react";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 interface Role3Props {

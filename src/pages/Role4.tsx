@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
-import { Loader2, Camera, Upload } from "lucide-react";
+import { Loader2, Camera, Upload, Home } from "lucide-react";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 import { FormFields } from "@/components/PortraitForm";
 
