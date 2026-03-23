@@ -43,6 +43,8 @@ function buildPrompt(fields: Record<string, string>): string {
 
   return `Create a photorealistic close-up portrait of a historical person, framed from the neck upwards only — no shoulders visible. Plain white studio background only. Neutral lighting, realistic skin texture, sharp focus. Tightly cropped head shot.
 
+CRITICAL FRAMING RULE: The entire head, face, and any headwear (hats, bonnets, caps, scarves, etc.) MUST fit completely within the image frame with generous padding around all edges. Nothing should be cropped or extend beyond the image borders. Leave clear white space above the head and on all sides.
+
 Use the following evidence gathered by students:
 
 - Visual observations (SEE): ${see}
@@ -51,6 +53,8 @@ Use the following evidence gathered by students:
 
 The portrait must be:
 - Cropped tightly from the neck up — absolutely NO shoulders, chest, or torso visible
+- The ENTIRE head and any headwear must be fully visible within the frame — nothing cut off at edges
+- Leave at least 10% white space padding above the highest point of the head or headwear
 - In FULL COLOUR (not black and white, not sepia, not monochrome)
 - Use natural, realistic skin tones and colours throughout
 - The facial features, expression, and mood must strongly reflect the evidence provided
