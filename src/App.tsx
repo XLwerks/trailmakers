@@ -58,6 +58,11 @@ const AppRoutes = () => {
   const [role4, setRole4] = useState<Role4_5State>({ ...emptyRole4_5State, fields: { ...emptyFormFields, keywords: [...emptyFormFields.keywords] } });
   const [role5, setRole5] = useState<Role4_5State>({ ...emptyRole4_5State, fields: { ...emptyFormFields, keywords: [...emptyFormFields.keywords] } });
 
+  // Compulsory task state
+  const [comp1, setComp1] = useState({ see: "", say: "", finalSentence: "", generatedImage: null as string | null, debugPrompt: null as string | null });
+  const [comp2, setComp2] = useState({ see: "", say: "", finalSentence: "", generatedImage: null as string | null, debugPrompt: null as string | null });
+  const [comp3, setComp3] = useState({ see: "", say: "", finalSentence: "", generatedImage: null as string | null, debugPrompt: null as string | null, faceImage: null as string | null, objectImage: null as string | null, objectRelation: "holding" });
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -143,9 +148,36 @@ const AppRoutes = () => {
         }
       />
       <Route path="/compulsory" element={<CompulsoryHub />} />
-      <Route path="/compulsory/1" element={<Compulsory1 />} />
-      <Route path="/compulsory/2" element={<Compulsory2 />} />
-      <Route path="/compulsory/3" element={<Compulsory3 />} />
+      <Route path="/compulsory/1" element={
+        <Compulsory1
+          see={comp1.see} onSeeChange={(v) => setComp1(s => ({ ...s, see: v }))}
+          say={comp1.say} onSayChange={(v) => setComp1(s => ({ ...s, say: v }))}
+          finalSentence={comp1.finalSentence} onFinalSentenceChange={(v) => setComp1(s => ({ ...s, finalSentence: v }))}
+          generatedImage={comp1.generatedImage} onGeneratedImage={(url) => setComp1(s => ({ ...s, generatedImage: url }))}
+          debugPrompt={comp1.debugPrompt} onDebugPrompt={(p) => setComp1(s => ({ ...s, debugPrompt: p }))}
+        />
+      } />
+      <Route path="/compulsory/2" element={
+        <Compulsory2
+          see={comp2.see} onSeeChange={(v) => setComp2(s => ({ ...s, see: v }))}
+          say={comp2.say} onSayChange={(v) => setComp2(s => ({ ...s, say: v }))}
+          finalSentence={comp2.finalSentence} onFinalSentenceChange={(v) => setComp2(s => ({ ...s, finalSentence: v }))}
+          generatedImage={comp2.generatedImage} onGeneratedImage={(url) => setComp2(s => ({ ...s, generatedImage: url }))}
+          debugPrompt={comp2.debugPrompt} onDebugPrompt={(p) => setComp2(s => ({ ...s, debugPrompt: p }))}
+        />
+      } />
+      <Route path="/compulsory/3" element={
+        <Compulsory3
+          see={comp3.see} onSeeChange={(v) => setComp3(s => ({ ...s, see: v }))}
+          say={comp3.say} onSayChange={(v) => setComp3(s => ({ ...s, say: v }))}
+          finalSentence={comp3.finalSentence} onFinalSentenceChange={(v) => setComp3(s => ({ ...s, finalSentence: v }))}
+          generatedImage={comp3.generatedImage} onGeneratedImage={(url) => setComp3(s => ({ ...s, generatedImage: url }))}
+          debugPrompt={comp3.debugPrompt} onDebugPrompt={(p) => setComp3(s => ({ ...s, debugPrompt: p }))}
+          faceImage={comp3.faceImage} onFaceImageChange={(img) => setComp3(s => ({ ...s, faceImage: img }))}
+          objectImage={comp3.objectImage} onObjectImageChange={(img) => setComp3(s => ({ ...s, objectImage: img }))}
+          objectRelation={comp3.objectRelation} onObjectRelationChange={(v) => setComp3(s => ({ ...s, objectRelation: v }))}
+        />
+      } />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

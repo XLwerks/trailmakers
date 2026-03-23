@@ -1,10 +1,57 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
-const Compulsory1 = () => {
+interface Compulsory1Props {
+  see: string;
+  onSeeChange: (v: string) => void;
+  say: string;
+  onSayChange: (v: string) => void;
+  finalSentence: string;
+  onFinalSentenceChange: (v: string) => void;
+  generatedImage: string | null;
+  onGeneratedImage: (url: string) => void;
+  debugPrompt: string | null;
+  onDebugPrompt: (p: string) => void;
+}
+
+const Compulsory1 = ({
+  see, onSeeChange, say, onSayChange,
+  finalSentence, onFinalSentenceChange,
+  generatedImage, onGeneratedImage,
+  debugPrompt, onDebugPrompt,
+}: Compulsory1Props) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
+
+  const handleGenerate = async () => {
+    if (!finalSentence.trim()) {
+      toast({ title: "Missing sentence", description: "Please enter the group's final sentence.", variant: "destructive" });
+      return;
+    }
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("generate-compulsory-face", {
+        body: { fields: { see, say, finalSentence } },
+      });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+      onGeneratedImage(data.storedUrl || data.imageUrl);
+      onDebugPrompt(data.debugPrompt);
+      toast({ title: "Face generated!", description: "The portrait has been created." });
+    } catch (e: any) {
+      toast({ title: "Generation failed", description: e.message || "Unknown error", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -16,44 +63,113 @@ const Compulsory1 = () => {
           <img src={trailmakersLogo} alt="Trailmakers" className="w-10 h-10 rounded-full object-cover" />
           <div className="flex-1">
             <h1 className="font-display text-xl font-bold text-foreground leading-tight">Ipswich Trail Makers</h1>
-            <p className="text-xs text-muted-foreground">Compulsory Task – Page 1</p>
+            <p className="text-xs text-muted-foreground">Compulsory Task – Face</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Page 1</span>
+            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">1. Face</span>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/compulsory/2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Page 2</button>
+            <button onClick={() => navigate("/compulsory/2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">2. Object</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Page 3</button>
+            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">3. Full Body</button>
           </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Form */}
           <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
-            <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Page 1 – Coming Soon</h2>
+            <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Character Face</h2>
             <p className="text-sm text-muted-foreground mb-6">
-              This page will be configured based on the worksheet requirements.
+              Enter the group's observations and descriptive sentence to generate a head-and-shoulders portrait.
             </p>
-            <div className="h-48 flex items-center justify-center border-2 border-dashed border-border rounded-lg text-muted-foreground">
-              Form fields will go here
+
+            <div className="space-y-5">
+              <div>
+                <Label htmlFor="see" className="font-display text-sm font-semibold">
+                  SEE – What do you notice in the images?
+                </Label>
+                <Textarea
+                  id="see"
+                  placeholder="e.g. Serious expression, weathered skin, deep-set eyes..."
+                  value={see}
+                  onChange={(e) => onSeeChange(e.target.value)}
+                  className="mt-1.5"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="say" className="font-display text-sm font-semibold">
+                  SAY – Words or phrases from the research text
+                </Label>
+                <Textarea
+                  id="say"
+                  placeholder="e.g. dock worker, strong build, Victorian era, proud..."
+                  value={say}
+                  onChange={(e) => onSayChange(e.target.value)}
+                  className="mt-1.5"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="sentence" className="font-display text-sm font-semibold">
+                  Final Sentence – "This person looks..."
+                </Label>
+                <Textarea
+                  id="sentence"
+                  placeholder="This person looks like a strong, serious dock worker with weathered skin and a thick moustache..."
+                  value={finalSentence}
+                  onChange={(e) => onFinalSentenceChange(e.target.value)}
+                  className="mt-1.5"
+                  rows={3}
+                />
+              </div>
+
+              <Button onClick={handleGenerate} disabled={loading} className="w-full font-display gap-2">
+                {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Generating Face...</> : "Generate Face Portrait"}
+              </Button>
             </div>
           </div>
 
+          {/* Result */}
           <div className="bg-card rounded-xl border border-border shadow-sm flex flex-col">
             <div className="p-6 flex-1">
-              <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Generated Image</h2>
-              <p className="text-sm text-muted-foreground mb-6">Output will appear here</p>
-              <div className="h-48 flex items-center justify-center border-2 border-dashed border-border rounded-lg text-muted-foreground">
-                Image result placeholder
-              </div>
+              <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Generated Face</h2>
+              <p className="text-sm text-muted-foreground mb-4">The AI-generated portrait will appear here</p>
+
+              {generatedImage ? (
+                <div className="space-y-4">
+                  <img src={generatedImage} alt="Generated face" className="w-full rounded-lg border border-border" />
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" asChild className="font-display">
+                      <a href={generatedImage} download="compulsory-face.png">Download</a>
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={handleGenerate} disabled={loading} className="font-display">
+                      Regenerate
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="h-64 flex items-center justify-center border-2 border-dashed border-border rounded-lg text-muted-foreground text-sm">
+                  {loading ? "Generating..." : "Fill in the fields and click Generate"}
+                </div>
+              )}
+
+              {debugPrompt && (
+                <details className="mt-4">
+                  <summary className="text-xs text-muted-foreground cursor-pointer">Debug: View prompt</summary>
+                  <pre className="mt-2 text-xs bg-muted p-3 rounded-lg overflow-auto max-h-40 whitespace-pre-wrap">{debugPrompt}</pre>
+                </details>
+              )}
             </div>
           </div>
         </div>
 
         <div className="mt-8 flex justify-end">
           <Button onClick={() => navigate("/compulsory/2")} className="font-display gap-2">
-            Proceed to Page 2 <ArrowRight className="w-4 h-4" />
+            Proceed to Object <ArrowRight className="w-4 h-4" />
           </Button>
         </div>
       </main>
