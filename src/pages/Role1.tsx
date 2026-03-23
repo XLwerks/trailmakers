@@ -66,13 +66,13 @@ const Role1 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
           <div className="flex items-center gap-2">
             <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Role 1</span>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/role2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Role 2</button>
+            <button onClick={() => navigate("/ed-caley/role2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Role 2</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Role 3</button>
+            <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Role 3</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/role4")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Role 4</button>
+            <button onClick={() => navigate("/ed-caley/role4")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Role 4</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/role5")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Role 5</button>
+            <button onClick={() => navigate("/ed-caley/role5")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Role 5</button>
           </div>
         </div>
       </header>
@@ -99,7 +99,7 @@ const Role1 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
               <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} />
               {generatedImage && !isLoading && (
                 <div className="mt-6 flex justify-center">
-                  <Button onClick={() => navigate("/role2")} className="font-display text-base tracking-wide h-12 gap-2">
+                  <Button onClick={() => navigate("/ed-caley/role2")} className="font-display text-base tracking-wide h-12 gap-2">
                     Proceed to Role 2
                     <ArrowRight className="w-4 h-4" />
                   </Button>

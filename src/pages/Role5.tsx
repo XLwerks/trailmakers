@@ -98,13 +98,13 @@ const Role5 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
             <p className="text-xs text-muted-foreground">Role 5 – Post-Construction Environment</p>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => navigate("/")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 1</button>
+            <button onClick={() => navigate("/ed-caley")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 1</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/role2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 2</button>
+            <button onClick={() => navigate("/ed-caley/role2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 2</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 3</button>
+            <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 3</button>
             <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/role4")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 4</button>
+            <button onClick={() => navigate("/ed-caley/role4")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 4</button>
             <span className="text-xs text-muted-foreground">→</span>
             <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Role 5</span>
           </div>
