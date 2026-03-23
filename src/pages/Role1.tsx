@@ -6,7 +6,8 @@ import PortraitForm, { FormFields } from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Button } from "@/components/ui/button";
-import { Compass, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 interface Role1Props {
   timePeriod: string;
