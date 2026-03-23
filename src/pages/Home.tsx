@@ -14,7 +14,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
           
           <div className="flex-1">
-            <h1 className="text-xl font-bold text-foreground leading-tight">
+            <h1 className="text-xl font-bold text-accent-foreground leading-tight">
               IPSWICH TRAIL MAKERS
             </h1>
             <p className="text-xs text-muted-foreground">

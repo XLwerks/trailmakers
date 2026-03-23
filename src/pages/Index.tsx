@@ -59,7 +59,7 @@ const Index = () => {
             <Compass className="w-5 h-5 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="font-display text-xl font-bold text-foreground leading-tight">
+            <h1 className="font-display text-xl font-bold text-accent-foreground leading-tight">
               IPSWICH TRAIL MAKERS
             </h1>
             <p className="text-xs text-muted-foreground">

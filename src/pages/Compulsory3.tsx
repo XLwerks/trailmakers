@@ -91,12 +91,12 @@ const Compulsory3 = ({
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-accent backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
-          <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground transition-colors">
+          <button onClick={() => navigate("/")} className="text-accent-foreground/70 hover:text-accent-foreground transition-colors">
             <Home className="w-5 h-5" />
           </button>
           
           <div className="flex-1">
-            <h1 className="font-display text-xl font-bold text-foreground leading-tight">IPSWICH TRAIL MAKERS</h1>
+            <h1 className="font-display text-xl font-bold text-accent-foreground leading-tight">IPSWICH TRAIL MAKERS</h1>
             <p className="text-xs text-muted-foreground">Compulsory Task – Full Body</p>
           </div>
           <div className="flex items-center gap-2">
