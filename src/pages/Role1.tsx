@@ -7,7 +7,6 @@ import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Home } from "lucide-react";
-import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 interface Role1Props {
   timePeriod: string;

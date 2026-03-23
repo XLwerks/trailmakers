@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Loader2, Camera, Upload, Home } from "lucide-react";
-import trailmakersLogo from "@/assets/trailmakers-logo.png";
 import { FormFields } from "@/components/PortraitForm";
 
 interface Role4Props {
