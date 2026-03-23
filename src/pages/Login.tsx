@@ -34,8 +34,7 @@ const Login = () => {
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <img src={trailmakersLogo} alt="Ipswich Trail Makers" className="w-16 h-16 mx-auto rounded-full object-cover mb-4" />
-          <h1 className="text-2xl font-bold text-foreground">Ipswich Trail Makers</h1>
+          <img src={trailmakersLogo} alt="Ipswich Trail Makers" className="w-48 h-48 mx-auto rounded-full object-cover mb-4" />
           <p className="text-sm text-muted-foreground mt-1">Sign in to continue</p>
         </div>
 
