@@ -7,22 +7,22 @@ const CompulsoryHub = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-10">
+      <header className="border-b border-accent bg-accent backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
-          <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground transition-colors">
+          <button onClick={() => navigate("/")} className="text-accent-foreground/70 hover:text-accent-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </button>
           
           <div className="flex-1">
-            <h1 className="font-display text-xl font-bold text-foreground leading-tight">Ipswich Trail Makers</h1>
-            <p className="text-xs text-muted-foreground">Compulsory Task</p>
+            <h1 className="font-display text-xl font-bold text-accent-foreground leading-tight">IPSWICH TRAIL MAKERS</h1>
+            <p className="text-xs text-accent-foreground/70">Compulsory Task</p>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => navigate("/compulsory/1")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Page 1</button>
-            <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/compulsory/2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Page 2</button>
-            <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Page 3</button>
+            <button onClick={() => navigate("/compulsory/1")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Page 1</button>
+            <span className="text-xs text-accent-foreground/50">→</span>
+            <button onClick={() => navigate("/compulsory/2")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Page 2</button>
+            <span className="text-xs text-accent-foreground/50">→</span>
+            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Page 3</button>
           </div>
         </div>
       </header>

@@ -10,24 +10,24 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-10">
+      <header className="border-b border-accent bg-accent backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
           
           <div className="flex-1">
-            <h1 className="text-xl font-bold text-foreground leading-tight">
-              Ipswich Trail Makers
+            <h1 className="text-xl font-bold text-accent-foreground leading-tight">
+              IPSWICH TRAIL MAKERS
             </h1>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-accent-foreground/70">
               {schoolName ? `${schoolName}${teacherName ? ` — ${teacherName}` : ""}` : "Choose your task pathway"}
             </p>
           </div>
           <div className="flex items-center gap-2">
             {isAdmin && (
-              <Button variant="outline" size="sm" onClick={() => navigate("/admin")} className="gap-1">
+              <Button variant="outline" size="sm" onClick={() => navigate("/admin")} className="gap-1 border-accent-foreground/30 text-accent-foreground hover:bg-accent-foreground/10">
                 <Settings className="w-4 h-4" /> Admin
               </Button>
             )}
-            <Button variant="ghost" size="sm" onClick={signOut} className="gap-1 text-muted-foreground">
+            <Button variant="ghost" size="sm" onClick={signOut} className="gap-1 text-accent-foreground/70 hover:text-accent-foreground hover:bg-accent-foreground/10">
               <LogOut className="w-4 h-4" /> Sign Out
             </Button>
           </div>
@@ -37,7 +37,7 @@ const Home = () => {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-2">
-            Welcome to Ipswich Trail Makers
+            Welcome to IPSWICH TRAIL MAKERS
           </h2>
           <p className="text-muted-foreground text-lg">
             Select a task to get started
