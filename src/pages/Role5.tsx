@@ -8,7 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
-import { Compass, Loader2, Camera, Upload } from "lucide-react";
+import { Loader2, Camera, Upload } from "lucide-react";
+import trailmakersLogo from "@/assets/trailmakers-logo.png";
 import { FormFields } from "@/components/PortraitForm";
 
 interface Role5Props {
