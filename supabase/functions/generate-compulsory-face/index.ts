@@ -41,7 +41,7 @@ async function saveToStorage(base64DataUrl: string, role: string): Promise<strin
 function buildPrompt(fields: Record<string, string>): string {
   const { see, say, finalSentence } = fields;
 
-  return `Create a photorealistic head-and-shoulders portrait of a historical person. Plain white studio background only. Neutral lighting, realistic skin texture, sharp focus. Head and shoulders framing.
+  return `Create a photorealistic close-up portrait of a historical person, framed from the neck upwards only — no shoulders visible. Plain white studio background only. Neutral lighting, realistic skin texture, sharp focus. Tightly cropped head shot.
 
 Use the following evidence gathered by students:
 
@@ -50,6 +50,7 @@ Use the following evidence gathered by students:
 - Student's descriptive sentence: ${finalSentence}
 
 The portrait must be:
+- Cropped tightly from the neck up — absolutely NO shoulders, chest, or torso visible
 - In FULL COLOUR (not black and white, not sepia, not monochrome)
 - Use natural, realistic skin tones and colours throughout
 - The facial features, expression, and mood must strongly reflect the evidence provided
