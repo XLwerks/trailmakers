@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Home, LogOut, Settings, FileText, Download } from "lucide-react";
+import { Home, LogOut, Settings, FileText, Download, HelpCircle } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import {
