@@ -12,7 +12,7 @@ const Home = () => {
           <img src={trailmakersLogo} alt="Trailmakers" className="w-10 h-10 rounded-full object-cover" />
           <div>
             <h1 className="font-display text-xl font-bold text-foreground leading-tight">
-              Trailmakers Ai
+              Ipswich Trail Makers
             </h1>
             <p className="text-xs text-muted-foreground">
               Choose your task pathway
@@ -24,7 +24,7 @@ const Home = () => {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="font-display text-3xl font-bold text-foreground mb-2">
-            Welcome to Trailmakers Ai
+            Welcome to Ipswich Trail Makers
           </h2>
           <p className="text-muted-foreground text-lg">
             Select a task to get started
