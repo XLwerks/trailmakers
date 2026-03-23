@@ -5,11 +5,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { FormFields, emptyFormFields } from "@/components/PortraitForm";
+import Home from "./pages/Home";
 import Role1 from "./pages/Role1";
 import Role2 from "./pages/Role2";
 import Role3 from "./pages/Role3";
 import Role4 from "./pages/Role4";
 import Role5 from "./pages/Role5";
+import CompulsoryHub from "./pages/CompulsoryHub";
+import Compulsory1 from "./pages/Compulsory1";
+import Compulsory2 from "./pages/Compulsory2";
+import Compulsory3 from "./pages/Compulsory3";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -55,8 +60,9 @@ const AppRoutes = () => {
 
   return (
     <Routes>
+      <Route path="/" element={<Home />} />
       <Route
-        path="/"
+        path="/ed-caley"
         element={
           <Role1
             timePeriod={timePeriod}
@@ -71,7 +77,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/role2"
+        path="/ed-caley/role2"
         element={
           <Role2
             timePeriod={timePeriod}
@@ -87,7 +93,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/role3"
+        path="/ed-caley/role3"
         element={
           <Role3
             timePeriod={timePeriod}
@@ -103,7 +109,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/role4"
+        path="/ed-caley/role4"
         element={
           <Role4
             timePeriod={role4.timePeriod}
@@ -120,7 +126,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/role5"
+        path="/ed-caley/role5"
         element={
           <Role5
             timePeriod={role5.timePeriod}
@@ -136,6 +142,10 @@ const AppRoutes = () => {
           />
         }
       />
+      <Route path="/compulsory" element={<CompulsoryHub />} />
+      <Route path="/compulsory/1" element={<Compulsory1 />} />
+      <Route path="/compulsory/2" element={<Compulsory2 />} />
+      <Route path="/compulsory/3" element={<Compulsory3 />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
