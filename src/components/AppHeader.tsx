@@ -91,14 +91,12 @@ const AppHeader = ({ subtitle, showHomeButton = false }: AppHeaderProps) => {
     <header className="border-b border-accent bg-accent backdrop-blur-sm sticky top-0 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
         {showHomeButton && (
-          <Button
-            size="icon"
-            variant="ghost"
+          <button
             onClick={() => navigate("/")}
-            className="text-accent-foreground/80 hover:text-accent-foreground hover:bg-white/10 w-10 h-10"
+            className="text-accent-foreground/80 hover:text-accent-foreground hover:bg-white/10 rounded-md p-1 transition-colors"
           >
-            <Home className="w-6 h-6" />
-          </Button>
+            <Home className="w-8 h-8" />
+          </button>
         )}
 
         <div className="flex-1">
