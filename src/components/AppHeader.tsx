@@ -95,9 +95,9 @@ const AppHeader = ({ subtitle, showHomeButton = false }: AppHeaderProps) => {
             size="icon"
             variant="ghost"
             onClick={() => navigate("/")}
-            className="text-accent-foreground/80 hover:text-accent-foreground hover:bg-white/10"
+            className="text-accent-foreground/80 hover:text-accent-foreground hover:bg-white/10 w-10 h-10"
           >
-            <Home className="w-10 h-10" />
+            <Home className="w-6 h-6" />
           </Button>
         )}
 
