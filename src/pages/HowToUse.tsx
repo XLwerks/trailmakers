@@ -35,13 +35,16 @@ const HowToUse = () => {
             <p className="text-muted-foreground">
               Students work in groups to develop ideas through discussion, while the teacher inputs prompts into the platform.
             </p>
-            <p className="text-muted-foreground">You will generate three images:</p>
+            <p className="text-muted-foreground">For the Compulsory Task, you will generate three images:</p>
             <ul className="list-disc pl-6 text-muted-foreground space-y-1">
               <li><strong>Face</strong> — based on a descriptive sentence created by the group</li>
               <li><strong>Object</strong> — something important to the character</li>
               <li><strong>Full Character</strong> — combining the face, object and overall appearance</li>
             </ul>
             <p className="text-muted-foreground">Each stage builds on the previous one.</p>
+            <p className="text-muted-foreground">
+              For the Ed Caley Project, the process is more detailed and includes five stages, following a more in-depth, research-led approach.
+            </p>
           </section>
 
           <section className="space-y-3">
