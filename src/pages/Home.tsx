@@ -23,11 +23,11 @@ const Home = () => {
           </div>
           <div className="flex items-center gap-2">
             {isAdmin && (
-              <Button variant="outline" size="sm" onClick={() => navigate("/admin")} className="gap-1 border-accent-foreground/30 text-accent-foreground hover:bg-accent-foreground/10">
+              <Button size="sm" onClick={() => navigate("/admin")} className="gap-1 bg-white/20 text-white border border-white/30 hover:bg-white/30">
                 <Settings className="w-4 h-4" /> Admin
               </Button>
             )}
-            <Button variant="ghost" size="sm" onClick={signOut} className="gap-1 text-accent-foreground/70 hover:text-accent-foreground hover:bg-accent-foreground/10">
+            <Button size="sm" onClick={signOut} className="gap-1 bg-transparent text-white/80 hover:text-white hover:bg-white/10">
               <LogOut className="w-4 h-4" /> Sign Out
             </Button>
           </div>
