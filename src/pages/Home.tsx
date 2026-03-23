@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { BookOpen, GraduationCap } from "lucide-react";
 import AppHeader from "@/components/AppHeader";
+import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -57,6 +58,10 @@ const Home = () => {
               <span className="bg-secondary px-2 py-0.5 rounded">Worksheet-guided</span>
             </div>
           </button>
+        </div>
+
+        <div className="flex justify-center mt-12">
+          <img src={trailmakersLogo} alt="Ipswich Trail Makers" className="w-64 h-64 rounded-full object-cover" />
         </div>
       </main>
     </div>
