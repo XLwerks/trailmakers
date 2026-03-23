@@ -99,7 +99,7 @@ const Role1 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
               <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} />
               {generatedImage && !isLoading && (
                 <div className="mt-6 flex justify-center">
-                  <Button onClick={() => navigate("/role2")} className="font-display text-base tracking-wide h-12 gap-2">
+                  <Button onClick={() => navigate("/ed-caley/role2")} className="font-display text-base tracking-wide h-12 gap-2">
                     Proceed to Role 2
                     <ArrowRight className="w-4 h-4" />
                   </Button>
