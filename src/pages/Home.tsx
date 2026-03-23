@@ -59,6 +59,10 @@ const Home = () => {
             </div>
           </button>
         </div>
+
+        <div className="flex justify-center mt-12">
+          <img src={trailmakersLogo} alt="Ipswich Trail Makers" className="w-64 h-64 rounded-full object-cover" />
+        </div>
       </main>
     </div>
   );
