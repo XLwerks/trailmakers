@@ -1,38 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { BookOpen, GraduationCap, LogOut, Settings } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
-import { Button } from "@/components/ui/button";
-
+import { BookOpen, GraduationCap } from "lucide-react";
+import AppHeader from "@/components/AppHeader";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { signOut, isAdmin, schoolName, teacherName } = useAuth();
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-accent bg-accent backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
-          
-          <div className="flex-1">
-            <h1 className="text-xl font-bold text-accent-foreground leading-tight">
-              IPSWICH TRAIL MAKERS
-            </h1>
-            <p className="text-xs text-accent-foreground/70">
-              {schoolName ? `${schoolName}${teacherName ? ` — ${teacherName}` : ""}` : "Choose your task pathway"}
-            </p>
-          </div>
-          <div className="flex items-center gap-2">
-            {isAdmin && (
-              <Button size="sm" onClick={() => navigate("/admin")} className="gap-1 bg-white/20 text-white border border-white/30 hover:bg-white/30">
-                <Settings className="w-4 h-4" /> Admin
-              </Button>
-            )}
-            <Button size="sm" onClick={signOut} className="gap-1 bg-transparent text-white/80 hover:text-white hover:bg-white/10">
-              <LogOut className="w-4 h-4" /> Sign Out
-            </Button>
-          </div>
-        </div>
-      </header>
+      <AppHeader />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">

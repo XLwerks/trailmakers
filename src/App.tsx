@@ -18,6 +18,7 @@ import Compulsory1 from "./pages/Compulsory1";
 import Compulsory2 from "./pages/Compulsory2";
 import Compulsory3 from "./pages/Compulsory3";
 import Admin from "./pages/Admin";
+import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -82,6 +83,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/resources" element={<Resources />} />
       <Route
         path="/ed-caley"
         element={
