@@ -54,7 +54,7 @@ const Home = () => {
               A three-role task using historical evidence and AI image generation. Follow the worksheets to complete each role.
             </p>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <span className="bg-secondary px-2 py-0.5 rounded">3 Pages</span>
+              <span className="bg-secondary px-2 py-0.5 rounded">3 Roles</span>
               <span className="bg-secondary px-2 py-0.5 rounded">Worksheet-guided</span>
             </div>
           </button>
