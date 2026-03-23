@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { BookOpen, GraduationCap, LogOut, Settings } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import trailmakersLogo from "@/assets/trailmakers-logo.png";
+
 
 const Home = () => {
   const navigate = useNavigate();
