@@ -27,7 +27,7 @@ const Home = () => {
                 <Settings className="w-4 h-4" /> Admin
               </Button>
             )}
-            <Button variant="ghost" size="sm" onClick={signOut} className="gap-1 text-muted-foreground">
+            <Button variant="ghost" size="sm" onClick={signOut} className="gap-1 text-accent-foreground/70 hover:text-accent-foreground hover:bg-accent-foreground/10">
               <LogOut className="w-4 h-4" /> Sign Out
             </Button>
           </div>
