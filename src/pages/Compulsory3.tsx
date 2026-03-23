@@ -248,9 +248,16 @@ const Compulsory3 = ({
                 <div className="space-y-4">
                   <img src={generatedImage} alt="Generated full body" className="w-full rounded-lg border border-border" />
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" asChild className="font-display">
-                      <a href={generatedImage} download="compulsory-fullbody.png">Download</a>
-                    </Button>
+                    <Button variant="outline" size="sm" className="font-display" onClick={async () => {
+                      const res = await fetch(generatedImage);
+                      const blob = await res.blob();
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = "compulsory-fullbody.png";
+                      a.click();
+                      URL.revokeObjectURL(url);
+                    }}>Download</Button>
                     <Button variant="outline" size="sm" onClick={handleGenerate} disabled={loading} className="font-display">
                       Regenerate
                     </Button>

@@ -8,12 +8,16 @@ interface ResultPanelProps {
 }
 
 const ResultPanel = ({ imageUrl, isLoading, error }: ResultPanelProps) => {
-  const handleDownload = () => {
+  const handleDownload = async () => {
     if (!imageUrl) return;
+    const res = await fetch(imageUrl);
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.href = imageUrl;
+    link.href = url;
     link.download = "dock-stories-character.png";
     link.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
