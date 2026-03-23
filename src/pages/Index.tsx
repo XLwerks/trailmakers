@@ -60,7 +60,7 @@ const Index = () => {
           </div>
           <div>
             <h1 className="font-display text-xl font-bold text-foreground leading-tight">
-              Trailmakers Ai
+              Ipswich Trail Makers
             </h1>
             <p className="text-xs text-muted-foreground">
               Worksheet 2 – Making a full character image
