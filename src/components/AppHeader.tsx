@@ -109,19 +109,13 @@ const AppHeader = ({ subtitle, showHomeButton = false }: AppHeaderProps) => {
         </div>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`${import.meta.env.BASE_URL}resources/trailmakers-how-to-use.docx`}
-            download="trailmakers-how-to-use.docx"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Button
+            size="sm"
+            onClick={() => navigate("/how-to-use")}
+            className="gap-1 bg-white/20 text-white border border-white/30 hover:bg-white/30"
           >
-            <Button
-              size="sm"
-              className="gap-1 bg-white/20 text-white border border-white/30 hover:bg-white/30"
-            >
-              <HelpCircle className="w-4 h-4" /> How To Use
-            </Button>
-          </a>
+            <HelpCircle className="w-4 h-4" /> How To Use
+          </Button>
           <ResourceDropdown label="Compulsory" resources={compulsoryResources} />
           <ResourceDropdown label="Ed Caley" resources={edCaleyResources} />
 
