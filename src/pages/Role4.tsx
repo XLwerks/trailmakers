@@ -88,7 +88,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-accent backdrop-blur-sm sticky top-0 z-10">
+      <header className="border-b border-accent bg-accent backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
           <button onClick={() => navigate("/")} className="text-accent-foreground/70 hover:text-accent-foreground transition-colors">
             <Home className="w-5 h-5" />
@@ -96,7 +96,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
           
           <div className="flex-1">
             <h1 className="font-display text-xl font-bold text-accent-foreground leading-tight">IPSWICH TRAIL MAKERS</h1>
-            <p className="text-xs text-muted-foreground">Role 4 – Pre-Development Environment</p>
+            <p className="text-xs text-accent-foreground/70">Role 4 – Pre-Development Environment</p>
           </div>
           <div className="flex items-center gap-2">
             <button onClick={() => navigate("/ed-caley")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 1</button>
@@ -105,7 +105,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
             <span className="text-xs text-accent-foreground/50">→</span>
             <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 3</button>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Role 4</span>
+            <span className="text-xs font-semibold text-accent-foreground bg-accent-foreground/20 px-2 py-1 rounded">Role 4</span>
             <span className="text-xs text-accent-foreground/50">→</span>
             <button onClick={() => navigate("/ed-caley/role5")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 5</button>
           </div>
