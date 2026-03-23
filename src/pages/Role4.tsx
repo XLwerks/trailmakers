@@ -8,7 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
-import { Compass, Loader2, Camera, Upload } from "lucide-react";
+import { Loader2, Camera, Upload } from "lucide-react";
+import trailmakersLogo from "@/assets/trailmakers-logo.png";
 import { FormFields } from "@/components/PortraitForm";
 
 interface Role4Props {
@@ -90,9 +91,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-            <Compass className="w-5 h-5 text-primary-foreground" />
-          </div>
+          <img src={trailmakersLogo} alt="Trailmakers" className="w-10 h-10 rounded-full object-cover" />
           <div className="flex-1">
             <h1 className="font-display text-xl font-bold text-foreground leading-tight">Trailmakers Ai</h1>
             <p className="text-xs text-muted-foreground">Role 4 – Pre-Development Environment</p>

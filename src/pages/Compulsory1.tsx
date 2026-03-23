@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { Compass, ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Compulsory1 = () => {
   const navigate = useNavigate();
@@ -12,9 +13,7 @@ const Compulsory1 = () => {
           <button onClick={() => navigate("/compulsory")} className="text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-            <Compass className="w-5 h-5 text-primary-foreground" />
-          </div>
+          <img src={trailmakersLogo} alt="Trailmakers" className="w-10 h-10 rounded-full object-cover" />
           <div className="flex-1">
             <h1 className="font-display text-xl font-bold text-foreground leading-tight">Trailmakers Ai</h1>
             <p className="text-xs text-muted-foreground">Compulsory Task – Page 1</p>
