@@ -5,6 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { FormFields, emptyFormFields } from "@/components/PortraitForm";
+import { AuthProvider, useAuth } from "@/hooks/useAuth";
+import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Role1 from "./pages/Role1";
 import Role2 from "./pages/Role2";
@@ -15,6 +17,7 @@ import CompulsoryHub from "./pages/CompulsoryHub";
 import Compulsory1 from "./pages/Compulsory1";
 import Compulsory2 from "./pages/Compulsory2";
 import Compulsory3 from "./pages/Compulsory3";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +53,7 @@ const emptyRole4_5State: Role4_5State = {
 };
 
 const AppRoutes = () => {
+  const { user, loading } = useAuth();
   const [timePeriod, setTimePeriod] = useState<string>("");
 
   const [role1, setRole1] = useState<RoleState>({ ...emptyRoleState, fields: { ...emptyFormFields, keywords: [...emptyFormFields.keywords] } });
@@ -58,14 +62,26 @@ const AppRoutes = () => {
   const [role4, setRole4] = useState<Role4_5State>({ ...emptyRole4_5State, fields: { ...emptyFormFields, keywords: [...emptyFormFields.keywords] } });
   const [role5, setRole5] = useState<Role4_5State>({ ...emptyRole4_5State, fields: { ...emptyFormFields, keywords: [...emptyFormFields.keywords] } });
 
-  // Compulsory task state
   const [comp1, setComp1] = useState({ see: "", say: "", finalSentence: "", generatedImage: null as string | null, debugPrompt: null as string | null });
   const [comp2, setComp2] = useState({ see: "", say: "", finalSentence: "", generatedImage: null as string | null, debugPrompt: null as string | null });
   const [comp3, setComp3] = useState({ see: "", say: "", finalSentence: "", generatedImage: null as string | null, debugPrompt: null as string | null, faceImage: null as string | null, objectImage: null as string | null, objectRelation: "holding" });
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-muted-foreground">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Login />;
+  }
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/admin" element={<Admin />} />
       <Route
         path="/ed-caley"
         element={
@@ -189,7 +205,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <HashRouter>
-        <AppRoutes />
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
       </HashRouter>
     </TooltipProvider>
   </QueryClientProvider>
