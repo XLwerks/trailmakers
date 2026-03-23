@@ -172,6 +172,7 @@ const AppRoutes = () => {
           debugPrompt={comp1.debugPrompt} onDebugPrompt={(p) => setComp1(s => ({ ...s, debugPrompt: p }))}
         />
       } />
+      <Route path="/compulsory/1" element={
         <Compulsory1
           see={comp1.see} onSeeChange={(v) => setComp1(s => ({ ...s, see: v }))}
           say={comp1.say} onSayChange={(v) => setComp1(s => ({ ...s, say: v }))}
