@@ -45,6 +45,8 @@ function buildPrompt(fields: Record<string, string>): string {
 
 CRITICAL FRAMING RULE: The entire head, face, and any headwear (hats, bonnets, caps, scarves, etc.) MUST fit completely within the image frame with generous padding around all edges. Nothing should be cropped or extend beyond the image borders. Leave clear white space above the head and on all sides.
 
+CRITICAL REALISM RULE: Do NOT beautify or idealise the face. This must look like a real, ordinary person — NOT a model or actor. Include natural human imperfections such as: asymmetrical features, uneven skin tone, visible pores, blemishes, age spots, sun damage, crooked or gapped teeth, a slightly off-centre nose, bags under the eyes, rough or weathered skin, or any combination of these. The person should look like they lived a hard-working life appropriate to their historical period. Avoid smooth, flawless, symmetrical, or magazine-quality faces.
+
 Use the following evidence gathered by students:
 
 - Visual observations (SEE): ${see}

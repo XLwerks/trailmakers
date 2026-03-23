@@ -43,6 +43,8 @@ function buildPrompt(fields: Record<string, string>): string {
 
   let prompt = `Create a photorealistic head-and-shoulders portrait of a historical person from the ${timePeriod || "Victorian era"}. Plain white studio background only. Neutral lighting, realistic skin texture, sharp focus. Head and shoulders framing.
 
+CRITICAL REALISM RULE: Do NOT beautify or idealise the face. This must look like a real, ordinary person — NOT a model or actor. Include natural human imperfections such as: asymmetrical features, uneven skin tone, visible pores, blemishes, age spots, sun damage, crooked or gapped teeth, a slightly off-centre nose, bags under the eyes, rough or weathered skin, or any combination of these. The person should look like they lived a hard-working life appropriate to their historical period. Avoid smooth, flawless, symmetrical, or magazine-quality faces.
+
 Use the following historical evidence to construct the face and expression:
 
 - Historical time period: ${timePeriod || "Not specified"}
