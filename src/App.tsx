@@ -163,7 +163,15 @@ const AppRoutes = () => {
           />
         }
       />
-      <Route path="/compulsory" element={<CompulsoryHub />} />
+      <Route path="/compulsory" element={
+        <Compulsory1
+          see={comp1.see} onSeeChange={(v) => setComp1(s => ({ ...s, see: v }))}
+          say={comp1.say} onSayChange={(v) => setComp1(s => ({ ...s, say: v }))}
+          finalSentence={comp1.finalSentence} onFinalSentenceChange={(v) => setComp1(s => ({ ...s, finalSentence: v }))}
+          generatedImage={comp1.generatedImage} onGeneratedImage={(url) => setComp1(s => ({ ...s, generatedImage: url }))}
+          debugPrompt={comp1.debugPrompt} onDebugPrompt={(p) => setComp1(s => ({ ...s, debugPrompt: p }))}
+        />
+      } />
       <Route path="/compulsory/1" element={
         <Compulsory1
           see={comp1.see} onSeeChange={(v) => setComp1(s => ({ ...s, see: v }))}
