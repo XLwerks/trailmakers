@@ -6,47 +6,53 @@
 
 @layer base {
   :root {
-    --background: 345 65% 52%;
-    --foreground: 0 0% 100%;
+    /* Light cream page background */
+    --background: 40 33% 96%;
+    --foreground: 220 40% 20%;
 
+    /* Cream/ivory cards for form areas */
     --card: 40 30% 98%;
-    --card-foreground: 220 30% 15%;
+    --card-foreground: 220 40% 20%;
 
-    --popover: 40 30% 98%;
-    --popover-foreground: 220 30% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 40% 20%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 345 65% 52%;
+    /* Navy blue - primary brand colour */
+    --primary: 220 51% 37%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 345 50% 45%;
+    /* Gold/olive - secondary brand colour */
+    --secondary: 48 45% 42%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 345 50% 45%;
-    --muted-foreground: 345 20% 85%;
+    /* Muted tones */
+    --muted: 40 20% 92%;
+    --muted-foreground: 220 15% 46%;
 
-    --accent: 28 70% 55%;
+    /* Rose/pink - accent brand colour */
+    --accent: 345 65% 52%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 65% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 345 40% 60%;
-    --input: 35 20% 86%;
-    --ring: 0 0% 100%;
+    --border: 40 15% 84%;
+    --input: 40 15% 84%;
+    --ring: 220 51% 37%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 40 30% 97%;
-    --sidebar-foreground: 220 30% 15%;
-    --sidebar-primary: 220 45% 22%;
-    --sidebar-primary-foreground: 40 33% 96%;
-    --sidebar-accent: 35 30% 90%;
-    --sidebar-accent-foreground: 220 30% 15%;
-    --sidebar-border: 35 20% 86%;
-    --sidebar-ring: 220 45% 22%;
+    --sidebar-background: 220 51% 37%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 345 65% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 48 45% 42%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 40% 30%;
+    --sidebar-ring: 345 65% 52%;
 
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-body: 'Source Sans 3', system-ui, sans-serif;
+    --font-display: Arial, Helvetica, sans-serif;
+    --font-body: Arial, Helvetica, sans-serif;
   }
 
   .dark {
