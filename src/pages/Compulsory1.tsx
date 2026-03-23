@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { Compass, ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Compulsory1 = () => {
   const navigate = useNavigate();
