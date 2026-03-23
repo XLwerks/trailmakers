@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { Compass, BookOpen, GraduationCap } from "lucide-react";
+import { BookOpen, GraduationCap } from "lucide-react";
+import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Home = () => {
   const navigate = useNavigate();
