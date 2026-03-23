@@ -51,7 +51,7 @@ const Home = () => {
               Compulsory Task
             </h3>
             <p className="text-muted-foreground text-sm mb-4">
-              A three-stage task using historical evidence and AI image generation. Follow the worksheets to complete each stage.
+              A three-role task using historical evidence and AI image generation. Follow the worksheets to complete each role.
             </p>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <span className="bg-secondary px-2 py-0.5 rounded">3 Pages</span>
