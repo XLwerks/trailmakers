@@ -58,6 +58,11 @@ const AppRoutes = () => {
   const [role4, setRole4] = useState<Role4_5State>({ ...emptyRole4_5State, fields: { ...emptyFormFields, keywords: [...emptyFormFields.keywords] } });
   const [role5, setRole5] = useState<Role4_5State>({ ...emptyRole4_5State, fields: { ...emptyFormFields, keywords: [...emptyFormFields.keywords] } });
 
+  // Compulsory task state
+  const [comp1, setComp1] = useState({ see: "", say: "", finalSentence: "", generatedImage: null as string | null, debugPrompt: null as string | null });
+  const [comp2, setComp2] = useState({ see: "", say: "", finalSentence: "", generatedImage: null as string | null, debugPrompt: null as string | null });
+  const [comp3, setComp3] = useState({ see: "", say: "", finalSentence: "", generatedImage: null as string | null, debugPrompt: null as string | null, faceImage: null as string | null, objectImage: null as string | null, objectRelation: "holding" });
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
