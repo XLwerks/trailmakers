@@ -1,4 +1,4 @@
-import { Bug } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 
 interface DebugPanelProps {
   prompt: string | null;
