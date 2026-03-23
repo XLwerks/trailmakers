@@ -9,11 +9,11 @@
     --background: 345 65% 52%;
     --foreground: 0 0% 100%;
 
-    --card: 345 65% 52%;
-    --card-foreground: 0 0% 100%;
+    --card: 40 30% 98%;
+    --card-foreground: 220 30% 15%;
 
-    --popover: 345 65% 52%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 40 30% 98%;
+    --popover-foreground: 220 30% 15%;
 
     --primary: 0 0% 100%;
     --primary-foreground: 345 65% 52%;
@@ -31,7 +31,7 @@
     --destructive-foreground: 0 0% 100%;
 
     --border: 345 40% 60%;
-    --input: 0 0% 100%;
+    --input: 35 20% 86%;
     --ring: 0 0% 100%;
 
     --radius: 0.5rem;
