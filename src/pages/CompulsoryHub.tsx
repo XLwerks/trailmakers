@@ -18,11 +18,11 @@ const CompulsoryHub = () => {
             <p className="text-xs text-muted-foreground">Compulsory Task</p>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => navigate("/compulsory/1")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Page 1</button>
-            <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/compulsory/2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Page 2</button>
-            <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Page 3</button>
+            <button onClick={() => navigate("/compulsory/1")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Page 1</button>
+            <span className="text-xs text-accent-foreground/50">→</span>
+            <button onClick={() => navigate("/compulsory/2")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Page 2</button>
+            <span className="text-xs text-accent-foreground/50">→</span>
+            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Page 3</button>
           </div>
         </div>
       </header>

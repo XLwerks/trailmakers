@@ -65,13 +65,13 @@ const Role2 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
           </div>
           <div className="flex items-center gap-2">
             <button onClick={() => navigate("/ed-caley")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 1</button>
-            <span className="text-xs text-muted-foreground">→</span>
+            <span className="text-xs text-accent-foreground/50">→</span>
             <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">Role 2</span>
-            <span className="text-xs text-muted-foreground">→</span>
+            <span className="text-xs text-accent-foreground/50">→</span>
             <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 3</button>
-            <span className="text-xs text-muted-foreground">→</span>
+            <span className="text-xs text-accent-foreground/50">→</span>
             <button onClick={() => navigate("/ed-caley/role4")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 4</button>
-            <span className="text-xs text-muted-foreground">→</span>
+            <span className="text-xs text-accent-foreground/50">→</span>
             <button onClick={() => navigate("/ed-caley/role5")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 5</button>
           </div>
         </div>

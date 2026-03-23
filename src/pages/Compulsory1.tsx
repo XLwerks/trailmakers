@@ -66,10 +66,10 @@ const Compulsory1 = ({
           </div>
           <div className="flex items-center gap-2">
             <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">1. Face</span>
-            <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/compulsory/2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">2. Object</button>
-            <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">3. Full Body</button>
+            <span className="text-xs text-accent-foreground/50">→</span>
+            <button onClick={() => navigate("/compulsory/2")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">2. Object</button>
+            <span className="text-xs text-accent-foreground/50">→</span>
+            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">3. Full Body</button>
           </div>
         </div>
       </header>

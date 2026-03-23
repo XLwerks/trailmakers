@@ -65,11 +65,11 @@ const Compulsory2 = ({
             <p className="text-xs text-muted-foreground">Compulsory Task – Object</p>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => navigate("/compulsory/1")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">1. Face</button>
-            <span className="text-xs text-muted-foreground">→</span>
+            <button onClick={() => navigate("/compulsory/1")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">1. Face</button>
+            <span className="text-xs text-accent-foreground/50">→</span>
             <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">2. Object</span>
-            <span className="text-xs text-muted-foreground">→</span>
-            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer">3. Full Body</button>
+            <span className="text-xs text-accent-foreground/50">→</span>
+            <button onClick={() => navigate("/compulsory/3")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">3. Full Body</button>
           </div>
         </div>
       </header>
