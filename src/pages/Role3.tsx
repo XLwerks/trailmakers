@@ -6,7 +6,6 @@ import PortraitForm, { FieldLabels, FormFields } from "@/components/PortraitForm
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Home } from "lucide-react";
-import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 interface Role3Props {
   timePeriod: string;
@@ -72,7 +71,7 @@ const Role3 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
           <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground transition-colors">
             <Home className="w-5 h-5" />
           </button>
-          <img src={trailmakersLogo} alt="Trailmakers" className="w-10 h-10 rounded-full object-cover" />
+          
           <div className="flex-1">
             <h1 className="font-display text-xl font-bold text-foreground leading-tight">Ipswich Trail Makers</h1>
             <p className="text-xs text-muted-foreground">Role 3 – Victorian Photograph Style</p>

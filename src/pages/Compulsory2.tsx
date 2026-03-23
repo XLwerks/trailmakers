@@ -6,7 +6,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 interface Compulsory2Props {
   see: string;
@@ -60,7 +59,7 @@ const Compulsory2 = ({
           <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground transition-colors">
             <Home className="w-5 h-5" />
           </button>
-          <img src={trailmakersLogo} alt="Trailmakers" className="w-10 h-10 rounded-full object-cover" />
+          
           <div className="flex-1">
             <h1 className="font-display text-xl font-bold text-foreground leading-tight">Ipswich Trail Makers</h1>
             <p className="text-xs text-muted-foreground">Compulsory Task – Object</p>

@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
-import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 interface SchoolRecord {
   id: string;
@@ -95,7 +94,7 @@ const Admin = () => {
           <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <img src={trailmakersLogo} alt="Trailmakers" className="w-10 h-10 rounded-full object-cover" />
+          
           <div>
             <h1 className="text-xl font-bold text-foreground leading-tight">Admin Panel</h1>
             <p className="text-xs text-muted-foreground">Manage schools and teacher accounts</p>
