@@ -36,7 +36,7 @@ const Home = () => {
             </p>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <span className="bg-secondary px-2 py-0.5 rounded">5 Roles</span>
-              <span className="bg-secondary px-2 py-0.5 rounded">Portrait → Environment</span>
+              <span className="bg-secondary px-2 py-0.5 rounded">Portrait → Historic Scene</span>
             </div>
           </button>
 
