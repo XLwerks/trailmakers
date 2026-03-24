@@ -5,6 +5,8 @@ import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const sections = [
   {
+    id: "about",
+    navLabel: "About",
     title: "What is Ipswich Trail Makers?",
     paragraphs: [
       "Ipswich Trail Makers invites children to discover the stories behind Ipswich's Blue Plaques.",
@@ -13,6 +15,8 @@ const sections = [
     ],
   },
   {
+    id: "how-it-works",
+    navLabel: "How It Works",
     title: "How it works",
     paragraphs: [
       "Children investigate the stories behind Ipswich's Blue Plaques.",
@@ -22,6 +26,8 @@ const sections = [
     ],
   },
   {
+    id: "history",
+    navLabel: "Their Eyes",
     title: "History through their eyes",
     paragraphs: [
       "Each school chooses the stories that resonate with them.",
@@ -30,6 +36,8 @@ const sections = [
     ],
   },
   {
+    id: "schools",
+    navLabel: "Schools",
     title: "Working with Ipswich schools",
     paragraphs: [
       "Schools across Ipswich are taking part in the Trail Makers programme, researching and sharing the town's stories.",
@@ -37,6 +45,8 @@ const sections = [
     ],
   },
   {
+    id: "new-trail",
+    navLabel: "The Trail",
     title: "A new trail for Ipswich",
     paragraphs: [
       "Students' work becomes part of a digital heritage trail across the town.",
