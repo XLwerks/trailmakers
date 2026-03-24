@@ -40,7 +40,7 @@ const Compulsory2 = ({
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("generate-compulsory-object", {
-        body: { fields: { see, say, finalSentence } },
+        body: { fields: { see, say, finalSentence }, className },
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);

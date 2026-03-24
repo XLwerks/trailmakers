@@ -68,7 +68,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
         timePeriod,
       };
       const { data, error: fnError } = await supabase.functions.invoke("generate-environment", {
-        body: { fields: submissionFields, characterImageBase64: charImage },
+        body: { fields: submissionFields, characterImageBase64: charImage, className },
       });
       if (fnError) throw new Error(fnError.message || "Generation failed");
       if (data?.error) throw new Error(data.error);

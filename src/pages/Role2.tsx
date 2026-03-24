@@ -36,7 +36,7 @@ const Role2 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
 
     try {
       const { data, error: fnError } = await supabase.functions.invoke("generate-character", {
-        body: { fields: submissionFields, referenceImageBase64: imageToUse },
+        body: { fields: submissionFields, referenceImageBase64: imageToUse, className },
       });
       if (fnError) throw new Error(fnError.message || "Generation failed");
       if (data?.error) throw new Error(data.error);

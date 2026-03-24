@@ -75,6 +75,7 @@ const Compulsory3 = ({
           faceImageBase64: faceImage,
           objectImageBase64: objectImage,
           objectRelation,
+          className,
         },
       });
       if (error) throw error;

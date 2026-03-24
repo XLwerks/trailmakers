@@ -36,7 +36,7 @@ const Role1 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
     try {
       const { data, error: fnError } = await supabase.functions.invoke(
         "generate-portrait",
-        { body: { fields: submissionFields } }
+        { body: { fields: submissionFields, className } }
       );
 
       if (fnError) throw new Error(fnError.message || "Generation failed");
