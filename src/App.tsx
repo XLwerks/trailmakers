@@ -7,6 +7,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { FormFields, emptyFormFields } from "@/components/PortraitForm";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import Login from "./pages/Login";
+import PublicHome from "./pages/PublicHome";
 import Home from "./pages/Home";
 import Role1 from "./pages/Role1";
 import Role2 from "./pages/Role2";
