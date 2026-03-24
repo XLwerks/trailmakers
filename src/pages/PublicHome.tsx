@@ -27,7 +27,7 @@ const sections = [
   },
   {
     id: "history",
-    navLabel: "Their Eyes",
+    navLabel: "",
     title: "History through their eyes",
     paragraphs: [
       "Each school chooses the stories that resonate with them.",
@@ -67,8 +67,8 @@ const PublicHome = () => {
           <h1 className="font-display text-xl font-bold text-accent-foreground tracking-wide">
             IPSWICH TRAIL MAKERS
           </h1>
-          <div className="flex items-center gap-1 sm:gap-2">
-            {sections.map((s) => (
+          <div className="flex items-center gap-1 sm:gap-3">
+            {sections.filter((s) => s.navLabel).map((s) => (
               <a
                 key={s.id}
                 href={`#${s.id}`}
@@ -76,7 +76,7 @@ const PublicHome = () => {
                   e.preventDefault();
                   document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="hidden sm:inline-block text-xs font-medium text-accent-foreground/70 hover:text-accent-foreground px-2 py-1 rounded hover:bg-white/10 transition-colors"
+                className="hidden sm:inline-block text-sm font-semibold text-accent-foreground/70 hover:text-accent-foreground px-2 py-1 rounded hover:bg-white/10 transition-colors"
               >
                 {s.navLabel}
               </a>
