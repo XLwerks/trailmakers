@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
+import wolseyLogo from "@/assets/wolsey-550-logo.png";
 import iconCat from "@/assets/icon-cat.png";
 import iconClover from "@/assets/icon-clover.png";
 import iconPeacock from "@/assets/icon-peacock.png";
@@ -71,9 +72,7 @@ const PublicHome = () => {
       {/* Top bar */}
       <header className="bg-accent sticky top-0 z-10 border-b border-accent">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-          <h1 className="font-display text-xl font-bold text-accent-foreground tracking-wide">
-            IPSWICH TRAIL MAKERS
-          </h1>
+          <img src={wolseyLogo} alt="Wolsey 550" className="h-10 sm:h-12 w-auto" />
           <div className="flex items-center gap-1 sm:gap-3">
             {sections.filter((s) => s.navLabel).map((s) => (
               <a
