@@ -71,8 +71,8 @@ const PublicHome = () => {
     <div className="min-h-screen bg-background">
       {/* Top bar */}
       <header className="bg-accent sticky top-0 z-10 border-b border-accent">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-          <img src={wolseyLogo} alt="Wolsey 550" className="h-10 sm:h-12 w-auto" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between">
+          <img src={wolseyLogo} alt="Wolsey 550" className="h-20 sm:h-24 w-auto" />
           <div className="flex items-center gap-1 sm:gap-3">
             {sections.filter((s) => s.navLabel).map((s) => (
               <a
