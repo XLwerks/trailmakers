@@ -45,7 +45,7 @@ const Compulsory1 = ({
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
-      onGeneratedImage(data.storedUrl || data.imageUrl);
+      onGeneratedImage(data.imageUrl);
       onDebugPrompt(data.debugPrompt);
       toast({ title: "Face generated!", description: "The portrait has been created." });
     } catch (e: any) {

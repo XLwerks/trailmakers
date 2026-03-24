@@ -81,7 +81,7 @@ const Compulsory3 = ({
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
-      onGeneratedImage(data.storedUrl || data.imageUrl);
+      onGeneratedImage(data.imageUrl);
       onDebugPrompt(data.debugPrompt);
       toast({ title: "Full body generated!", description: "The composite image has been created." });
     } catch (e: any) {

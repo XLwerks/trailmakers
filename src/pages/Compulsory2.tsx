@@ -45,7 +45,7 @@ const Compulsory2 = ({
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
-      onGeneratedImage(data.storedUrl || data.imageUrl);
+      onGeneratedImage(data.imageUrl);
       onDebugPrompt(data.debugPrompt);
       toast({ title: "Object generated!", description: "The object image has been created." });
     } catch (e: any) {
