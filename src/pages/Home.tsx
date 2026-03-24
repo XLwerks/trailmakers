@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { BookOpen, GraduationCap } from "lucide-react";
 import AppHeader from "@/components/AppHeader";
+import { useAuth } from "@/hooks/useAuth";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Home = () => {
