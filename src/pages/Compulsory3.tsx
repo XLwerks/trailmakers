@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useClassName } from "@/hooks/useClassName";
 
 interface Compulsory3Props {
   see: string;
@@ -37,6 +38,7 @@ const Compulsory3 = ({
 }: Compulsory3Props) => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { className } = useClassName();
   const [loading, setLoading] = useState(false);
   const faceInputRef = useRef<HTMLInputElement>(null);
   const objectInputRef = useRef<HTMLInputElement>(null);
@@ -73,6 +75,7 @@ const Compulsory3 = ({
           faceImageBase64: faceImage,
           objectImageBase64: objectImage,
           objectRelation,
+          className,
         },
       });
       if (error) throw error;

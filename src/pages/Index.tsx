@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useClassName } from "@/hooks/useClassName";
 import CharacterForm from "@/components/CharacterForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Compass } from "lucide-react";
 
 const Index = () => {
+  const { className } = useClassName();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [debugPrompt, setDebugPrompt] = useState<string | null>(null);
@@ -26,7 +28,7 @@ const Index = () => {
       const { data, error: fnError } = await supabase.functions.invoke(
         "generate-character",
         {
-          body: { fields, referenceImageBase64 },
+          body: { fields, referenceImageBase64, className },
         }
       );
 

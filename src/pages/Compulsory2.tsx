@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useClassName } from "@/hooks/useClassName";
 
 interface Compulsory2Props {
   see: string;
@@ -28,6 +29,7 @@ const Compulsory2 = ({
 }: Compulsory2Props) => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { className } = useClassName();
   const [loading, setLoading] = useState(false);
 
   const handleGenerate = async () => {
@@ -38,7 +40,7 @@ const Compulsory2 = ({
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("generate-compulsory-object", {
-        body: { fields: { see, say, finalSentence } },
+        body: { fields: { see, say, finalSentence }, className },
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);

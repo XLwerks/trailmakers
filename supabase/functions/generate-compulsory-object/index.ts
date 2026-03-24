@@ -8,7 +8,7 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-async function saveToStorage(base64DataUrl: string, role: string): Promise<string | null> {
+async function saveToStorage(base64DataUrl: string, role: string, className?: string): Promise<string | null> {
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -19,7 +19,8 @@ async function saveToStorage(base64DataUrl: string, role: string): Promise<strin
     
     const ext = matches[1] === "jpeg" ? "jpg" : matches[1];
     const imageBytes = decodeBase64(matches[2]);
-    const fileName = `${role}/${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${ext}`;
+    const classSlug = className ? className.replace(/[^a-zA-Z0-9-_ ]/g, "").trim().replace(/\s+/g, "-") : "unknown";
+    const fileName = `${role}/${classSlug}/${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${ext}`;
     
     const { error } = await supabase.storage
       .from("generated-images")
@@ -67,7 +68,7 @@ serve(async (req) => {
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
-    const { fields } = await req.json();
+    const { fields, className } = await req.json();
     if (!fields) {
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
@@ -105,7 +106,7 @@ serve(async (req) => {
       return new Response(JSON.stringify({ error: "No image was generated. Try adjusting the inputs." }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const storedUrl = await saveToStorage(generatedImageUrl, "compulsory-object");
+    const storedUrl = await saveToStorage(generatedImageUrl, "compulsory-object", className);
 
     return new Response(
       JSON.stringify({ imageUrl: generatedImageUrl, storedUrl, debugPrompt: finalPrompt }),

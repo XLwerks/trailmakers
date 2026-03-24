@@ -1,0 +1,1 @@
+ALTER TABLE public.generated_images ADD COLUMN class_name text;

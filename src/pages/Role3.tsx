@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useClassName } from "@/hooks/useClassName";
 import PortraitForm, { FieldLabels, FormFields } from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
@@ -34,6 +35,7 @@ const role3Labels: FieldLabels = {
 
 const Role3 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGeneratedImage, debugPrompt, onDebugPrompt, referenceImage, onReferenceImageChange }: Role3Props) => {
   const navigate = useNavigate();
+  const { className } = useClassName();
   const [isLoading, setIsLoading] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -47,7 +49,7 @@ const Role3 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
 
     try {
       const { data, error: fnError } = await supabase.functions.invoke("generate-victorian-portrait", {
-        body: { fields: submissionFields, referenceImageBase64: imageToUse },
+        body: { fields: submissionFields, referenceImageBase64: imageToUse, className },
       });
       if (fnError) throw new Error(fnError.message || "Generation failed");
       if (data?.error) throw new Error(data.error);

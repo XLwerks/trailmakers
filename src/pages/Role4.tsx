@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useClassName } from "@/hooks/useClassName";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -26,6 +27,7 @@ interface Role4Props {
 
 const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generatedImage, onGeneratedImage, debugPrompt, onDebugPrompt, charImage, onCharImageChange }: Role4Props) => {
   const navigate = useNavigate();
+  const { className } = useClassName();
   const [isLoading, setIsLoading] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -66,7 +68,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
         timePeriod,
       };
       const { data, error: fnError } = await supabase.functions.invoke("generate-environment", {
-        body: { fields: submissionFields, characterImageBase64: charImage },
+        body: { fields: submissionFields, characterImageBase64: charImage, className },
       });
       if (fnError) throw new Error(fnError.message || "Generation failed");
       if (data?.error) throw new Error(data.error);

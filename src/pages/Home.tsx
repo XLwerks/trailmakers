@@ -2,11 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { BookOpen, GraduationCap } from "lucide-react";
 import AppHeader from "@/components/AppHeader";
 import { useAuth } from "@/hooks/useAuth";
+import { useClassName } from "@/hooks/useClassName";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Home = () => {
   const navigate = useNavigate();
   const { schoolName } = useAuth();
+  const { className, setClassName } = useClassName();
 
   return (
     <div className="min-h-screen bg-background">
@@ -20,6 +24,22 @@ const Home = () => {
           </h2>
           <p className="text-muted-foreground text-lg">
             Select a task to get started
+          </p>
+        </div>
+
+        <div className="max-w-sm mx-auto mb-10">
+          <Label htmlFor="className" className="text-sm font-semibold text-foreground">
+            Class / Group Name
+          </Label>
+          <Input
+            id="className"
+            value={className}
+            onChange={(e) => setClassName(e.target.value)}
+            placeholder="e.g. 7B, Year 8 Group 2, Mrs Smith's class"
+            className="mt-1"
+          />
+          <p className="text-xs text-muted-foreground mt-1">
+            Enter your class name so generated images can be tracked to your group
           </p>
         </div>
 

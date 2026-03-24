@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { FormFields, emptyFormFields } from "@/components/PortraitForm";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
+import { ClassNameProvider } from "@/hooks/useClassName";
 import Login from "./pages/Login";
 import PublicHome from "./pages/PublicHome";
 import Home from "./pages/Home";
@@ -230,7 +231,9 @@ const App = () => (
       <Sonner />
       <HashRouter>
         <AuthProvider>
-          <AppRoutes />
+          <ClassNameProvider>
+            <AppRoutes />
+          </ClassNameProvider>
         </AuthProvider>
       </HashRouter>
     </TooltipProvider>
