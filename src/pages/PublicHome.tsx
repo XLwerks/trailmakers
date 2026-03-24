@@ -140,10 +140,10 @@ const PublicHome = () => {
       <section className="py-20 text-center bg-accent">
         <div className="max-w-2xl mx-auto px-4">
           <h3 className="text-3xl font-bold text-accent-foreground mb-4">
-            Are you an Ipswich school?
+            Are you a registered Trail Makers school?
           </h3>
           <p className="text-accent-foreground/80 mb-8 text-lg">
-            Access the Trail Makers platform through the School Portal.
+            The School Portal is exclusively for schools signed up to the Ipswich Trail Makers programme. Log in to access the platform and creative tools.
           </p>
           <Button
             size="lg"
@@ -152,6 +152,9 @@ const PublicHome = () => {
           >
             School Portal <ArrowRight className="w-5 h-5" />
           </Button>
+          <p className="text-accent-foreground/60 text-sm mt-4">
+            Not yet signed up? Contact your school's Trail Makers coordinator to get involved.
+          </p>
         </div>
       </section>
 
