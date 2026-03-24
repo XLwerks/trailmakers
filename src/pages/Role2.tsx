@@ -100,7 +100,7 @@ const Role2 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
             <div className="p-6 flex-1">
               <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Generated Image</h2>
               <p className="text-sm text-muted-foreground mb-6">Full-body photorealistic character output</p>
-              <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} />
+              <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} taskType="character" />
             </div>
             <DebugPanel prompt={debugPrompt} isOpen={debugOpen} onToggle={() => setDebugOpen(!debugOpen)} />
           </div>

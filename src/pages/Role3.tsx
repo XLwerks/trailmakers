@@ -114,7 +114,7 @@ const Role3 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
             <div className="p-6 flex-1">
               <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Generated Portrait</h2>
               <p className="text-sm text-muted-foreground mb-6">Victorian wet plate style head &amp; shoulders portrait</p>
-              <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} />
+              <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} taskType="victorian-portrait" />
             </div>
             <DebugPanel prompt={debugPrompt} isOpen={debugOpen} onToggle={() => setDebugOpen(!debugOpen)} />
           </div>
