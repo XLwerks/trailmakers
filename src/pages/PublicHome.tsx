@@ -2,6 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
+import iconCat from "@/assets/icon-cat.png";
+import iconClover from "@/assets/icon-clover.png";
+import iconPeacock from "@/assets/icon-peacock.png";
+import iconRaven from "@/assets/icon-raven.png";
+import iconRose from "@/assets/icon-rose.png";
 
 const sections = [
   {
@@ -55,6 +60,8 @@ const sections = [
     ],
   },
 ];
+
+const sectionIcons = [iconCat, iconClover, iconPeacock, iconRaven, iconRose];
 
 const PublicHome = () => {
   const navigate = useNavigate();
@@ -122,9 +129,13 @@ const PublicHome = () => {
           className={`py-16 ${i % 2 === 0 ? "bg-card" : "bg-background"} scroll-mt-16`}
         >
           <div className="max-w-2xl mx-auto px-4 text-center">
-            <h3 className="text-3xl sm:text-4xl font-bold text-primary mb-8">
-              {section.title}
-            </h3>
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+              <h3 className="text-3xl sm:text-4xl font-bold text-primary">
+                {section.title}
+              </h3>
+              <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+            </div>
             <div className="space-y-5">
               {section.paragraphs.map((p, j) => (
                 <p key={j} className="text-muted-foreground text-lg leading-relaxed">
