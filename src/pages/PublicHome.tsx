@@ -118,7 +118,8 @@ const PublicHome = () => {
       {sections.map((section, i) => (
         <section
           key={section.title}
-          className={`py-16 ${i % 2 === 0 ? "bg-card" : "bg-background"}`}
+          id={section.id}
+          className={`py-16 ${i % 2 === 0 ? "bg-card" : "bg-background"} scroll-mt-16`}
         >
           <div className="max-w-2xl mx-auto px-4 text-center">
             <h3 className="text-3xl sm:text-4xl font-bold text-primary mb-8">
