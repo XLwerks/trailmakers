@@ -29,6 +29,7 @@ const Compulsory1 = ({
 }: Compulsory1Props) => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { className } = useClassName();
   const [loading, setLoading] = useState(false);
 
   const handleGenerate = async () => {
