@@ -70,7 +70,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const { fields } = await req.json();
+    const { fields, className } = await req.json();
 
     if (!fields) {
       return new Response(
