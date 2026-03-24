@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { BookOpen, GraduationCap } from "lucide-react";
 import AppHeader from "@/components/AppHeader";
+import { useAuth } from "@/hooks/useAuth";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { schoolName } = useAuth();
 
   return (
     <div className="min-h-screen bg-background">
@@ -13,7 +15,7 @@ const Home = () => {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-2">
-            Welcome to IPSWICH TRAIL MAKERS
+            Welcome {schoolName || "back"} to IPSWICH TRAIL MAKERS
           </h2>
           <p className="text-muted-foreground text-lg">
             Select a task to get started
