@@ -129,12 +129,9 @@ serve(async (req) => {
       );
     }
 
-    const storedUrl = await saveToStorage(generatedImageUrl, "victorian-portrait", className);
-
     return new Response(
       JSON.stringify({
         imageUrl: generatedImageUrl,
-        storedUrl,
         debugPrompt: finalPrompt,
       }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }

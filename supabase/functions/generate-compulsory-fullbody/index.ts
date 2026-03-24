@@ -93,10 +93,8 @@ serve(async (req) => {
       return new Response(JSON.stringify({ error: "No image was generated. Try adjusting the inputs." }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const storedUrl = await saveToStorage(generatedImageUrl, "compulsory-fullbody", className);
-
     return new Response(
-      JSON.stringify({ imageUrl: generatedImageUrl, storedUrl, debugPrompt: finalPrompt }),
+      JSON.stringify({ imageUrl: generatedImageUrl, debugPrompt: finalPrompt }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (e) {
