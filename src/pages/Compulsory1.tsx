@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { downloadAndSave } from "@/lib/downloadAndSave";
 import { useNavigate } from "react-router-dom";
 import { Home, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,7 +45,7 @@ const Compulsory1 = ({
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
-      onGeneratedImage(data.storedUrl || data.imageUrl);
+      onGeneratedImage(data.imageUrl);
       onDebugPrompt(data.debugPrompt);
       toast({ title: "Face generated!", description: "The portrait has been created." });
     } catch (e: any) {
@@ -144,16 +145,9 @@ const Compulsory1 = ({
                 <div className="space-y-4">
                   <img src={generatedImage} alt="Generated face" className="w-full rounded-lg border border-border" />
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="font-display" onClick={async () => {
-                      const res = await fetch(generatedImage);
-                      const blob = await res.blob();
-                      const url = URL.createObjectURL(blob);
-                      const a = document.createElement("a");
-                      a.href = url;
-                      a.download = "compulsory-face.png";
-                      a.click();
-                      URL.revokeObjectURL(url);
-                    }}>Download</Button>
+                    <Button variant="outline" size="sm" className="font-display" onClick={() => {
+                      downloadAndSave(generatedImage, "compulsory-face", className, "compulsory-face.png");
+                    }}>Download & Save</Button>
                     <Button variant="outline" size="sm" onClick={handleGenerate} disabled={loading} className="font-display">
                       Regenerate
                     </Button>

@@ -1,23 +1,58 @@
-import { Download, ImageOff } from "lucide-react";
+import { Download, ImageOff, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useClassName } from "@/hooks/useClassName";
+import { toast } from "sonner";
 
 interface ResultPanelProps {
   imageUrl: string | null;
   isLoading: boolean;
   error: string | null;
+  taskType?: string;
 }
 
-const ResultPanel = ({ imageUrl, isLoading, error }: ResultPanelProps) => {
+const ResultPanel = ({ imageUrl, isLoading, error, taskType = "general" }: ResultPanelProps) => {
+  const [downloading, setDownloading] = useState(false);
+  const { className } = useClassName();
+
   const handleDownload = async () => {
     if (!imageUrl) return;
-    const res = await fetch(imageUrl);
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "dock-stories-character.png";
-    link.click();
-    URL.revokeObjectURL(url);
+    setDownloading(true);
+
+    try {
+      // Save to backend storage
+      await supabase.functions.invoke("save-generated-image", {
+        body: { imageBase64: imageUrl, taskType, className },
+      });
+
+      // Download locally
+      const res = await fetch(imageUrl);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `trailmakers-${taskType}.png`;
+      link.click();
+      URL.revokeObjectURL(url);
+
+      toast.success("Image saved and downloaded!");
+    } catch (err) {
+      // Still download locally even if backend save fails
+      try {
+        const res = await fetch(imageUrl);
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `trailmakers-${taskType}.png`;
+        link.click();
+        URL.revokeObjectURL(url);
+      } catch {}
+      toast.error("Image downloaded but backend save failed");
+    } finally {
+      setDownloading(false);
+    }
   };
 
   return (
@@ -41,9 +76,12 @@ const ResultPanel = ({ imageUrl, isLoading, error }: ResultPanelProps) => {
               className="w-full h-auto"
             />
           </div>
-          <Button variant="outline" onClick={handleDownload} className="gap-2">
-            <Download className="w-4 h-4" />
-            Download Image
+          <Button variant="outline" onClick={handleDownload} disabled={downloading} className="gap-2">
+            {downloading ? (
+              <><Loader2 className="w-4 h-4 animate-spin" /> Saving & Downloading…</>
+            ) : (
+              <><Download className="w-4 h-4" /> Download & Save Image</>
+            )}
           </Button>
         </div>
       ) : (

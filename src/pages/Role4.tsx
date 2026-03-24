@@ -175,7 +175,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
             <div className="p-6 flex-1">
               <h2 className="font-display text-lg font-semibold mb-1 text-foreground">Generated Environment</h2>
               <p className="text-sm text-muted-foreground mb-6">Landscape photographic scene with character integrated</p>
-              <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} />
+              <ResultPanel imageUrl={generatedImage} isLoading={isLoading} error={error} taskType="environment" />
             </div>
             <DebugPanel prompt={debugPrompt} isOpen={debugOpen} onToggle={() => setDebugOpen(!debugOpen)} />
           </div>

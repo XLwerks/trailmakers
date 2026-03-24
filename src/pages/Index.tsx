@@ -98,6 +98,7 @@ const Index = () => {
                 imageUrl={generatedImage}
                 isLoading={isLoading}
                 error={error}
+                taskType="character"
               />
             </div>
             <DebugPanel

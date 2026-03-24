@@ -1,6 +1,4 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
-import { decode as decodeBase64 } from "https://deno.land/std@0.168.0/encoding/base64.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -8,36 +6,8 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-async function saveToStorage(base64DataUrl: string, role: string, className?: string): Promise<string | null> {
-  try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, serviceRoleKey);
-    
-    const matches = base64DataUrl.match(/^data:image\/([\w+]+);base64,(.+)$/);
-    if (!matches) return null;
-    
-    const ext = matches[1] === "jpeg" ? "jpg" : matches[1];
-    const imageBytes = decodeBase64(matches[2]);
-    const classSlug = className ? className.replace(/[^a-zA-Z0-9-_ ]/g, "").trim().replace(/\s+/g, "-") : "unknown";
-    const fileName = `${role}/${classSlug}/${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${ext}`;
-    
-    const { error } = await supabase.storage
-      .from("generated-images")
-      .upload(fileName, imageBytes, { contentType: `image/${matches[1]}`, upsert: false });
-    
-    if (error) {
-      console.error("Storage upload error:", error);
-      return null;
-    }
-    
-    const { data } = supabase.storage.from("generated-images").getPublicUrl(fileName);
-    return data.publicUrl;
-  } catch (e) {
-    console.error("saveToStorage error:", e);
-    return null;
-  }
-}
+
+
 
 function buildPrompt(fields: Record<string, string>, hasCharacterImage: boolean): string {
   const { seeNotes, sayKeywords, showInterpretation, finalSentence, timePeriod } = fields;
@@ -151,10 +121,8 @@ serve(async (req) => {
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const storedUrl = await saveToStorage(generatedImageUrl, "post-construction", className);
-
     return new Response(
-      JSON.stringify({ imageUrl: generatedImageUrl, storedUrl, debugPrompt: finalPrompt }),
+      JSON.stringify({ imageUrl: generatedImageUrl, debugPrompt: finalPrompt }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (e) {
