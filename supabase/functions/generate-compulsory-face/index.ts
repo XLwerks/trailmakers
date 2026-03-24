@@ -114,7 +114,7 @@ serve(async (req) => {
       return new Response(JSON.stringify({ error: "No image was generated. Try adjusting the inputs." }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const storedUrl = await saveToStorage(generatedImageUrl, "compulsory-face");
+    const storedUrl = await saveToStorage(generatedImageUrl, "compulsory-face", className);
 
     return new Response(
       JSON.stringify({ imageUrl: generatedImageUrl, storedUrl, debugPrompt: finalPrompt }),

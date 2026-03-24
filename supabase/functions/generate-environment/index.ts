@@ -161,7 +161,7 @@ serve(async (req) => {
       );
     }
 
-    const storedUrl = await saveToStorage(generatedImageUrl, "environment");
+    const storedUrl = await saveToStorage(generatedImageUrl, "environment", className);
 
     return new Response(
       JSON.stringify({

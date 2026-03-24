@@ -151,7 +151,7 @@ serve(async (req) => {
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const storedUrl = await saveToStorage(generatedImageUrl, "post-construction");
+    const storedUrl = await saveToStorage(generatedImageUrl, "post-construction", className);
 
     return new Response(
       JSON.stringify({ imageUrl: generatedImageUrl, storedUrl, debugPrompt: finalPrompt }),
