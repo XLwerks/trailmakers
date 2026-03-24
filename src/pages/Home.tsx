@@ -2,11 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { BookOpen, GraduationCap } from "lucide-react";
 import AppHeader from "@/components/AppHeader";
 import { useAuth } from "@/hooks/useAuth";
+import { useClassName } from "@/hooks/useClassName";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Home = () => {
   const navigate = useNavigate();
   const { schoolName } = useAuth();
+  const { className, setClassName } = useClassName();
 
   return (
     <div className="min-h-screen bg-background">
