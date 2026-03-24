@@ -7,6 +7,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { FormFields, emptyFormFields } from "@/components/PortraitForm";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import Login from "./pages/Login";
+import PublicHome from "./pages/PublicHome";
 import Home from "./pages/Home";
 import Role1 from "./pages/Role1";
 import Role2 from "./pages/Role2";
@@ -70,19 +71,30 @@ const AppRoutes = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-muted-foreground">Loading...</div>
-      </div>
+      <Routes>
+        <Route path="/" element={<PublicHome />} />
+        <Route path="*" element={
+          <div className="min-h-screen bg-background flex items-center justify-center">
+            <div className="text-muted-foreground">Loading...</div>
+          </div>
+        } />
+      </Routes>
     );
   }
 
   if (!user) {
-    return <Login />;
+    return (
+      <Routes>
+        <Route path="/" element={<PublicHome />} />
+        <Route path="*" element={<Login />} />
+      </Routes>
+    );
   }
 
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<PublicHome />} />
+      <Route path="/portal" element={<Home />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/how-to-use" element={<HowToUse />} />
