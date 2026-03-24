@@ -9,6 +9,7 @@ import { Loader2, Home } from "lucide-react";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
