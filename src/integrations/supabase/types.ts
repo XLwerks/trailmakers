@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       generated_images: {
         Row: {
+          class_name: string | null
           created_at: string
           id: string
           image_url: string
@@ -27,6 +28,7 @@ export type Database = {
           user_id: string | null
         }
         Insert: {
+          class_name?: string | null
           created_at?: string
           id?: string
           image_url: string
@@ -38,6 +40,7 @@ export type Database = {
           user_id?: string | null
         }
         Update: {
+          class_name?: string | null
           created_at?: string
           id?: string
           image_url?: string
