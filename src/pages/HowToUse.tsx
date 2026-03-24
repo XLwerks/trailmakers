@@ -20,13 +20,16 @@ const HowToUse = () => {
             </p>
             <ul className="list-disc pl-6 text-muted-foreground space-y-1">
               <li><strong>Compulsory Task</strong> — a structured activity where students create a character based on a Blue Plaque figure, chosen from the materials provided to your school before the session</li>
-              <li><strong>Ed Caley Project</strong> — an additional activity for classes who want to explore further</li>
+              <li><strong>Edward Caley Project</strong> — an additional activity for classes who want to explore further</li>
             </ul>
             <p className="text-muted-foreground">
-              The Ed Caley Project focuses on Ed Caley and his role in constructing the Ipswich Docks, using a more in-depth, research-led approach.
+              The Edward Caley project focuses on Edward Caley and his role in constructing Ipswich's Wet Dock. This activity is designed for schools that wish to deepen their understanding of his work through more detailed research.
             </p>
             <p className="text-muted-foreground">
-              All schools should complete the Compulsory Task. The Ed Caley Project can be used as an extension if time allows.
+              Schools who have signed up for the Edward Caley: Blue Plaque Proposal are encouraged to complete this activity to strengthen and enrich their final pitch.
+            </p>
+            <p className="text-muted-foreground">
+              It may also be helpful to include references to supporting learning materials for each activity. For example, the Edward Caley activity will include a resource pack, with the compulsory task on a chosen individual supported by a starter image and a one-page research sheet.
             </p>
           </section>
 
@@ -43,7 +46,7 @@ const HowToUse = () => {
             </ul>
             <p className="text-muted-foreground">Each stage builds on the previous one.</p>
             <p className="text-muted-foreground">
-              For the Ed Caley Project, the process is more detailed and includes five stages, following a more in-depth, research-led approach.
+              For the Edward Caley Project, the process is more detailed and includes five tasks, following a more in-depth, research-led approach.
             </p>
           </section>
 

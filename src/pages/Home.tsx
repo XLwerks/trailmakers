@@ -29,13 +29,13 @@ const Home = () => {
               <BookOpen className="w-7 h-7 text-primary" />
             </div>
             <h3 className="text-xl font-bold text-foreground mb-2">
-              Ed Caley Task
+              Edward Caley Task
             </h3>
             <p className="text-muted-foreground text-sm mb-4">
               A five-stage historical character workflow. Build portraits, full-body characters, and environment scenes using historical evidence.
             </p>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <span className="bg-secondary px-2 py-0.5 rounded">5 Roles</span>
+              <span className="bg-secondary px-2 py-0.5 rounded">5 Tasks</span>
               <span className="bg-secondary px-2 py-0.5 rounded">Portrait → Historic Scene</span>
             </div>
           </button>

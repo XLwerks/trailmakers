@@ -96,18 +96,18 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
           
           <div className="flex-1">
             <h1 className="font-display text-xl font-bold text-accent-foreground leading-tight">IPSWICH TRAIL MAKERS</h1>
-            <p className="text-xs text-accent-foreground/70">Role 4 – Pre-Development Environment</p>
+            <p className="text-xs text-accent-foreground/70">Task 4 – Pre-Development Environment</p>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => navigate("/ed-caley")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 1</button>
+            <button onClick={() => navigate("/ed-caley")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Task 1</button>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 2</button>
+            <button onClick={() => navigate("/ed-caley/role2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Task 2</button>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 3</button>
+            <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Task 3</button>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <span className="text-xs font-semibold text-accent-foreground bg-accent-foreground/20 px-2 py-1 rounded">Role 4</span>
+            <span className="text-xs font-semibold text-accent-foreground bg-accent-foreground/20 px-2 py-1 rounded">Task 4</span>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role5")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Role 5</button>
+            <button onClick={() => navigate("/ed-caley/role5")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Task 5</button>
           </div>
         </div>
       </header>
