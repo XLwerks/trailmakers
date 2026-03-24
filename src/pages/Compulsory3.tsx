@@ -38,6 +38,7 @@ const Compulsory3 = ({
 }: Compulsory3Props) => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { className } = useClassName();
   const [loading, setLoading] = useState(false);
   const faceInputRef = useRef<HTMLInputElement>(null);
   const objectInputRef = useRef<HTMLInputElement>(null);
