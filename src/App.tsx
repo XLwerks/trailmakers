@@ -231,7 +231,9 @@ const App = () => (
       <Sonner />
       <HashRouter>
         <AuthProvider>
-          <AppRoutes />
+          <ClassNameProvider>
+            <AppRoutes />
+          </ClassNameProvider>
         </AuthProvider>
       </HashRouter>
     </TooltipProvider>
