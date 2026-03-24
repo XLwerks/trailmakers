@@ -6,6 +6,7 @@ import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { schoolName } = useAuth();
 
   return (
     <div className="min-h-screen bg-background">
