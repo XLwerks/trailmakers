@@ -173,7 +173,7 @@ const Admin = () => {
               <Label>Password</Label>
               <Input
                 type="text"
-                placeholder="Temporary password"
+                placeholder="Password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 className="mt-1"
