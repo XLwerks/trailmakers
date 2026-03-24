@@ -33,7 +33,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
+      <Button
+        variant="ghost"
+        onClick={() => navigate("/")}
+        className="absolute top-4 left-4 gap-2 text-muted-foreground hover:text-foreground"
+      >
+        <Home className="w-5 h-5" /> Back to Home
+      </Button>
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <img src={trailmakersLogo} alt="Ipswich Trail Makers" className="w-48 h-48 mx-auto rounded-full object-cover mb-4" />
