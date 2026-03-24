@@ -152,8 +152,14 @@ const PublicHome = () => {
           >
             School Portal <ArrowRight className="w-5 h-5" />
           </Button>
-          <p className="text-accent-foreground/60 text-sm mt-4">
-            Not yet signed up? Contact your school's Trail Makers coordinator to get involved.
+          <p className="text-accent-foreground/70 text-sm mt-6">
+            Our first cohort of schools is now confirmed.
+          </p>
+          <p className="text-accent-foreground/70 text-sm mt-2">
+            For more information contact Hannah Houghton at{" "}
+            <a href="mailto:hannah@wolsey550.co.uk" className="underline text-accent-foreground hover:text-white">
+              hannah@wolsey550.co.uk
+            </a>
           </p>
         </div>
       </section>
