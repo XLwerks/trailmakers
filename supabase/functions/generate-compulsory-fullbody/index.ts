@@ -74,7 +74,7 @@ serve(async (req) => {
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
-    const { fields, faceImageBase64, objectImageBase64, objectRelation } = await req.json();
+    const { fields, faceImageBase64, objectImageBase64, objectRelation, className } = await req.json();
     if (!fields) {
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
