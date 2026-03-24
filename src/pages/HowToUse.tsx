@@ -46,7 +46,7 @@ const HowToUse = () => {
             </ul>
             <p className="text-muted-foreground">Each stage builds on the previous one.</p>
             <p className="text-muted-foreground">
-              For the Ed Caley Project, the process is more detailed and includes five stages, following a more in-depth, research-led approach.
+              For the Edward Caley Project, the process is more detailed and includes five tasks, following a more in-depth, research-led approach.
             </p>
           </section>
 
