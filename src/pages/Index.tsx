@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useClassName } from "@/hooks/useClassName";
 import CharacterForm from "@/components/CharacterForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
