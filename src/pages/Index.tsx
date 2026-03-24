@@ -8,6 +8,7 @@ import DebugPanel from "@/components/DebugPanel";
 import { Compass } from "lucide-react";
 
 const Index = () => {
+  const { className } = useClassName();
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [debugPrompt, setDebugPrompt] = useState<string | null>(null);
