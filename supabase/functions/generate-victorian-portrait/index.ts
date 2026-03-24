@@ -87,7 +87,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const { fields, referenceImageBase64 } = await req.json();
+    const { fields, referenceImageBase64, className } = await req.json();
 
     if (!fields) {
       return new Response(
