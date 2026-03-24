@@ -129,9 +129,13 @@ const PublicHome = () => {
           className={`py-16 ${i % 2 === 0 ? "bg-card" : "bg-background"} scroll-mt-16`}
         >
           <div className="max-w-2xl mx-auto px-4 text-center">
-            <h3 className="text-3xl sm:text-4xl font-bold text-primary mb-8">
-              {section.title}
-            </h3>
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+              <h3 className="text-3xl sm:text-4xl font-bold text-primary">
+                {section.title}
+              </h3>
+              <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+            </div>
             <div className="space-y-5">
               {section.paragraphs.map((p, j) => (
                 <p key={j} className="text-muted-foreground text-lg leading-relaxed">
