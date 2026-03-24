@@ -89,9 +89,9 @@ const PublicHome = () => {
             ))}
             <Button
               onClick={() => navigate("/portal")}
-              className="gap-2 bg-white/20 text-white border border-white/30 hover:bg-white/30 ml-2"
+              className="gap-2 bg-white/20 text-white border border-white/30 hover:bg-white/30 ml-2 text-base px-6 py-3"
             >
-              School Portal <ArrowRight className="w-4 h-4" />
+              School Portal <ArrowRight className="w-5 h-5" />
             </Button>
           </div>
         </div>
