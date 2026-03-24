@@ -62,18 +62,18 @@ const Role1 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
           
           <div className="flex-1">
             <h1 className="font-display text-xl font-bold text-accent-foreground leading-tight">IPSWICH TRAIL MAKERS</h1>
-            <p className="text-xs text-accent-foreground/70">Role 1 – Head &amp; Shoulders Portrait</p>
+            <p className="text-xs text-accent-foreground/70">Task 1 – Head &amp; Shoulders Portrait</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-accent-foreground bg-accent-foreground/20 px-2 py-1 rounded">Role 1</span>
+            <span className="text-xs font-semibold text-accent-foreground bg-accent-foreground/20 px-2 py-1 rounded">Task 1</span>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role2")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Role 2</button>
+            <button onClick={() => navigate("/ed-caley/role2")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Task 2</button>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Role 3</button>
+            <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Task 3</button>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role4")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Role 4</button>
+            <button onClick={() => navigate("/ed-caley/role4")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Task 4</button>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role5")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Role 5</button>
+            <button onClick={() => navigate("/ed-caley/role5")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Task 5</button>
           </div>
         </div>
       </header>
@@ -101,7 +101,7 @@ const Role1 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
               {generatedImage && !isLoading && (
                 <div className="mt-6 flex justify-center">
                   <Button onClick={() => navigate("/ed-caley/role2")} className="font-display text-base tracking-wide h-12 gap-2">
-                    Proceed to Role 2
+                    Proceed to Task 2
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>

@@ -51,7 +51,7 @@ const Resources = () => {
         <Tabs defaultValue="compulsory" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-8">
             <TabsTrigger value="compulsory">Compulsory Task</TabsTrigger>
-            <TabsTrigger value="ed-caley">Ed Caley Task</TabsTrigger>
+            <TabsTrigger value="ed-caley">Edward Caley Task</TabsTrigger>
           </TabsList>
           <TabsContent value="compulsory">
             <ResourceList resources={compulsoryResources} />
