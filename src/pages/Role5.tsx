@@ -27,6 +27,7 @@ interface Role5Props {
 
 const Role5 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generatedImage, onGeneratedImage, debugPrompt, onDebugPrompt, charImage, onCharImageChange }: Role5Props) => {
   const navigate = useNavigate();
+  const { className } = useClassName();
   const [isLoading, setIsLoading] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
