@@ -22,6 +22,7 @@ interface Role2Props {
 
 const Role2 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGeneratedImage, debugPrompt, onDebugPrompt, referenceImage, onReferenceImageChange }: Role2Props) => {
   const navigate = useNavigate();
+  const { className } = useClassName();
   const [isLoading, setIsLoading] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
