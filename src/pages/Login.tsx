@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react";
+import { Loader2, Home } from "lucide-react";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,7 +33,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
+      <Button
+        variant="ghost"
+        onClick={() => navigate("/")}
+        className="absolute top-4 left-4 gap-2 text-muted-foreground hover:text-foreground"
+      >
+        <Home className="w-5 h-5" /> Back to Home
+      </Button>
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <img src={trailmakersLogo} alt="Ipswich Trail Makers" className="w-48 h-48 mx-auto rounded-full object-cover mb-4" />
