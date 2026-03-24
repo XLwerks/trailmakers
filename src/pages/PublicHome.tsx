@@ -63,16 +63,31 @@ const PublicHome = () => {
     <div className="min-h-screen bg-background">
       {/* Top bar */}
       <header className="bg-accent sticky top-0 z-10 border-b border-accent">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <h1 className="font-display text-xl font-bold text-accent-foreground tracking-wide">
             IPSWICH TRAIL MAKERS
           </h1>
-          <Button
-            onClick={() => navigate("/portal")}
-            className="gap-2 bg-white/20 text-white border border-white/30 hover:bg-white/30"
-          >
-            School Portal <ArrowRight className="w-4 h-4" />
-          </Button>
+          <div className="flex items-center gap-1 sm:gap-2">
+            {sections.map((s) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="hidden sm:inline-block text-xs font-medium text-accent-foreground/70 hover:text-accent-foreground px-2 py-1 rounded hover:bg-white/10 transition-colors"
+              >
+                {s.navLabel}
+              </a>
+            ))}
+            <Button
+              onClick={() => navigate("/portal")}
+              className="gap-2 bg-white/20 text-white border border-white/30 hover:bg-white/30 ml-2"
+            >
+              School Portal <ArrowRight className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
       </header>
 
