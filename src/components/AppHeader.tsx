@@ -92,7 +92,7 @@ const AppHeader = ({ subtitle, showHomeButton = false }: AppHeaderProps) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
         {showHomeButton && (
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/portal")}
             className="text-accent-foreground/80 hover:text-accent-foreground hover:bg-white/10 rounded-md p-1 transition-colors"
           >
             <Home className="w-8 h-8" />

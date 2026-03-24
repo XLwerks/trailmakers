@@ -83,7 +83,8 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<PublicHome />} />
+      <Route path="/portal" element={<Home />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/how-to-use" element={<HowToUse />} />
