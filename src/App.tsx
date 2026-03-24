@@ -71,14 +71,24 @@ const AppRoutes = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-muted-foreground">Loading...</div>
-      </div>
+      <Routes>
+        <Route path="/" element={<PublicHome />} />
+        <Route path="*" element={
+          <div className="min-h-screen bg-background flex items-center justify-center">
+            <div className="text-muted-foreground">Loading...</div>
+          </div>
+        } />
+      </Routes>
     );
   }
 
   if (!user) {
-    return <Login />;
+    return (
+      <Routes>
+        <Route path="/" element={<PublicHome />} />
+        <Route path="*" element={<Login />} />
+      </Routes>
+    );
   }
 
   return (
