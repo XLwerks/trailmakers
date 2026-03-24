@@ -2,6 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
+import iconCat from "@/assets/icon-cat.png";
+import iconClover from "@/assets/icon-clover.png";
+import iconPeacock from "@/assets/icon-peacock.png";
+import iconRaven from "@/assets/icon-raven.png";
+import iconRose from "@/assets/icon-rose.png";
 
 const sections = [
   {
