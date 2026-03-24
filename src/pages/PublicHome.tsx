@@ -61,6 +61,8 @@ const sections = [
   },
 ];
 
+const sectionIcons = [iconCat, iconClover, iconPeacock, iconRaven, iconRose];
+
 const PublicHome = () => {
   const navigate = useNavigate();
 
