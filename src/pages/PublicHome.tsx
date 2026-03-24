@@ -27,7 +27,7 @@ const sections = [
   },
   {
     id: "history",
-    navLabel: "Their Eyes",
+    navLabel: "",
     title: "History through their eyes",
     paragraphs: [
       "Each school chooses the stories that resonate with them.",
