@@ -27,6 +27,7 @@ interface Role4Props {
 
 const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generatedImage, onGeneratedImage, debugPrompt, onDebugPrompt, charImage, onCharImageChange }: Role4Props) => {
   const navigate = useNavigate();
+  const { className } = useClassName();
   const [isLoading, setIsLoading] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
