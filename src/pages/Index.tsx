@@ -28,7 +28,7 @@ const Index = () => {
       const { data, error: fnError } = await supabase.functions.invoke(
         "generate-character",
         {
-          body: { fields, referenceImageBase64 },
+          body: { fields, referenceImageBase64, className },
         }
       );
 
