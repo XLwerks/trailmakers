@@ -1,4 +1,10 @@
-/* Using Arial system font */
+@font-face {
+  font-family: 'Byron';
+  src: url('/fonts/ByronTrial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -93,10 +99,10 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Byron', Arial, Helvetica, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Byron', Arial, Helvetica, sans-serif;
   }
 }
