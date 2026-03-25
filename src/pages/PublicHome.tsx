@@ -147,7 +147,7 @@ const PublicHome = () => {
       ))}
 
       {/* CTA */}
-      <section className="py-20 text-center bg-accent">
+      <section className="py-20 text-center" style={{ backgroundColor: '#651114' }}>
         <div className="max-w-2xl mx-auto px-4">
           <h3 className="text-3xl font-bold text-accent-foreground mb-4">
             Are you a registered Trail Makers school?
