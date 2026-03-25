@@ -213,7 +213,7 @@ const Compulsory3 = ({
                 </Label>
                 <Textarea
                   id="say"
-                  placeholder="e.g. working clothes, sturdy, practical, weatherproof..."
+                  placeholder="e.g. Are they holding the object or standing next to it? How do face, object and clothing combine?"
                   value={say}
                   onChange={(e) => onSayChange(e.target.value)}
                   className="mt-1.5"
