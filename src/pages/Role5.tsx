@@ -143,7 +143,7 @@ const Role5 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
 
               <div>
                 <Label htmlFor="seeNotes">SEE – What do you notice about the docks after construction? *</Label>
-                <Textarea id="seeNotes" value={fields.seeNotes} onChange={(e) => updateField("seeNotes", e.target.value)} placeholder="e.g. Straight stone walls, iron gates, large enclosed water basins, cranes, organised quaysides" rows={3} />
+                <Textarea id="seeNotes" value={fields.seeNotes} onChange={(e) => updateField("seeNotes", e.target.value)} placeholder="e.g. straight edges, organised layout, large basin" rows={3} />
               </div>
 
               <div>
