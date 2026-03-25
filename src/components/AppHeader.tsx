@@ -11,9 +11,6 @@ import {
 
 export const compulsoryResources = [
   { name: "Classroom Support Notes", file: "classroom-support-notes.pdf" },
-  { name: "Role 1 – Face Worksheet", file: "role-1-face-worksheet.pdf" },
-  { name: "Role 2 – Object Worksheet", file: "role-2-object-worksheet.pdf" },
-  { name: "Role 3 – Full Body Worksheet", file: "role-3-full-body-worksheet.pdf" },
   { name: "Group Form", file: "group-form-compulsory.pdf" },
 ];
 
