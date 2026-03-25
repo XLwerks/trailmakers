@@ -199,7 +199,7 @@ const Compulsory3 = ({
                 </Label>
                 <Textarea
                   id="see"
-                  placeholder="e.g. Heavy boots, thick wool jacket, flat cap..."
+                  placeholder="e.g. What is the character wearing? How do they look overall?"
                   value={see}
                   onChange={(e) => onSeeChange(e.target.value)}
                   className="mt-1.5"
