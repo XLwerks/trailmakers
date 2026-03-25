@@ -16,6 +16,7 @@ export interface FieldLabels {
   finalPlaceholder?: string;
   imageUploadLabel?: string;
   imageUploadHint?: string;
+  keywordPlaceholders?: string[];
 }
 
 export interface FormFields {
