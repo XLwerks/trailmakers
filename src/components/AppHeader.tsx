@@ -18,14 +18,13 @@ export const compulsoryResources = [
 ];
 
 export const edCaleyResources = [
-  { name: "Role 1 Worksheet", file: "caley-role-1.pdf" },
-  { name: "Role 2 Worksheet", file: "caley-role-2.pdf" },
-  { name: "Role 3 Worksheet", file: "caley-role-3.pdf" },
-  { name: "Role 4 Worksheet", file: "caley-role-4.pdf" },
-  { name: "Role 5 Worksheet", file: "caley-role-5.pdf" },
-  { name: "Form – Landscape", file: "caley-form-landscape.pdf" },
-  { name: "Teacher Prompt Sheet", file: "caley-teacher-prompt-sheet.pdf" },
-  { name: "Research Information Sheet", file: "caley-research-information-sheet.pdf" },
+  { name: "Teacher Notes", file: "edward-caley-teacher-notes.pdf" },
+  { name: "Research Information", file: "edward-caley-research-information.pdf" },
+  { name: "Task 1 Support Sheet", file: "edward-caley-task-1-support-sheet.pdf" },
+  { name: "Task 2 Support Sheet", file: "edward-caley-task-2-support-sheet.pdf" },
+  { name: "Task 3 Support Sheet", file: "edward-caley-task-3-support-sheet.pdf" },
+  { name: "Task 4 Support Sheet", file: "edward-caley-task-4-support-sheet.pdf" },
+  { name: "Task 5 Support Sheet", file: "edward-caley-task-5-support-sheet.pdf" },
 ];
 
 interface ResourceDropdownProps {
