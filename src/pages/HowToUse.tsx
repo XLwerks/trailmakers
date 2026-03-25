@@ -31,6 +31,9 @@ const HowToUse = () => {
             <p className="text-muted-foreground">
               It may also be helpful to include references to supporting learning materials for each activity. For example, the Edward Caley activity will include a resource pack, with the compulsory task on a chosen individual supported by a starter image and a one-page research sheet.
             </p>
+            <p className="text-muted-foreground font-medium">
+              Please make sure to use the accompanying resource packs provided for each activity — these are designed to support and focus your students' research before and during the session.
+            </p>
           </section>
 
           <section className="space-y-3">
