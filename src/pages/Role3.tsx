@@ -71,7 +71,7 @@ const Role3 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
     <div className="min-h-screen bg-background">
       <header className="border-b border-accent bg-accent backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
-          <button onClick={() => navigate("/")} className="text-accent-foreground/70 hover:text-accent-foreground transition-colors">
+          <button onClick={() => navigate("/portal")} className="text-accent-foreground/70 hover:text-accent-foreground transition-colors">
             <Home className="w-5 h-5" />
           </button>
           
