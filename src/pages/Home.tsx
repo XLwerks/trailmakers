@@ -52,7 +52,7 @@ const Home = () => {
               <BookOpen className="w-7 h-7 text-primary" />
             </div>
             <h3 className="text-xl font-bold text-foreground mb-2">
-              Edward Caley Task
+              In-Depth Study: Edward Caley
             </h3>
             <p className="text-muted-foreground text-sm mb-4">
               A five-stage historical character workflow. Build portraits, full-body characters, and environment scenes using historical evidence.
