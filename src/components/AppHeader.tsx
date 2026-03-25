@@ -20,6 +20,7 @@ export const compulsoryResources = [
 export const edCaleyResources = [
   { name: "Teacher Notes", file: "edward-caley-teacher-notes.pdf" },
   { name: "Research Information", file: "edward-caley-research-information.pdf" },
+  { name: "Group Task Sheet", file: "edward-caley-group-task-sheet.pdf" },
   { name: "Task 1 Support Sheet", file: "edward-caley-task-1-support-sheet.pdf" },
   { name: "Task 2 Support Sheet", file: "edward-caley-task-2-support-sheet.pdf" },
   { name: "Task 3 Support Sheet", file: "edward-caley-task-3-support-sheet.pdf" },
