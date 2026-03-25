@@ -102,6 +102,7 @@ const Role2 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
               onSubmit={handleGenerate}
               isLoading={isLoading}
               showImageUpload={true}
+              fieldLabels={role2Labels}
               timePeriod={timePeriod}
               fields={fields}
               onFieldsChange={onFieldsChange}

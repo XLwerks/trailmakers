@@ -120,7 +120,7 @@ const Compulsory2 = ({
                 </Label>
                 <Textarea
                   id="sentence"
-                  placeholder="The object is a heavy iron cargo hook, worn smooth from years of use at the docks..."
+                  placeholder="e.g. The object is a well-worn tool that shows years of use and is important to their daily work..."
                   value={finalSentence}
                   onChange={(e) => onFinalSentenceChange(e.target.value)}
                   className="mt-1.5"

@@ -162,7 +162,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
 
               <div>
                 <Label htmlFor="finalSentence">Final Sentence – Before construction, the docks were… *</Label>
-                <Textarea id="finalSentence" value={fields.finalSentence} onChange={(e) => updateField("finalSentence", e.target.value)} placeholder="e.g. Before construction, the docks were a muddy tidal riverbank lined with timber wharves and cluttered with cargo from small sailing vessels" rows={2} />
+                <Textarea id="finalSentence" value={fields.finalSentence} onChange={(e) => updateField("finalSentence", e.target.value)} placeholder="e.g. Before construction, the docks were a muddy tidal river with uneven quays and ships leaning on mudbanks" rows={2} />
               </div>
 
               <Button type="submit" disabled={!isValid || isLoading} className="w-full font-display text-base tracking-wide h-12">

@@ -121,7 +121,7 @@ const Compulsory1 = ({
                 </Label>
                 <Textarea
                   id="sentence"
-                  placeholder="This person looks like a strong, serious dock worker with weathered skin and a thick moustache..."
+                  placeholder="e.g. This person looks like a serious, strong figure with a calm expression and a weathered face..."
                   value={finalSentence}
                   onChange={(e) => onFinalSentenceChange(e.target.value)}
                   className="mt-1.5"

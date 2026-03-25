@@ -22,15 +22,16 @@ interface Role3Props {
 
 const role3Labels: FieldLabels = {
   seeLabel: "SEE – What do you notice about the photographs? *",
-  seePlaceholder: "e.g. Warm sepia tones, soft focus, slightly worn edges, dark vignetting around the frame",
+  seePlaceholder: "e.g. soft edges, grey tones, still figures",
   sayLabel: "SAY – What does the research tell you? (key words/phrases) *",
-  sayPlaceholder: "e.g. long exposure, glass plate, chemical staining, faded contrast, sepia tones",
+  sayPlaceholder: "e.g. soft focus, muted tone, long exposure",
   showLabel: "SHOW – What makes these images feel historical? *",
-  showPlaceholder: "e.g. The grain and imperfections suggest early photographic processes with limited control over light and exposure",
+  showPlaceholder: "e.g. early cameras required stillness, images look faded — describe the photograph, not the person",
   finalLabel: "Final Sentence – The image should look… *",
-  finalPlaceholder: "e.g. The image should look like a faded 1860s wet plate portrait with warm sepia tones and visible grain from early photography",
+  finalPlaceholder: "e.g. The image should look like a faded photograph with soft focus, muted grey tones and the stillness of a long exposure",
   imageUploadLabel: "Reference Image",
   imageUploadHint: "Upload the portrait to apply Victorian photographic styling",
+  keywordPlaceholders: ["soft focus", "muted tone", "long exposure", "grey tones", "stillness", "faded"],
 };
 
 const Role3 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGeneratedImage, debugPrompt, onDebugPrompt, referenceImage, onReferenceImageChange }: Role3Props) => {

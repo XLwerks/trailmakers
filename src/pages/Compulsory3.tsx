@@ -227,7 +227,7 @@ const Compulsory3 = ({
                 </Label>
                 <Textarea
                   id="sentence"
-                  placeholder="The character is wearing a heavy wool jacket, thick leather boots, and a flat cap..."
+                  placeholder="e.g. The character is wearing practical working clothes, holding their tool, and standing ready for the day..."
                   value={finalSentence}
                   onChange={(e) => onFinalSentenceChange(e.target.value)}
                   className="mt-1.5"

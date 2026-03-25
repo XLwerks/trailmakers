@@ -162,7 +162,7 @@ const Role5 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
 
               <div>
                 <Label htmlFor="finalSentence">Final Sentence – After construction, the docks were… *</Label>
-                <Textarea id="finalSentence" value={fields.finalSentence} onChange={(e) => updateField("finalSentence", e.target.value)} placeholder="e.g. After construction, the docks were a vast engineered basin enclosed by stone walls, with lock gates controlling the water level and warehouses lining the quayside" rows={2} />
+                <Textarea id="finalSentence" value={fields.finalSentence} onChange={(e) => updateField("finalSentence", e.target.value)} placeholder="e.g. After construction, the docks were an enclosed, engineered basin with lock gates, steady water level and organised quaysides" rows={2} />
               </div>
 
               <Button type="submit" disabled={!isValid || isLoading} className="w-full font-display text-base tracking-wide h-12">

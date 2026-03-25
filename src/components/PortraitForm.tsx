@@ -202,7 +202,7 @@ const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabel
               key={i}
               value={kw}
               onChange={(e) => updateKeyword(i, e.target.value)}
-              placeholder={`Keyword ${i + 1}`}
+              placeholder={labels.keywordPlaceholders?.[i] || `Keyword ${i + 1}`}
               className="text-sm"
             />
           ))}
