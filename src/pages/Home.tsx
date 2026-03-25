@@ -71,7 +71,7 @@ const Home = () => {
               <GraduationCap className="w-7 h-7 text-accent-foreground" />
             </div>
             <h3 className="text-xl font-bold text-foreground mb-2">
-              Compulsory Task
+              Create Your Trail Maker Character
             </h3>
             <p className="text-muted-foreground text-sm mb-4">
               A three-role task using historical evidence and AI image generation. Follow the worksheets to complete each role.
