@@ -156,7 +156,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
               </div>
 
               <div>
-                <Label htmlFor="showInterpretation">SHOW – What might life at the docks have felt like? *</Label>
+                <Label htmlFor="showInterpretation">SHOW – What might life at the docks have felt like?</Label>
                 <Textarea id="showInterpretation" value={fields.showInterpretation} onChange={(e) => updateField("showInterpretation", e.target.value)} placeholder="e.g. messy, tidal, unreliable environment" rows={3} />
               </div>
 

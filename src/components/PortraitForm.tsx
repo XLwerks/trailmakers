@@ -47,13 +47,13 @@ interface PortraitFormProps {
 }
 
 const defaultLabels: FieldLabels = {
-  seeLabel: "SEE – What do you notice in the images? *",
+  seeLabel: "SEE – What do you notice in the images?",
   seePlaceholder: "e.g. serious posture, still faces, formal stance, cap",
-  sayLabel: "SAY – Words or phrases you found in the research text *",
+  sayLabel: "SAY – Words or phrases you found in the research text",
   sayPlaceholder: "e.g. assistant-engineer, sole charge, accurate measurement",
-  showLabel: "SHOW – What does the evidence show us? *",
+  showLabel: "SHOW – What does the evidence show us?",
   showPlaceholder: "e.g. responsible, focused, calm personality — interpretation, not guessing appearance",
-  finalLabel: "Final Sentence – Core Description *",
+  finalLabel: "Final Sentence – Core Description",
   finalPlaceholder: "e.g. A focused, responsible assistant-engineer in his 30s with a serious, calm expression",
   imageUploadLabel: "Reference Image (optional)",
   imageUploadHint: "Upload a portrait photo for facial likeness",
