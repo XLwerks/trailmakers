@@ -4,9 +4,23 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useClassName } from "@/hooks/useClassName";
-import PortraitForm, { FormFields } from "@/components/PortraitForm";
+import PortraitForm, { FieldLabels, FormFields } from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
+
+const role2Labels: FieldLabels = {
+  seeLabel: "SEE – What do you notice about the clothing in the images? *",
+  seePlaceholder: "e.g. waistcoats, boots, layered clothing, practical dress",
+  sayLabel: "SAY – Words or phrases you found in the research text *",
+  sayPlaceholder: "e.g. dark coats, waistcoats, sturdy boots",
+  showLabel: "SHOW – What does the clothing tell us about this person? *",
+  showPlaceholder: "e.g. professional engineer, Victorian workwear — linking clothing to job role",
+  finalLabel: "Final Sentence – Outfit Description *",
+  finalPlaceholder: "e.g. A practical Victorian engineer wearing a dark wool coat, waistcoat, sturdy leather boots and a flat cap",
+  imageUploadLabel: "Reference Image",
+  imageUploadHint: "Upload the portrait to extend into a full-body image",
+  keywordPlaceholders: ["dark coats", "waistcoats", "sturdy boots", "layered", "practical", "workwear"],
+};
 
 interface Role2Props {
   timePeriod: string;
