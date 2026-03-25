@@ -142,12 +142,12 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
               </div>
 
               <div>
-                <Label htmlFor="seeNotes">SEE – What do you notice about the environment? *</Label>
+                <Label htmlFor="seeNotes">SEE – What do you notice about the environment?</Label>
                 <Textarea id="seeNotes" value={fields.seeNotes} onChange={(e) => updateField("seeNotes", e.target.value)} placeholder="e.g. uneven buildings, open tidal river" rows={3} />
               </div>
 
               <div>
-                <Label>SAY – What does the research tell you? (key words/phrases) *</Label>
+                <Label>SAY – What does the research tell you? (key words/phrases)</Label>
                 <div className="grid grid-cols-2 gap-2 mt-1">
                   {fields.keywords.map((kw, i) => (
                     <Input key={i} value={kw} onChange={(e) => updateKeyword(i, e.target.value)} placeholder={["mudbanks", "uneven quays", "ships leaning", "tidal", "muddy", "unreliable"][i] || `Keyword ${i + 1}`} className="text-sm" />
@@ -156,7 +156,7 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
               </div>
 
               <div>
-                <Label htmlFor="showInterpretation">SHOW – What might life at the docks have felt like? *</Label>
+                <Label htmlFor="showInterpretation">SHOW – What might life at the docks have felt like?</Label>
                 <Textarea id="showInterpretation" value={fields.showInterpretation} onChange={(e) => updateField("showInterpretation", e.target.value)} placeholder="e.g. messy, tidal, unreliable environment" rows={3} />
               </div>
 

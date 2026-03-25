@@ -142,12 +142,12 @@ const Role5 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
               </div>
 
               <div>
-                <Label htmlFor="seeNotes">SEE – What do you notice about the docks after construction? *</Label>
+                <Label htmlFor="seeNotes">SEE – What do you notice about the docks after construction?</Label>
                 <Textarea id="seeNotes" value={fields.seeNotes} onChange={(e) => updateField("seeNotes", e.target.value)} placeholder="e.g. straight edges, organised layout, large basin" rows={3} />
               </div>
 
               <div>
-                <Label>SAY – What does the research tell you? (key words/phrases) *</Label>
+                <Label>SAY – What does the research tell you? (key words/phrases)</Label>
                 <div className="grid grid-cols-2 gap-2 mt-1">
                   {fields.keywords.map((kw, i) => (
                     <Input key={i} value={kw} onChange={(e) => updateKeyword(i, e.target.value)} placeholder={["steady water level", "lock gates", "engineered walls", "enclosed", "organised", "controlled"][i] || `Keyword ${i + 1}`} className="text-sm" />
@@ -156,7 +156,7 @@ const Role5 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
               </div>
 
               <div>
-                <Label htmlFor="showInterpretation">SHOW – How did engineering change the waterfront? *</Label>
+                <Label htmlFor="showInterpretation">SHOW – How did engineering change the waterfront?</Label>
                 <Textarea id="showInterpretation" value={fields.showInterpretation} onChange={(e) => updateField("showInterpretation", e.target.value)} placeholder="e.g. controlled, planned, safer docking space" rows={3} />
               </div>
 

@@ -21,13 +21,13 @@ interface Role3Props {
 }
 
 const role3Labels: FieldLabels = {
-  seeLabel: "SEE – What do you notice about the photographs? *",
+  seeLabel: "SEE – What do you notice about the photographs?",
   seePlaceholder: "e.g. soft edges, grey tones, still figures",
-  sayLabel: "SAY – What does the research tell you? (key words/phrases) *",
+  sayLabel: "SAY – What does the research tell you? (key words/phrases)",
   sayPlaceholder: "e.g. soft focus, muted tone, long exposure",
-  showLabel: "SHOW – What makes these images feel historical? *",
+  showLabel: "SHOW – What makes these images feel historical?",
   showPlaceholder: "e.g. early cameras required stillness, images look faded — describe the photograph, not the person",
-  finalLabel: "Final Sentence – The image should look… *",
+  finalLabel: "Final Sentence – The image should look…",
   finalPlaceholder: "e.g. The image should look like a faded photograph with soft focus, muted grey tones and the stillness of a long exposure",
   imageUploadLabel: "Reference Image",
   imageUploadHint: "Upload the portrait to apply Victorian photographic styling",
