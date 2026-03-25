@@ -27,7 +27,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="max-w-sm mx-auto mb-10">
+        <div className="max-w-sm mx-auto mb-10 text-center">
           <Label htmlFor="className" className="text-sm font-semibold text-foreground">
             Class / Group Name
           </Label>
@@ -36,7 +36,7 @@ const Home = () => {
             value={className}
             onChange={(e) => setClassName(e.target.value)}
             placeholder="e.g. 7B, Year 8 Group 2, Mrs Smith's class"
-            className="mt-1"
+            className="mt-1 text-center"
           />
           <p className="text-xs text-muted-foreground mt-1">
             Enter your class name so generated images can be tracked to your group
