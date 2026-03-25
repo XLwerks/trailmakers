@@ -150,7 +150,7 @@ const Role5 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
                 <Label>SAY – What does the research tell you? (key words/phrases) *</Label>
                 <div className="grid grid-cols-2 gap-2 mt-1">
                   {fields.keywords.map((kw, i) => (
-                    <Input key={i} value={kw} onChange={(e) => updateKeyword(i, e.target.value)} placeholder={`Keyword ${i + 1}`} className="text-sm" />
+                    <Input key={i} value={kw} onChange={(e) => updateKeyword(i, e.target.value)} placeholder={["steady water level", "lock gates", "engineered walls", "enclosed", "organised", "controlled"][i] || `Keyword ${i + 1}`} className="text-sm" />
                   ))}
                 </div>
               </div>
