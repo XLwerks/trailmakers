@@ -93,7 +93,7 @@ const Compulsory1 = ({
                 </Label>
                 <Textarea
                   id="see"
-                  placeholder="e.g. Serious expression, weathered skin, deep-set eyes..."
+                  placeholder="e.g. What expression do you see? What kind of person do they seem to be? What clues suggest their role or job?"
                   value={see}
                   onChange={(e) => onSeeChange(e.target.value)}
                   className="mt-1.5"
@@ -107,7 +107,7 @@ const Compulsory1 = ({
                 </Label>
                 <Textarea
                   id="say"
-                  placeholder="e.g. dock worker, strong build, Victorian era, proud..."
+                  placeholder="e.g. facial expressions, posture, personality, mood — words that describe the person"
                   value={say}
                   onChange={(e) => onSayChange(e.target.value)}
                   className="mt-1.5"
@@ -121,7 +121,7 @@ const Compulsory1 = ({
                 </Label>
                 <Textarea
                   id="sentence"
-                  placeholder="This person looks like a strong, serious dock worker with weathered skin and a thick moustache..."
+                  placeholder="e.g. This person looks like a serious, strong figure with a calm expression and a weathered face..."
                   value={finalSentence}
                   onChange={(e) => onFinalSentenceChange(e.target.value)}
                   className="mt-1.5"

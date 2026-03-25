@@ -199,7 +199,7 @@ const Compulsory3 = ({
                 </Label>
                 <Textarea
                   id="see"
-                  placeholder="e.g. Heavy boots, thick wool jacket, flat cap..."
+                  placeholder="e.g. What is the character wearing? How do they look overall?"
                   value={see}
                   onChange={(e) => onSeeChange(e.target.value)}
                   className="mt-1.5"
@@ -213,7 +213,7 @@ const Compulsory3 = ({
                 </Label>
                 <Textarea
                   id="say"
-                  placeholder="e.g. working clothes, sturdy, practical, weatherproof..."
+                  placeholder="e.g. Are they holding the object or standing next to it? How do face, object and clothing combine?"
                   value={say}
                   onChange={(e) => onSayChange(e.target.value)}
                   className="mt-1.5"
@@ -227,7 +227,7 @@ const Compulsory3 = ({
                 </Label>
                 <Textarea
                   id="sentence"
-                  placeholder="The character is wearing a heavy wool jacket, thick leather boots, and a flat cap..."
+                  placeholder="e.g. The character is wearing practical working clothes, holding their tool, and standing ready for the day..."
                   value={finalSentence}
                   onChange={(e) => onFinalSentenceChange(e.target.value)}
                   className="mt-1.5"

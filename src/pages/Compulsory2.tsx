@@ -92,7 +92,7 @@ const Compulsory2 = ({
                 </Label>
                 <Textarea
                   id="see"
-                  placeholder="e.g. Tools, ropes, wooden crates, iron hooks..."
+                  placeholder="e.g. What objects can you see? What tools might this person use?"
                   value={see}
                   onChange={(e) => onSeeChange(e.target.value)}
                   className="mt-1.5"
@@ -106,7 +106,7 @@ const Compulsory2 = ({
                 </Label>
                 <Textarea
                   id="say"
-                  placeholder="e.g. cargo hook, well-worn, iron, essential tool..."
+                  placeholder="e.g. What does this object tell us about their life? What is it used for?"
                   value={say}
                   onChange={(e) => onSayChange(e.target.value)}
                   className="mt-1.5"
@@ -120,7 +120,7 @@ const Compulsory2 = ({
                 </Label>
                 <Textarea
                   id="sentence"
-                  placeholder="The object is a heavy iron cargo hook, worn smooth from years of use at the docks..."
+                  placeholder="e.g. The object is a well-worn tool that shows years of use and is important to their daily work..."
                   value={finalSentence}
                   onChange={(e) => onFinalSentenceChange(e.target.value)}
                   className="mt-1.5"

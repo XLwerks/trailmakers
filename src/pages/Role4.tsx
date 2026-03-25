@@ -143,26 +143,26 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
 
               <div>
                 <Label htmlFor="seeNotes">SEE – What do you notice about the environment? *</Label>
-                <Textarea id="seeNotes" value={fields.seeNotes} onChange={(e) => updateField("seeNotes", e.target.value)} placeholder="e.g. Tidal mudflats, uneven riverbanks, scattered wooden jetties, smoke from nearby buildings" rows={3} />
+                <Textarea id="seeNotes" value={fields.seeNotes} onChange={(e) => updateField("seeNotes", e.target.value)} placeholder="e.g. uneven buildings, open tidal river" rows={3} />
               </div>
 
               <div>
                 <Label>SAY – What does the research tell you? (key words/phrases) *</Label>
                 <div className="grid grid-cols-2 gap-2 mt-1">
                   {fields.keywords.map((kw, i) => (
-                    <Input key={i} value={kw} onChange={(e) => updateKeyword(i, e.target.value)} placeholder={`Keyword ${i + 1}`} className="text-sm" />
+                    <Input key={i} value={kw} onChange={(e) => updateKeyword(i, e.target.value)} placeholder={["mudbanks", "uneven quays", "ships leaning", "tidal", "muddy", "unreliable"][i] || `Keyword ${i + 1}`} className="text-sm" />
                   ))}
                 </div>
               </div>
 
               <div>
                 <Label htmlFor="showInterpretation">SHOW – What might life at the docks have felt like? *</Label>
-                <Textarea id="showInterpretation" value={fields.showInterpretation} onChange={(e) => updateField("showInterpretation", e.target.value)} placeholder="e.g. A busy, noisy working waterfront where trade and labour shaped daily life before any formal dock construction" rows={3} />
+                <Textarea id="showInterpretation" value={fields.showInterpretation} onChange={(e) => updateField("showInterpretation", e.target.value)} placeholder="e.g. messy, tidal, unreliable environment" rows={3} />
               </div>
 
               <div>
                 <Label htmlFor="finalSentence">Final Sentence – Before construction, the docks were… *</Label>
-                <Textarea id="finalSentence" value={fields.finalSentence} onChange={(e) => updateField("finalSentence", e.target.value)} placeholder="e.g. Before construction, the docks were a muddy tidal riverbank lined with timber wharves and cluttered with cargo from small sailing vessels" rows={2} />
+                <Textarea id="finalSentence" value={fields.finalSentence} onChange={(e) => updateField("finalSentence", e.target.value)} placeholder="e.g. Before construction, the docks were a muddy tidal river with uneven quays and ships leaning on mudbanks" rows={2} />
               </div>
 
               <Button type="submit" disabled={!isValid || isLoading} className="w-full font-display text-base tracking-wide h-12">
