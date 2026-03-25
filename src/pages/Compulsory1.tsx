@@ -93,7 +93,7 @@ const Compulsory1 = ({
                 </Label>
                 <Textarea
                   id="see"
-                  placeholder="e.g. Serious expression, weathered skin, deep-set eyes..."
+                  placeholder="e.g. What expression do you see? What kind of person do they seem to be? What clues suggest their role or job?"
                   value={see}
                   onChange={(e) => onSeeChange(e.target.value)}
                   className="mt-1.5"
