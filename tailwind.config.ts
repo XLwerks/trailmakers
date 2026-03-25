@@ -13,8 +13,8 @@ export default {
       },
     },
     fontFamily: {
-        display: ['Arial', 'Helvetica', 'sans-serif'],
-        body: ['Arial', 'Helvetica', 'sans-serif'],
+        display: ['Byron', 'Arial', 'Helvetica', 'sans-serif'],
+        body: ['Byron', 'Arial', 'Helvetica', 'sans-serif'],
       },
       extend: {
       colors: {
