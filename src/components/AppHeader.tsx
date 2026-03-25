@@ -114,7 +114,7 @@ const AppHeader = ({ subtitle, showHomeButton = false }: AppHeaderProps) => {
           >
             <HelpCircle className="w-4 h-4" /> How To Use
           </Button>
-          <ResourceDropdown label="Compulsory Resources" resources={compulsoryResources} />
+          <ResourceDropdown label="Trail Maker Resources" resources={compulsoryResources} />
           <ResourceDropdown label="Edward Caley Resources" resources={edCaleyResources} />
 
           {isAdmin && (
