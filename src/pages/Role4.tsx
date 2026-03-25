@@ -101,15 +101,15 @@ const Role4 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
             <p className="text-xs text-accent-foreground/70">Task 4 – Pre-Development Environment</p>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => navigate("/ed-caley")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Task 1</button>
+            <button onClick={() => navigate("/ed-caley")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Task 1</button>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role2")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Task 2</button>
+            <button onClick={() => navigate("/ed-caley/role2")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Task 2</button>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Task 3</button>
+            <button onClick={() => navigate("/ed-caley/role3")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Task 3</button>
             <span className="text-xs text-accent-foreground/50">→</span>
             <span className="text-xs font-semibold text-accent-foreground bg-accent-foreground/20 px-2 py-1 rounded">Task 4</span>
             <span className="text-xs text-accent-foreground/50">→</span>
-            <button onClick={() => navigate("/ed-caley/role5")} className="text-xs text-muted-foreground hover:text-foreground transition-colors">Task 5</button>
+            <button onClick={() => navigate("/ed-caley/role5")} className="text-xs text-accent-foreground/70 hover:text-accent-foreground transition-colors cursor-pointer">Task 5</button>
           </div>
         </div>
       </header>
