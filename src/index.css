@@ -1,4 +1,10 @@
-/* Using Arial system font */
+@font-face {
+  font-family: 'Byron';
+  src: url('/fonts/ByronTrial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
