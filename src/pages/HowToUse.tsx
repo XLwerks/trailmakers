@@ -76,14 +76,24 @@ const HowToUse = () => {
           <section className="space-y-3">
             <h3 className="text-lg font-semibold text-foreground">5. Saving and Downloading</h3>
             <p className="text-muted-foreground">
-              Images are only saved to cloud storage when you click <strong>Download &amp; Save</strong>. Until then, generated images exist only on screen and are not stored. This means you can freely experiment and regenerate without filling up storage.
+              <strong className="text-foreground">Important:</strong> Generated images are <strong>not</strong> automatically saved. They only exist on screen until you click <strong>Download &amp; Save</strong>. Clicking this button does two things:
+            </p>
+            <ol className="list-decimal pl-6 text-muted-foreground space-y-1">
+              <li>Downloads the image to your device</li>
+              <li>Saves a copy to the Trailmakers central storage</li>
+            </ol>
+            <p className="text-muted-foreground">
+              If you do not click <strong>Download &amp; Save</strong>, the image will be lost when you move on or close the page. You <strong>must</strong> download your final images for them to be stored centrally.
+            </p>
+            <p className="text-muted-foreground">
+              This means you can freely experiment and regenerate as many times as you like — only the images you choose to download will be kept.
             </p>
             <p className="text-muted-foreground">
               Every saved image is <strong>time-stamped</strong>, so we can see exactly when each one was created. This helps us track progress and distinguish between testing and real sessions.
             </p>
             <p className="text-muted-foreground">Teachers will need to:</p>
             <ul className="list-disc pl-6 text-muted-foreground space-y-1">
-              <li>Download and save only the images you want to keep</li>
+              <li><strong>Click Download &amp; Save</strong> on every final image you want to keep</li>
               <li>Save them to their school system if required</li>
               <li>Use them later for presentations or project work</li>
             </ul>
