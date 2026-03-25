@@ -25,6 +25,11 @@ export const edCaleyResources = [
   { name: "Task 3 Support Sheet", file: "edward-caley-task-3-support-sheet.pdf" },
   { name: "Task 4 Support Sheet", file: "edward-caley-task-4-support-sheet.pdf" },
   { name: "Task 5 Support Sheet", file: "edward-caley-task-5-support-sheet.pdf" },
+  { name: "Task 1 Images", file: "edward-caley-task-1-images.pdf" },
+  { name: "Task 2 Images", file: "edward-caley-task-2-images.pdf" },
+  { name: "Task 3 Images", file: "edward-caley-task-3-images.pdf" },
+  { name: "Task 4 Images", file: "edward-caley-task-4-images.pdf" },
+  { name: "Task 5 Images", file: "edward-caley-task-5-images.pdf" },
 ];
 
 interface ResourceDropdownProps {
