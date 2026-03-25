@@ -76,14 +76,24 @@ const HowToUse = () => {
           <section className="space-y-3">
             <h3 className="text-lg font-semibold text-foreground">5. Saving and Downloading</h3>
             <p className="text-muted-foreground">
-              All generated images are saved automatically within the platform.
+              Images are only saved to cloud storage when you click <strong>Download &amp; Save</strong>. Until then, generated images exist only on screen and are not stored. This means you can freely experiment and regenerate without filling up storage.
+            </p>
+            <p className="text-muted-foreground">
+              Every saved image is <strong>time-stamped</strong>, so we can see exactly when each one was created. This helps us track progress and distinguish between testing and real sessions.
             </p>
             <p className="text-muted-foreground">Teachers will need to:</p>
             <ul className="list-disc pl-6 text-muted-foreground space-y-1">
-              <li>Download selected images</li>
+              <li>Download and save only the images you want to keep</li>
               <li>Save them to their school system if required</li>
               <li>Use them later for presentations or project work</li>
             </ul>
+          </section>
+
+          <section className="bg-accent/30 border border-accent rounded-lg p-4 space-y-2">
+            <p className="text-sm font-semibold text-foreground">🧪 Testing Tip</p>
+            <p className="text-sm text-muted-foreground">
+              If you are exploring the platform before your real session, please enter <strong>"TEST"</strong> as your Class Name. This lets us clearly identify testing sessions and separate them from actual student work. We will clear out test data from storage before schools begin their real sessions.
+            </p>
           </section>
 
           <section className="space-y-3">
