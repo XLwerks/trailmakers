@@ -106,7 +106,7 @@ const Compulsory2 = ({
                 </Label>
                 <Textarea
                   id="say"
-                  placeholder="e.g. cargo hook, well-worn, iron, essential tool..."
+                  placeholder="e.g. What does this object tell us about their life? What is it used for?"
                   value={say}
                   onChange={(e) => onSayChange(e.target.value)}
                   className="mt-1.5"
