@@ -157,7 +157,7 @@ const Role5 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
 
               <div>
                 <Label htmlFor="showInterpretation">SHOW – How did engineering change the waterfront? *</Label>
-                <Textarea id="showInterpretation" value={fields.showInterpretation} onChange={(e) => updateField("showInterpretation", e.target.value)} placeholder="e.g. The waterfront was transformed from a natural tidal river into a controlled, industrial environment designed for efficient trade" rows={3} />
+                <Textarea id="showInterpretation" value={fields.showInterpretation} onChange={(e) => updateField("showInterpretation", e.target.value)} placeholder="e.g. controlled, planned, safer docking space" rows={3} />
               </div>
 
               <div>
