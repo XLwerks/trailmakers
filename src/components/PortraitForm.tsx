@@ -48,15 +48,16 @@ interface PortraitFormProps {
 
 const defaultLabels: FieldLabels = {
   seeLabel: "SEE – What do you notice in the images? *",
-  seePlaceholder: "e.g. Stern expression, deep-set eyes, weathered skin, grey hair pulled back tightly",
+  seePlaceholder: "e.g. serious posture, still faces, formal stance, cap",
   sayLabel: "SAY – Words or phrases you found in the research text *",
-  sayPlaceholder: "e.g. determined jaw, kind eyes, furrowed brow, thin lips, high cheekbones",
+  sayPlaceholder: "e.g. assistant-engineer, sole charge, accurate measurement",
   showLabel: "SHOW – What does the evidence show us? *",
-  showPlaceholder: "e.g. A person of strong conviction who has endured hardship but remains compassionate",
+  showPlaceholder: "e.g. responsible, focused, calm personality — interpretation, not guessing appearance",
   finalLabel: "Final Sentence – Core Description *",
-  finalPlaceholder: "e.g. A devout Quaker woman in her 50s, known for her prison reform work in early 19th century England",
+  finalPlaceholder: "e.g. A focused, responsible assistant-engineer in his 30s with a serious, calm expression",
   imageUploadLabel: "Reference Image (optional)",
   imageUploadHint: "Upload a portrait photo for facial likeness",
+  keywordPlaceholders: ["assistant-engineer", "sole charge", "accurate measurement", "responsible", "focused", "calm"],
 };
 
 const PortraitForm = ({ onSubmit, isLoading, showImageUpload = false, fieldLabels, timePeriod, onTimePeriodChange, fields: controlledFields, onFieldsChange, referenceImage, onReferenceImageChange }: PortraitFormProps) => {
