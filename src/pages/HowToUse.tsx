@@ -11,6 +11,16 @@ const HowToUse = () => {
             <p className="text-muted-foreground">
               Trailmakers allows you to create student-designed characters using a simple, guided process.
             </p>
+            <p className="text-muted-foreground mt-3">
+              The programme includes two types of activity:
+            </p>
+            <ul className="list-disc pl-6 text-muted-foreground space-y-2 mt-2">
+              <li><strong>The Core Trailmaker Task</strong>, where student work contributes to a final public Trailmakers Trail across Ipswich, linked to real Blue Plaque locations</li>
+              <li><strong>The Edward Caley Project</strong>, which is a more in-depth, research-focused activity designed to support learning, discussion, and proposal development</li>
+            </ul>
+            <p className="text-muted-foreground mt-3">
+              It is important to note that only the Core Trailmaker Task contributes to the final Trailmakers Trail. The Edward Caley Project is used to deepen understanding and does not form part of the main trail output.
+            </p>
           </div>
 
           <section className="space-y-3">
@@ -18,21 +28,34 @@ const HowToUse = () => {
             <p className="text-muted-foreground">
               When you enter the platform, you will be given two options:
             </p>
-            <ul className="list-disc pl-6 text-muted-foreground space-y-1">
-              <li><strong>Compulsory Task</strong> — a structured activity where students create a character based on a Blue Plaque figure, chosen from the materials provided to your school before the session</li>
-              <li><strong>Edward Caley Project</strong> — an additional activity for classes who want to explore further</li>
-            </ul>
+            <div className="space-y-3 mt-2">
+              <div>
+                <p className="text-foreground font-semibold">Core Trailmaker Task</p>
+                <p className="text-muted-foreground">
+                  A structured activity where students create a character based on a Blue Plaque figure, chosen from the materials provided to your school before the session.
+                </p>
+                <p className="text-muted-foreground">
+                  This task is research-led and does not use images within the platform. Schools will be provided with a research sheet about their chosen individual to support the activity.
+                </p>
+              </div>
+              <div>
+                <p className="text-foreground font-semibold">Edward Caley Project</p>
+                <p className="text-muted-foreground">
+                  An additional activity for classes who want to explore further.
+                </p>
+                <p className="text-muted-foreground">
+                  This activity focuses on Edward Caley and his role in constructing Ipswich's Wet Dock between 1839 and 1842. It explores his responsibilities as a young engineer overseeing construction and includes a more detailed, research-led approach supported by reference images.
+                </p>
+              </div>
+            </div>
             <p className="text-muted-foreground">
-              The Edward Caley project focuses on Edward Caley and his role in constructing Ipswich's Wet Dock. This activity is designed for schools that wish to deepen their understanding of his work through more detailed research.
+              Schools who have signed up for the Edward Caley Blue Plaque Proposal are encouraged to complete this activity to strengthen and enrich their final pitch.
             </p>
             <p className="text-muted-foreground">
-              Schools who have signed up for the Edward Caley: Blue Plaque Proposal are encouraged to complete this activity to strengthen and enrich their final pitch.
-            </p>
-            <p className="text-muted-foreground">
-              It may also be helpful to include references to supporting learning materials for each activity. For example, the Edward Caley activity will include a resource pack, with the compulsory task on a chosen individual supported by a starter image and a one-page research sheet.
+              Each activity is supported by learning materials available on this portal, along with additional guidance provided directly by the team via email.
             </p>
             <p className="text-muted-foreground font-medium">
-              Please make sure to use the accompanying resource packs provided for each activity — these are designed to support and focus your students' research before and during the session.
+              Please make sure to use the accompanying resource packs provided for each activity, as these are designed to support and focus your students' research before and during the session.
             </p>
           </section>
 
@@ -41,7 +64,7 @@ const HowToUse = () => {
             <p className="text-muted-foreground">
               Students work in groups to develop ideas through discussion, while the teacher inputs prompts into the platform.
             </p>
-            <p className="text-muted-foreground">For the Compulsory Task, you will generate three images:</p>
+            <p className="text-muted-foreground">For the Core Trailmaker Task, you will generate three images based on your research:</p>
             <ul className="list-disc pl-6 text-muted-foreground space-y-1">
               <li><strong>Face</strong> — based on a descriptive sentence created by the group</li>
               <li><strong>Object</strong> — something important to the character</li>
@@ -49,7 +72,7 @@ const HowToUse = () => {
             </ul>
             <p className="text-muted-foreground">Each stage builds on the previous one.</p>
             <p className="text-muted-foreground">
-              For the Edward Caley Project, the process is more detailed and includes five tasks, following a more in-depth, research-led approach.
+              For the Edward Caley Project, the process is more detailed and includes five tasks, following a more in-depth, research-led approach supported by both written materials and reference images.
             </p>
           </section>
 
@@ -62,6 +85,9 @@ const HowToUse = () => {
               <li>If needed, refine the sentence and regenerate</li>
             </ol>
             <p className="text-muted-foreground">
+              For the Core Trailmaker Task, descriptions should be based on the research sheet rather than visual references.
+            </p>
+            <p className="text-muted-foreground">
               This process helps students understand how descriptive language shapes visual outcomes.
             </p>
           </section>
@@ -69,7 +95,7 @@ const HowToUse = () => {
           <section className="space-y-3">
             <h3 className="text-lg font-semibold text-foreground">4. Object Interaction</h3>
             <p className="text-muted-foreground">
-              When creating the full character, you will choose how the object is used.
+              When creating the full character, you will choose how the object is used or held. This helps define the character's role and personality.
             </p>
           </section>
 
@@ -86,7 +112,7 @@ const HowToUse = () => {
               If you do not click <strong>Download &amp; Save</strong>, the image will be lost when you move on or close the page. You <strong>must</strong> download your final images for them to be stored centrally.
             </p>
             <p className="text-muted-foreground">
-              This means you can freely experiment and regenerate as many times as you like — only the images you choose to download will be kept.
+              This means you can freely experiment and regenerate as many times as you like. Only the images you choose to download will be kept.
             </p>
             <p className="text-muted-foreground">
               Every saved image is <strong>time-stamped</strong>, so we can see exactly when each one was created. This helps us track progress and distinguish between testing and real sessions.
@@ -108,14 +134,23 @@ const HowToUse = () => {
 
           <section className="space-y-3">
             <h3 className="text-lg font-semibold text-foreground">6. Final Output</h3>
-            <p className="text-muted-foreground">By the end of the session, you will have:</p>
+            <p className="text-muted-foreground">For the Core Trailmaker Task, by the end of the session you will have:</p>
             <ul className="list-disc pl-6 text-muted-foreground space-y-1">
               <li>A character face</li>
               <li>A related object</li>
               <li>A full character image</li>
             </ul>
             <p className="text-muted-foreground">
-              The head and shoulders image may be used as part of the Ipswich Trailmakers Google Trail launching in September 2026, where characters will appear in short animated introductions at each location.
+              These images will be used to help create the final Trailmakers Trail across Ipswich, where student-designed characters will be linked to real Blue Plaque locations around the town.
+            </p>
+            <p className="text-muted-foreground">
+              The face image (head and shoulders) may be used as part of the Ipswich Trailmakers Google Trail launching in September 2026, where characters will appear in short animated introductions at each location.
+            </p>
+            <p className="text-muted-foreground">
+              This means students are contributing to a real public-facing project, where their work helps bring local history to life through character design and storytelling.
+            </p>
+            <p className="text-muted-foreground">
+              For the Edward Caley Project, the final outputs support deeper research and understanding. This work may be used to inform presentations, discussions, or proposal development rather than being part of the main Trailmakers Trail.
             </p>
           </section>
 
@@ -123,7 +158,7 @@ const HowToUse = () => {
             <h3 className="text-lg font-semibold text-foreground">7. Tips for Best Results</h3>
             <ul className="list-disc pl-6 text-muted-foreground space-y-1">
               <li>Keep descriptions clear and specific</li>
-              <li>Base ideas on research and visual evidence</li>
+              <li>Base ideas on research and evidence</li>
               <li>Do not spend too long refining one image</li>
               <li>Focus on the process and discussion</li>
             </ul>
