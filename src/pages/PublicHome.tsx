@@ -138,7 +138,7 @@ const PublicHome = () => {
           className={`relative py-16 scroll-mt-16`}
         >
           {/* Odd sections get solid background, even sections show brick through */}
-          <div className={`absolute inset-0 ${i % 2 === 0 ? "bg-background/75" : "bg-card/90"}`} />
+          <div className={`absolute inset-0 ${i % 2 === 0 ? "bg-background/65" : "bg-background/85"}`} />
           <div className="relative max-w-2xl mx-auto px-4 text-center">
             <div className="flex items-center justify-center gap-4 mb-8">
               <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
