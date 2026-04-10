@@ -7,6 +7,7 @@ import { useClassName } from "@/hooks/useClassName";
 import PortraitForm, { FieldLabels, FormFields } from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
+import PortalFooter from "@/components/PortalFooter";
 
 const role2Labels: FieldLabels = {
   seeLabel: "SEE – What do you notice about the clothing in the images?",
