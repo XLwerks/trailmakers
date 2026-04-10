@@ -155,6 +155,9 @@ const PublicHome = () => {
                 </p>
               ))}
             </div>
+            {i === 0 && (
+              <img src={partnerLogos} alt="Partner logos" className="mt-10 mx-auto opacity-90" style={{ width: '90%', maxWidth: '1200px' }} />
+            )}
           </div>
         </section>
       ))}
