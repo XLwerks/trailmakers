@@ -37,6 +37,7 @@ const CompulsoryHub = () => {
           </Button>
         </div>
       </main>
+      <PortalFooter />
     </div>
   );
 };
