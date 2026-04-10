@@ -130,8 +130,6 @@ const PublicHome = () => {
           </p>
         </div>
       </section>
-        </div>
-      </section>
 
       {/* Content sections */}
       {sections.map((section, i) => (
