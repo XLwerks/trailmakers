@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
 import wolseyGateBg from "@/assets/wolsey-gate-bg.jpg";
+import partnerLogos from "@/assets/partner-logos.png";
 import wolseyLogo from "@/assets/wolsey-550-logo.png";
 import iconCat from "@/assets/icon-cat.png";
 import iconClover from "@/assets/icon-clover.png";
@@ -127,6 +128,7 @@ const PublicHome = () => {
           <p className="mt-3 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
             Launching Autumn 2026
           </p>
+          <img src={partnerLogos} alt="Partner logos" className="mt-10 max-w-xl w-full mx-auto opacity-90" />
         </div>
       </section>
 
@@ -188,6 +190,7 @@ const PublicHome = () => {
 
       {/* Footer */}
       <footer className="py-8 text-center bg-card border-t border-border">
+        <img src={partnerLogos} alt="Partner logos" className="max-w-md w-full mx-auto mb-4 opacity-80" />
         <p className="text-sm text-muted-foreground">
           © 2026 Ipswich Trail Makers · Wolsey 550 PlaceChangers
         </p>
