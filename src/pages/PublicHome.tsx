@@ -142,7 +142,7 @@ const PublicHome = () => {
           <div className={`absolute inset-0 ${i % 2 === 0 ? "bg-background/85" : "bg-background/65"}`} />
           <div className="relative max-w-2xl mx-auto px-4 text-center">
             {i === 0 && (
-              <img src={partnerLogos} alt="Partner logos" className="mb-10 w-full opacity-90" />
+              <img src={partnerLogos} alt="Partner logos" className="mb-10 -mt-8 w-full opacity-90" />
             )}
             <div className="flex items-center justify-center gap-4 mb-8">
               <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
