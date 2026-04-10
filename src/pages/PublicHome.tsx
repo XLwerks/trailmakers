@@ -114,7 +114,7 @@ const PublicHome = () => {
           <img
             src={trailmakersLogo}
             alt="Ipswich Trail Makers"
-            className="w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover mx-auto mb-8"
+            className="w-96 h-96 sm:w-[32rem] sm:h-[32rem] rounded-full object-cover mx-auto mb-8"
           />
           <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-3">
             Wolsey 550 PlaceChangers
