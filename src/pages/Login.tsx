@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Home } from "lucide-react";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
+import PortalFooter from "@/components/PortalFooter";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -77,6 +78,7 @@ const Login = () => {
           </Button>
         </form>
       </div>
+      <PortalFooter />
     </div>
   );
 };
