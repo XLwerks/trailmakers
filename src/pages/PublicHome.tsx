@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
+import wolseyGateBg from "@/assets/wolsey-gate-bg.jpg";
 import wolseyLogo from "@/assets/wolsey-550-logo.png";
 import iconCat from "@/assets/icon-cat.png";
 import iconClover from "@/assets/icon-clover.png";
@@ -120,31 +121,44 @@ const PublicHome = () => {
         </div>
       </section>
 
-      {/* Content sections */}
-      {sections.map((section, i) => (
-        <section
-          key={section.title}
-          id={section.id}
-          className={`py-16 ${i % 2 === 0 ? "bg-card" : "bg-background"} scroll-mt-16`}
-        >
-          <div className="max-w-2xl mx-auto px-4 text-center">
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
-              <h3 className="text-3xl sm:text-4xl font-bold text-primary">
-                {section.title}
-              </h3>
-              <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
-            </div>
-            <div className="space-y-5">
-              {section.paragraphs.map((p, j) => (
-                <p key={j} className="text-muted-foreground text-lg leading-relaxed">
-                  {p}
-                </p>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
+      {/* Content sections with background image */}
+      <div
+        className="relative"
+        style={{
+          backgroundImage: `url(${wolseyGateBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-background/90" />
+        <div className="relative">
+          {sections.map((section, i) => (
+            <section
+              key={section.title}
+              id={section.id}
+              className={`py-16 ${i % 2 === 0 ? "bg-card/60" : "bg-transparent"} scroll-mt-16`}
+            >
+              <div className="max-w-2xl mx-auto px-4 text-center">
+                <div className="flex items-center justify-center gap-4 mb-8">
+                  <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+                  <h3 className="text-3xl sm:text-4xl font-bold text-primary">
+                    {section.title}
+                  </h3>
+                  <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+                </div>
+                <div className="space-y-5">
+                  {section.paragraphs.map((p, j) => (
+                    <p key={j} className="text-muted-foreground text-lg leading-relaxed">
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
 
       {/* CTA */}
       <section className="py-20 text-center" style={{ backgroundColor: '#651114' }}>
