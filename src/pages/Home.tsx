@@ -85,7 +85,7 @@ const Home = () => {
         </div>
 
         <div className="flex justify-center mt-12">
-          <img src={trailmakersLogo} alt="Ipswich Trail Makers" className="w-80 h-80 rounded-full object-cover" />
+          <img src={trailmakersLogo} alt="Ipswich Trail Makers" className="w-[25rem] h-[25rem] rounded-full object-cover" />
         </div>
       </main>
       <PortalFooter />
