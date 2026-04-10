@@ -69,7 +69,15 @@ const PublicHome = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div
+      className="min-h-screen"
+      style={{
+        backgroundImage: `url(${wolseyGateBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       {/* Top bar */}
       <header className="sticky top-0 z-10 border-b border-[#651114]" style={{ backgroundColor: '#651114' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between">
@@ -99,8 +107,9 @@ const PublicHome = () => {
       </header>
 
       {/* Hero */}
-      <section className="py-16 sm:py-24 text-center">
-        <div className="max-w-3xl mx-auto px-4">
+      <section className="relative py-16 sm:py-24 text-center">
+        <div className="absolute inset-0 bg-background/80" />
+        <div className="relative max-w-3xl mx-auto px-4">
           <img
             src={trailmakersLogo}
             alt="Ipswich Trail Makers"
@@ -121,44 +130,33 @@ const PublicHome = () => {
         </div>
       </section>
 
-      {/* Content sections with background image */}
-      <div
-        className="relative"
-        style={{
-          backgroundImage: `url(${wolseyGateBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        <div className="absolute inset-0 bg-background/90" />
-        <div className="relative">
-          {sections.map((section, i) => (
-            <section
-              key={section.title}
-              id={section.id}
-              className={`py-16 ${i % 2 === 0 ? "bg-card/60" : "bg-transparent"} scroll-mt-16`}
-            >
-              <div className="max-w-2xl mx-auto px-4 text-center">
-                <div className="flex items-center justify-center gap-4 mb-8">
-                  <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
-                  <h3 className="text-3xl sm:text-4xl font-bold text-primary">
-                    {section.title}
-                  </h3>
-                  <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
-                </div>
-                <div className="space-y-5">
-                  {section.paragraphs.map((p, j) => (
-                    <p key={j} className="text-muted-foreground text-lg leading-relaxed">
-                      {p}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            </section>
-          ))}
-        </div>
-      </div>
+      {/* Content sections */}
+      {sections.map((section, i) => (
+        <section
+          key={section.title}
+          id={section.id}
+          className={`relative py-16 scroll-mt-16`}
+        >
+          {/* Odd sections get solid background, even sections show brick through */}
+          <div className={`absolute inset-0 ${i % 2 === 0 ? "bg-background/75" : "bg-card/90"}`} />
+          <div className="relative max-w-2xl mx-auto px-4 text-center">
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+              <h3 className="text-3xl sm:text-4xl font-bold text-primary">
+                {section.title}
+              </h3>
+              <img src={sectionIcons[i]} alt="" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+            </div>
+            <div className="space-y-5">
+              {section.paragraphs.map((p, j) => (
+                <p key={j} className="text-muted-foreground text-lg leading-relaxed">
+                  {p}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
 
       {/* CTA */}
       <section className="py-20 text-center" style={{ backgroundColor: '#651114' }}>
