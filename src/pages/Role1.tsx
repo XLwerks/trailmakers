@@ -8,6 +8,7 @@ import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Home } from "lucide-react";
+import PortalFooter from "@/components/PortalFooter";
 
 interface Role1Props {
   timePeriod: string;
@@ -113,6 +114,7 @@ const Role1 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
           </div>
         </div>
       </main>
+      <PortalFooter />
     </div>
   );
 };

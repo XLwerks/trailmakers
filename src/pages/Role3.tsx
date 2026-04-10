@@ -121,6 +121,7 @@ const Role3 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
           </div>
         </div>
       </main>
+      <PortalFooter />
     </div>
   );
 };
