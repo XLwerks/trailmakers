@@ -128,9 +128,6 @@ const PublicHome = () => {
           <p className="mt-3 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
             Launching Autumn 2026
           </p>
-          <div className="mt-10 mx-auto rounded-xl bg-background/85 p-6" style={{ width: '90%', maxWidth: '1200px' }}>
-            <img src={partnerLogos} alt="Partner logos" className="w-full opacity-90" />
-          </div>
         </div>
       </section>
 
@@ -158,6 +155,9 @@ const PublicHome = () => {
                 </p>
               ))}
             </div>
+            {i === 0 && (
+              <img src={partnerLogos} alt="Partner logos" className="mt-10 mx-auto opacity-90" style={{ width: '90%', maxWidth: '1200px' }} />
+            )}
           </div>
         </section>
       ))}
