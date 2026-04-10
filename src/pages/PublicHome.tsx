@@ -108,7 +108,7 @@ const PublicHome = () => {
 
       {/* Hero */}
       <section className="relative py-16 sm:py-24 text-center">
-        <div className="absolute inset-0 bg-background/80" />
+        <div className="absolute inset-0 bg-background/65" />
         <div className="relative max-w-3xl mx-auto px-4">
           <img
             src={trailmakersLogo}
