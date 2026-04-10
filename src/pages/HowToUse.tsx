@@ -1,4 +1,5 @@
 import AppHeader from "@/components/AppHeader";
+import PortalFooter from "@/components/PortalFooter";
 
 const HowToUse = () => {
   return (
@@ -172,6 +173,7 @@ const HowToUse = () => {
           </section>
         </div>
       </div>
+      <PortalFooter />
     </div>
   );
 };

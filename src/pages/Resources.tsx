@@ -3,6 +3,7 @@ import { compulsoryResources, edCaleyResources } from "@/components/AppHeader";
 import { Download, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import PortalFooter from "@/components/PortalFooter";
 
 const ResourceList = ({ resources }: { resources: { name: string; file: string }[] }) => (
   <div className="space-y-4">
@@ -61,6 +62,7 @@ const Resources = () => {
           </TabsContent>
         </Tabs>
       </main>
+      <PortalFooter />
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
 import { Loader2, Camera, Upload, Home } from "lucide-react";
+import PortalFooter from "@/components/PortalFooter";
 import { FormFields } from "@/components/PortraitForm";
 
 interface Role5Props {
@@ -181,6 +182,7 @@ const Role5 = ({ timePeriod, onTimePeriodChange, fields, onFieldsChange, generat
           </div>
         </div>
       </main>
+      <PortalFooter />
     </div>
   );
 };

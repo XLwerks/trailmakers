@@ -6,6 +6,7 @@ import { useClassName } from "@/hooks/useClassName";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
+import PortalFooter from "@/components/PortalFooter";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -87,6 +88,7 @@ const Home = () => {
           <img src={trailmakersLogo} alt="Ipswich Trail Makers" className="w-80 h-80 rounded-full object-cover" />
         </div>
       </main>
+      <PortalFooter />
     </div>
   );
 };

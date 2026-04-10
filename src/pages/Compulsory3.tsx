@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useClassName } from "@/hooks/useClassName";
+import PortalFooter from "@/components/PortalFooter";
 
 interface Compulsory3Props {
   see: string;
@@ -281,6 +282,7 @@ const Compulsory3 = ({
           </Button>
         </div>
       </main>
+      <PortalFooter />
     </div>
   );
 };

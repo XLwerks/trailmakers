@@ -6,6 +6,7 @@ import { useClassName } from "@/hooks/useClassName";
 import PortraitForm, { FieldLabels, FormFields } from "@/components/PortraitForm";
 import ResultPanel from "@/components/ResultPanel";
 import DebugPanel from "@/components/DebugPanel";
+import PortalFooter from "@/components/PortalFooter";
 import { Home } from "lucide-react";
 
 interface Role3Props {
@@ -121,6 +122,7 @@ const Role3 = ({ timePeriod, fields, onFieldsChange, generatedImage, onGenerated
           </div>
         </div>
       </main>
+      <PortalFooter />
     </div>
   );
 };

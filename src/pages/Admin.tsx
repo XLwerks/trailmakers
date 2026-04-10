@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import PortalFooter from "@/components/PortalFooter";
 
 interface SchoolRecord {
   id: string;
@@ -185,6 +186,7 @@ const Admin = () => {
           </div>
         </div>
       </main>
+      <PortalFooter />
     </div>
   );
 };
