@@ -128,7 +128,7 @@ const PublicHome = () => {
           <p className="mt-3 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
             Launching Autumn 2026
           </p>
-          <img src={partnerLogos} alt="Partner logos" className="mt-10 max-w-3xl w-full mx-auto opacity-90" />
+          <img src={partnerLogos} alt="Partner logos" className="mt-10 max-w-4xl w-full mx-auto opacity-90" />
         </div>
       </section>
 
@@ -190,7 +190,7 @@ const PublicHome = () => {
 
       {/* Footer */}
       <footer className="py-8 text-center bg-card border-t border-border">
-        <img src={partnerLogos} alt="Partner logos" className="max-w-xl w-full mx-auto mb-4 opacity-80" />
+        <img src={partnerLogos} alt="Partner logos" className="max-w-2xl w-full mx-auto mb-4 opacity-80" />
         <p className="text-sm text-muted-foreground">
           © 2026 Ipswich Trail Makers · Wolsey 550 PlaceChangers
         </p>
