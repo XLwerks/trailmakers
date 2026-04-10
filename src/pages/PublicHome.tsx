@@ -140,7 +140,7 @@ const PublicHome = () => {
         >
           {/* Odd sections get solid background, even sections show brick through */}
           <div className={`absolute inset-0 ${i % 2 === 0 ? "bg-background/85" : "bg-background/65"}`} />
-          <div className="relative max-w-2xl mx-auto px-4 text-center">
+          <div className="relative mx-auto px-4 text-center" style={{ maxWidth: i === 0 ? '56rem' : '42rem' }}>
             {i === 0 && (
               <img src={partnerLogos} alt="Partner logos" className="mb-10 -mt-8 w-full opacity-90" />
             )}
