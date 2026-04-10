@@ -128,7 +128,7 @@ const PublicHome = () => {
           <p className="mt-3 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
             Launching Autumn 2026
           </p>
-          <img src={partnerLogos} alt="Partner logos" className="mt-10 max-w-5xl w-full mx-auto opacity-90" />
+          <img src={partnerLogos} alt="Partner logos" className="mt-10 mx-auto opacity-90" style={{ width: '90%', maxWidth: '1200px' }} />
         </div>
       </section>
 
