@@ -73,7 +73,7 @@ const PublicHome = () => {
     <div
       className="min-h-screen"
       style={{
-        backgroundImage: `url(${wolseyGateBg})`,
+        backgroundImage: `url(${schoolBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
