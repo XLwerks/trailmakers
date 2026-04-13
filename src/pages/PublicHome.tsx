@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import trailmakersLogo from "@/assets/trailmakers-logo.png";
-import wolseyGateBg from "@/assets/wolsey-gate-bg.jpg";
+import schoolBg from "@/assets/school-bg.jpg";
 import partnerLogos from "@/assets/partner-logos.png";
 import wolseyLogo from "@/assets/wolsey-550-logo.png";
 import iconCat from "@/assets/icon-cat.png";
