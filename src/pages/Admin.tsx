@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Loader2, Plus, Users, School } from "lucide-react";
+import { ArrowLeft, Loader2, Plus, Users, School, Images } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,6 +8,18 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import PortalFooter from "@/components/PortalFooter";
+
+interface ImageRecord {
+  id: string;
+  school_id: string;
+  teacher_name: string | null;
+  class_name: string | null;
+  task_type: string;
+  task_stage: string | null;
+  prompt: string | null;
+  image_url: string;
+  created_at: string;
+}
 
 interface SchoolRecord {
   id: string;
