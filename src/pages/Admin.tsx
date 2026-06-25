@@ -9,16 +9,13 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import PortalFooter from "@/components/PortalFooter";
 
-interface ImageRecord {
-  id: string;
-  school_id: string;
-  teacher_name: string | null;
-  class_name: string | null;
-  task_type: string;
-  task_stage: string | null;
-  prompt: string | null;
-  image_url: string;
-  created_at: string;
+interface StoredImage {
+  path: string;
+  url: string;
+  role: string;
+  className: string;
+  fileName: string;
+  createdAt: string;
 }
 
 interface SchoolRecord {
@@ -49,21 +46,47 @@ const Admin = () => {
     fetchSchools();
   }, [isAdmin]);
 
-  const [images, setImages] = useState<ImageRecord[]>([]);
+  const [images, setImages] = useState<StoredImage[]>([]);
   const [loadingImages, setLoadingImages] = useState(false);
-  const [filterSchoolId, setFilterSchoolId] = useState<string>("");
+  const [filterRole, setFilterRole] = useState<string>("");
+  const [filterClass, setFilterClass] = useState<string>("");
 
   useEffect(() => {
     if (!isAdmin) return;
     fetchImages();
-  }, [isAdmin, filterSchoolId]);
+  }, [isAdmin]);
 
   const fetchImages = async () => {
     setLoadingImages(true);
-    let q = supabase.from("generated_images").select("*").order("created_at", { ascending: false }).limit(500);
-    if (filterSchoolId) q = q.eq("school_id", filterSchoolId);
-    const { data } = await q;
-    if (data) setImages(data as ImageRecord[]);
+    const collected: StoredImage[] = [];
+    // Walk: role/className/file
+    const { data: roles } = await supabase.storage.from("generated-images").list("", { limit: 1000 });
+    for (const role of roles ?? []) {
+      if (role.name.includes(".")) continue; // skip files at root
+      const { data: classes } = await supabase.storage.from("generated-images").list(role.name, { limit: 1000 });
+      for (const cls of classes ?? []) {
+        if (cls.name.includes(".")) continue;
+        const prefix = `${role.name}/${cls.name}`;
+        const { data: files } = await supabase.storage.from("generated-images").list(prefix, { limit: 1000 });
+        for (const f of files ?? []) {
+          if (!f.name || f.name.startsWith(".")) continue;
+          const path = `${prefix}/${f.name}`;
+          const { data } = supabase.storage.from("generated-images").getPublicUrl(path);
+          const tsMatch = f.name.match(/^(\d+)-/);
+          const createdAt = tsMatch ? new Date(parseInt(tsMatch[1])).toISOString() : (f.created_at ?? "");
+          collected.push({
+            path,
+            url: data.publicUrl,
+            role: role.name,
+            className: cls.name,
+            fileName: f.name,
+            createdAt,
+          });
+        }
+      }
+    }
+    collected.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+    setImages(collected);
     setLoadingImages(false);
   };
 
@@ -222,62 +245,72 @@ const Admin = () => {
             <Images className="w-5 h-5 text-primary" />
             <h2 className="text-lg font-bold text-foreground">Submissions Gallery</h2>
           </div>
-          <div className="mb-4">
-            <Label>Filter by school</Label>
-            <select
-              value={filterSchoolId}
-              onChange={(e) => setFilterSchoolId(e.target.value)}
-              className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-            >
-              <option value="">All schools</option>
-              {schools.map((s) => (
-                <option key={s.id} value={s.id}>{s.name}</option>
-              ))}
-            </select>
-          </div>
-
-          {loadingImages ? (
-            <div className="flex justify-center py-8"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
-          ) : images.length === 0 ? (
-            <p className="text-sm text-muted-foreground text-center py-8">No submissions yet.</p>
-          ) : (
-            <>
-              <p className="text-xs text-muted-foreground mb-3">{images.length} image{images.length === 1 ? "" : "s"} (most recent first, up to 500)</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                {images.map((img) => {
-                  const school = schools.find((s) => s.id === img.school_id);
-                  return (
-                    <a
-                      key={img.id}
-                      href={img.image_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="block group"
+          {(() => {
+            const roles = Array.from(new Set(images.map((i) => i.role))).sort();
+            const classes = Array.from(new Set(images.map((i) => i.className))).sort();
+            const filtered = images.filter(
+              (i) => (!filterRole || i.role === filterRole) && (!filterClass || i.className === filterClass)
+            );
+            return (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                  <div>
+                    <Label>Filter by task</Label>
+                    <select
+                      value={filterRole}
+                      onChange={(e) => setFilterRole(e.target.value)}
+                      className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                     >
-                      <div className="aspect-square overflow-hidden rounded-lg border border-border bg-muted">
-                        <img
-                          src={img.image_url}
-                          alt={img.prompt || img.task_type}
-                          loading="lazy"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                        />
-                      </div>
-                      <div className="mt-1.5 text-xs">
-                        <p className="font-semibold text-foreground truncate">{school?.name || "—"}</p>
-                        <p className="text-muted-foreground truncate">
-                          {img.teacher_name || "—"}{img.class_name ? ` · ${img.class_name}` : ""}
-                        </p>
-                        <p className="text-muted-foreground truncate">
-                          {img.task_type}{img.task_stage ? ` · ${img.task_stage}` : ""}
-                        </p>
-                        <p className="text-muted-foreground/70 text-[10px]">{new Date(img.created_at).toLocaleDateString()}</p>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </>
-          )}
+                      <option value="">All tasks</option>
+                      {roles.map((r) => <option key={r} value={r}>{r}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <Label>Filter by class</Label>
+                    <select
+                      value={filterClass}
+                      onChange={(e) => setFilterClass(e.target.value)}
+                      className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    >
+                      <option value="">All classes</option>
+                      {classes.map((c) => <option key={c} value={c}>{c}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                {loadingImages ? (
+                  <div className="flex justify-center py-8"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
+                ) : filtered.length === 0 ? (
+                  <p className="text-sm text-muted-foreground text-center py-8">No submissions match these filters.</p>
+                ) : (
+                  <>
+                    <p className="text-xs text-muted-foreground mb-3">{filtered.length} image{filtered.length === 1 ? "" : "s"} (most recent first)</p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                      {filtered.map((img) => (
+                        <a key={img.path} href={img.url} target="_blank" rel="noreferrer" className="block group">
+                          <div className="aspect-square overflow-hidden rounded-lg border border-border bg-muted">
+                            <img
+                              src={img.url}
+                              alt={img.fileName}
+                              loading="lazy"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                            />
+                          </div>
+                          <div className="mt-1.5 text-xs">
+                            <p className="font-semibold text-foreground truncate">{img.className}</p>
+                            <p className="text-muted-foreground truncate">{img.role}</p>
+                            <p className="text-muted-foreground/70 text-[10px]">
+                              {img.createdAt ? new Date(img.createdAt).toLocaleString() : ""}
+                            </p>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </>
+            );
+          })()}
         </div>
       </main>
       <PortalFooter />
