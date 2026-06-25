@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Loader2, Plus, Users, School } from "lucide-react";
+import { ArrowLeft, Loader2, Plus, Users, School, Images } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,6 +8,18 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import PortalFooter from "@/components/PortalFooter";
+
+interface ImageRecord {
+  id: string;
+  school_id: string;
+  teacher_name: string | null;
+  class_name: string | null;
+  task_type: string;
+  task_stage: string | null;
+  prompt: string | null;
+  image_url: string;
+  created_at: string;
+}
 
 interface SchoolRecord {
   id: string;
@@ -36,6 +48,24 @@ const Admin = () => {
     }
     fetchSchools();
   }, [isAdmin]);
+
+  const [images, setImages] = useState<ImageRecord[]>([]);
+  const [loadingImages, setLoadingImages] = useState(false);
+  const [filterSchoolId, setFilterSchoolId] = useState<string>("");
+
+  useEffect(() => {
+    if (!isAdmin) return;
+    fetchImages();
+  }, [isAdmin, filterSchoolId]);
+
+  const fetchImages = async () => {
+    setLoadingImages(true);
+    let q = supabase.from("generated_images").select("*").order("created_at", { ascending: false }).limit(500);
+    if (filterSchoolId) q = q.eq("school_id", filterSchoolId);
+    const { data } = await q;
+    if (data) setImages(data as ImageRecord[]);
+    setLoadingImages(false);
+  };
 
   const fetchSchools = async () => {
     const { data } = await supabase.from("schools").select("*").order("name");
@@ -184,6 +214,70 @@ const Admin = () => {
               {creatingUser ? <><Loader2 className="w-4 h-4 animate-spin mr-2" /> Creating...</> : "Create Teacher Account"}
             </Button>
           </div>
+        </div>
+
+        {/* Submissions Gallery */}
+        <div className="bg-card rounded-xl border border-border p-6 shadow-sm">
+          <div className="flex items-center gap-2 mb-4">
+            <Images className="w-5 h-5 text-primary" />
+            <h2 className="text-lg font-bold text-foreground">Submissions Gallery</h2>
+          </div>
+          <div className="mb-4">
+            <Label>Filter by school</Label>
+            <select
+              value={filterSchoolId}
+              onChange={(e) => setFilterSchoolId(e.target.value)}
+              className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            >
+              <option value="">All schools</option>
+              {schools.map((s) => (
+                <option key={s.id} value={s.id}>{s.name}</option>
+              ))}
+            </select>
+          </div>
+
+          {loadingImages ? (
+            <div className="flex justify-center py-8"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
+          ) : images.length === 0 ? (
+            <p className="text-sm text-muted-foreground text-center py-8">No submissions yet.</p>
+          ) : (
+            <>
+              <p className="text-xs text-muted-foreground mb-3">{images.length} image{images.length === 1 ? "" : "s"} (most recent first, up to 500)</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                {images.map((img) => {
+                  const school = schools.find((s) => s.id === img.school_id);
+                  return (
+                    <a
+                      key={img.id}
+                      href={img.image_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block group"
+                    >
+                      <div className="aspect-square overflow-hidden rounded-lg border border-border bg-muted">
+                        <img
+                          src={img.image_url}
+                          alt={img.prompt || img.task_type}
+                          loading="lazy"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                      </div>
+                      <div className="mt-1.5 text-xs">
+                        <p className="font-semibold text-foreground truncate">{school?.name || "—"}</p>
+                        <p className="text-muted-foreground truncate">
+                          {img.teacher_name || "—"}{img.class_name ? ` · ${img.class_name}` : ""}
+                        </p>
+                        <p className="text-muted-foreground truncate">
+                          {img.task_type}{img.task_stage ? ` · ${img.task_stage}` : ""}
+                        </p>
+                        <p className="text-muted-foreground/70 text-[10px]">{new Date(img.created_at).toLocaleDateString()}</p>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
       </main>
       <PortalFooter />
