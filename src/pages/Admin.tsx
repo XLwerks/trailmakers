@@ -9,16 +9,13 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import PortalFooter from "@/components/PortalFooter";
 
-interface ImageRecord {
-  id: string;
-  school_id: string;
-  teacher_name: string | null;
-  class_name: string | null;
-  task_type: string;
-  task_stage: string | null;
-  prompt: string | null;
-  image_url: string;
-  created_at: string;
+interface StoredImage {
+  path: string;
+  url: string;
+  role: string;
+  className: string;
+  fileName: string;
+  createdAt: string;
 }
 
 interface SchoolRecord {
