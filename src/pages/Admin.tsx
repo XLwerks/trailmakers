@@ -46,21 +46,47 @@ const Admin = () => {
     fetchSchools();
   }, [isAdmin]);
 
-  const [images, setImages] = useState<ImageRecord[]>([]);
+  const [images, setImages] = useState<StoredImage[]>([]);
   const [loadingImages, setLoadingImages] = useState(false);
-  const [filterSchoolId, setFilterSchoolId] = useState<string>("");
+  const [filterRole, setFilterRole] = useState<string>("");
+  const [filterClass, setFilterClass] = useState<string>("");
 
   useEffect(() => {
     if (!isAdmin) return;
     fetchImages();
-  }, [isAdmin, filterSchoolId]);
+  }, [isAdmin]);
 
   const fetchImages = async () => {
     setLoadingImages(true);
-    let q = supabase.from("generated_images").select("*").order("created_at", { ascending: false }).limit(500);
-    if (filterSchoolId) q = q.eq("school_id", filterSchoolId);
-    const { data } = await q;
-    if (data) setImages(data as ImageRecord[]);
+    const collected: StoredImage[] = [];
+    // Walk: role/className/file
+    const { data: roles } = await supabase.storage.from("generated-images").list("", { limit: 1000 });
+    for (const role of roles ?? []) {
+      if (role.name.includes(".")) continue; // skip files at root
+      const { data: classes } = await supabase.storage.from("generated-images").list(role.name, { limit: 1000 });
+      for (const cls of classes ?? []) {
+        if (cls.name.includes(".")) continue;
+        const prefix = `${role.name}/${cls.name}`;
+        const { data: files } = await supabase.storage.from("generated-images").list(prefix, { limit: 1000 });
+        for (const f of files ?? []) {
+          if (!f.name || f.name.startsWith(".")) continue;
+          const path = `${prefix}/${f.name}`;
+          const { data } = supabase.storage.from("generated-images").getPublicUrl(path);
+          const tsMatch = f.name.match(/^(\d+)-/);
+          const createdAt = tsMatch ? new Date(parseInt(tsMatch[1])).toISOString() : (f.created_at ?? "");
+          collected.push({
+            path,
+            url: data.publicUrl,
+            role: role.name,
+            className: cls.name,
+            fileName: f.name,
+            createdAt,
+          });
+        }
+      }
+    }
+    collected.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+    setImages(collected);
     setLoadingImages(false);
   };
 
