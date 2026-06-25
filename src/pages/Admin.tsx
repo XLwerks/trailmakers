@@ -49,6 +49,24 @@ const Admin = () => {
     fetchSchools();
   }, [isAdmin]);
 
+  const [images, setImages] = useState<ImageRecord[]>([]);
+  const [loadingImages, setLoadingImages] = useState(false);
+  const [filterSchoolId, setFilterSchoolId] = useState<string>("");
+
+  useEffect(() => {
+    if (!isAdmin) return;
+    fetchImages();
+  }, [isAdmin, filterSchoolId]);
+
+  const fetchImages = async () => {
+    setLoadingImages(true);
+    let q = supabase.from("generated_images").select("*").order("created_at", { ascending: false }).limit(500);
+    if (filterSchoolId) q = q.eq("school_id", filterSchoolId);
+    const { data } = await q;
+    if (data) setImages(data as ImageRecord[]);
+    setLoadingImages(false);
+  };
+
   const fetchSchools = async () => {
     const { data } = await supabase.from("schools").select("*").order("name");
     if (data) setSchools(data);
